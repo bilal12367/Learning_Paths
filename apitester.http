@@ -1,0 +1,11 @@
+### 
+
+GET http://192.168.0.15:30566/test
+
+###
+POST http://192.168.0.15:30566/testPost
+Content-Type: application/json
+
+{
+    "data": "somedata"
+}
