@@ -19,4 +19,6 @@ spec:
         image: skbilal1236/test_node_app:1
         ports:
         - containerPort: 5000
-        imagePullPolicy: IfNotPresent  # Specify the image pull policy
+        envFrom:
+        - secretRef:
+            name: node-app-secret

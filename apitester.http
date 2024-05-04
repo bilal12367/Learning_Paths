@@ -1,11 +1,81 @@
 ### 
 
-GET http://192.168.0.15:30566/test
+GET http://192.168.0.15:31077/test
 
 ###
-POST http://192.168.0.15:30566/testPost
+POST http://192.168.0.15:31077/testPost
 Content-Type: application/json
 
 {
     "data": "somedata"
 }
+
+
+###
+POST http://192.168.0.16:31000/api/customer
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john@example.com",
+  "phoneNumber": "1234567890",
+  "address": "123 Main St",
+  "city": "Anytown",
+  "state": "California",
+  "zipCode": "12345"
+}
+###
+POST http://192.168.0.16:31000/api/customer
+Content-Type: application/json
+
+{
+  "firstName": "Bilal",
+  "lastName": "Mohammed",
+  "email": "sk.bilal.md@example.com",
+  "phoneNumber": "3252643234",
+  "address": "456 Oak St",
+  "city": "Sometown",
+  "state": "New York",
+  "zipCode": "54321"
+}
+###
+POST http://192.168.0.16:31000/api/customer
+Content-Type: application/json
+
+{
+  "firstName": "Emily",
+  "lastName": "Johnson",
+  "email": "emily@example.com",
+  "phoneNumber": "5551234567",
+  "address": "789 Elm St",
+  "city": "AnotherTown",
+  "state": "Texas",
+  "zipCode": "98765"
+}
+
+
+
+
+###
+GET http://192.168.0.16:31000/api/customer/6635e675c653148c51b668d2
+###
+GET http://192.168.0.16:31000/api/customer/all
+
+###
+PUT http://192.168.0.16:31000/api/customer/6635ce969ddfe27747fd107a
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john1234@example.com",
+  "phoneNumber": "1324567890",
+  "address": "321 Main St",
+  "city": "moscow",
+  "state": "California",
+  "zipCode": "12345"
+}
+
+###
+DELETE http://192.168.0.16:31000/api/customer/6635d70ec3228e4742ef57d5
