@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node-app-container
-        image: skbilal1236/test_node_app:1
+        image: skbilal1236/test_node_app:2
         ports:
         - containerPort: 5000
         envFrom:
