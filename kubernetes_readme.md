@@ -2,6 +2,11 @@
 
 # Installation and cluster setup using Kubernetes
 
+You can refer `https://github.com/techiescamp/kubeadm-scripts` for automated setup of kubernetes cluster.
+```sh
+git clone https://github.com/techiescamp/kubeadm-scripts
+```
+
 >This readme file is a tutorial/guide for proper kubernetes setup
 It also helps how to properly install kubernetes and  container runtime "containerd" setup.
 
