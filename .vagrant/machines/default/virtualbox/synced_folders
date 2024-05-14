@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/synced":{"guestpath":"/home/vagrant/synced","hostpath":"C:/Users/bilal/Desktop/shared","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/bilal/Desktop/shared","disabled":false,"__vagrantfile":true}}}
