@@ -1,0 +1,210 @@
+
+## INSTALLING Docker
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli docker-buildx-plugin docker-compose-plugin
+
+sudo usermod -aG docker $USER
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+
+sudo docker run hello-world
+
+newgrp docker
+
+
+
+## Installation Of Kubernetes
+
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+############################################################################################
+
+
+sudo apt-get update
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+sudo systemctl enable --now kubelet
+
+
+############################################################################################
+
+# Install Docker
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo usermod -aG docker $USER
+sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+sudo chmod g+rwx "$HOME/.docker" -R
+
+sudo docker run hello-world
+
+# Container runtime configuration
+
+# sysctl params required by setup, params persist across reboots
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
+EOF
+
+# Apply sysctl params without reboot
+sudo sysctl --system
+
+sysctl net.ipv4.ip_forward
+
+
+# Installed cri-dockerd
+
+## Installing golang
+
+wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+source ~/.profile
+go version
+
+## cri-dockerd
+
+git clone https://github.com/Mirantis/cri-dockerd.git
+cd cri-dockerd
+sudo apt install make
+make cri-dockerd
+mkdir -p /usr/local/bin
+install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+install packaging/systemd/* /etc/systemd/system
+sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+systemctl daemon-reload
+systemctl enable --now cri-docker.socket
+
+
+
+    1  git clone https://github.com/techiescamp/kubeadm-scripts.git
+    2  cd kubeadm-scripts/scripts/
+    3  ./common.sh 
+    4  ./master.sh 
+    5  # sysctl params required by setup, params persist across reboots
+    6  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.ipv4.ip_forward = 1
+EOF
+
+    7  # Apply sysctl params without reboot
+    8  sudo sysctl --system
+    9  cd ..
+   10  mkdir
+   11  mkdir scripts2
+   12  cd scripts
+   13  chmod +x i
+   14  cd ../scripts2
+   15  chmod +x install_prerequisites.sh 
+   16  sudo nano /etc/fstab
+   17  sudo swapoff -a
+   18  sysctl net.ipv4.ip_forward
+   19  lsb_release -a
+   20  wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.13/cri-dockerd_0.3.13.3-0.ubuntu-jammy_amd64.deb
+   21  sudo dpkg -i cri-dockerd_0.3.13.3-0.ubuntu-jammy_amd64.deb 
+   22  sudo apt-get install -f
+   23  sudo dpkg -i cri-dockerd_0.3.13.3-0.ubuntu-jammy_amd64.deb 
+   24  sudo dpkg -i cri-dockerd.deb 
+   25  clear
+   26  wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+   27  sudo tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
+   28  echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+   29  source ~/.profile
+   30  go version
+   31  clear
+   32  history
+   33  git clone https://github.com/Mirantis/cri-dockerd.git
+   34  cd cri-dockerd/
+   35  make cri-dockerd
+   36  sudo apt install make
+   37  make cri-dockerd
+   38  mkdir -p /usr/local/bin
+   39  sudo install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+   40  sudo install packaging/systemd/* /etc/systemd/system
+   41  sudo sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+   42  sudo systemctl daemon-reload
+   43  sudo systemctl enable --now cri-docker.socket
+   44  systemctl status cri-docker
+   45  sudo systemctl start docker
+   46  docker ps
+   47  cd ..
+   48  ./install_prerequisites.sh 
+   49  systemctl status cri-dockerd 
+   50  systemctl status cri-docker
+   51  systemctl stop cri-docker
+   52  systemctl start cri-docker
+   53  systemctl status cri-docker
+   54  nc 127.0.0.1 6443 -v
+   55  sudo apt-get update
+   56  # apt-transport-https may be a dummy package; if so, you can skip that package
+   57  sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+   58  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+   59  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   60  sudo apt-get update
+   61  sudo apt-get install -y kubelet kubeadm kubectl
+   62  sudo apt-mark hold kubelet kubeadm kubectl
+   63  sudo systemctl enable --now kubelet
+   64  systemctl status kubelet
+   65  kubectl get nodes
+   66  systemctl status kubelet
+   67  kubectl edit cm kubelet-config -n kube-system
+   68  sudo kubectl edit cm kubelet-config -n kube-system
+   69  sudo systemctl edit docker.service
+   70  sudo systemctl daemon-reload
+   71  sudo systemctl restart docker.service
+   72  sudo journalctl -u docker.service | grep cgroup
+   73  systemd is the native cgroup driver.
+   74  systemd is the native cgroup driver
+   75  systemctl restart cri-docker
+   76  systemctl status cri-docker
+   77  kubectl get nodes
+   78  systemctl status cri-docker
+   79  systemctl restart kubelet
+   80  systemctl status kubelet
+   81  hostname -s
+   82  sudo kubeadm init --control-plane-endpoint="192.168.0.8" --apiserver-cert-extra-sans="192.168.0.8" --pod-network-cidr="192.168.0.0/16" --node-name "bilal" --ignore-preflight-errors Swap --config kubelet-config.yml
+   83  sudo kubeadm init  --ignore-preflight-errors Swap --config kubelet-config.yml
+   84  sudo kubeadm init --control-plane-endpoint="192.168.0.8"  --ignore-preflight-errors Swap --config kubelet-config.yml
+   85  sudo kubeadm init --ignore-preflight-errors Swap --config kubelet-config.yml
+   86  sudo kubeadm init --apiserver-advertise-address=192.168.0.8 --control-plane-endpoint "192.168.0.8:6443"
+   87  sudo kubeadm init --apiserver-advertise-address=192.168.0.8 --control-plane-endpoint "192.168.0.8:6443" --cri-socket=unix:///var/run/cri-dockerd.sock
+   88  mkdir -p $HOME/.kube
+   89  sudo journalctl -u docker.service | grep cgroup
+   90  sudo journalctl -u docker.service
+   91  sudo kubeadm create token --print-join-command
+   92  kubeadm create token --print-join-command
+   93  sudo kubeadm token create --print-join-command
+   94  history
+   95  history > history.txt

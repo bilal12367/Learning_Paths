@@ -1,0 +1,11 @@
+
+Modify the readme for installing kubernetes according to new script
+using containerd
+
+This is because cri-o repository isn't responding, the binary it's like
+they've removed it.
+
+Using containerd
+
+new script path: kubescripts/start.sh
+
