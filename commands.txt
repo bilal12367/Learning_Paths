@@ -1,0 +1,10 @@
+docker run -d --name=mysql-server -v /mysqlData:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:latest
+
+docker run -d \
+  --name=mysql-workbench \
+  -p 3000:3000 \
+  -p 3001:3001 \
+  -v $HOME/mysqlData:/var/lib/mysql \
+  --cap-add="IPC_LOCK" \
+  --restart unless-stopped \
+  lscr.io/linuxserver/mysql-workbench:latest
