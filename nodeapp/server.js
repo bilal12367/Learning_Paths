@@ -14,11 +14,29 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json())
 
+app.get("/test", (req,res) => {
+    res.send("Success Hit Get ~~~")
+})
+
+app.post("/testPost", (req,res) => {
+    res.json({
+        data: "Success Hit~~"
+    })
+})
+
 app.use("/api/",customerRouter)
 
 app.use(ErrorHandlerMiddleware)
 
 app.listen(process.env.PORT || 5000, async () => {
-    console.log("Server started listening at ",process.env.PORT || 5000," ...")
-    await connectToMongo()
+    try {
+        console.log("Server started listening at ",process.env.PORT || 5000," ...")
+        console.log("Env Vars:")
+        console.log("Port: ",process.env.PORT)
+        console.log("Mongourl: ",process.env.MONGO_URL)
+        await connectToMongo()
+        
+    } catch (error) {
+        console.log("Error in startup: ",error)
+    }
 })

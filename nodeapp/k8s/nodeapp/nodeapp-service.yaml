@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: node-app-service
 spec:
+  type: NodePort
   selector:
     app: node-app
   ports:
   - protocol: TCP
-    port: 6001   # Service port
+    port: 5000   # Service port
     targetPort: 5000   # Target port of the pods
-    nodePort: 31000
-  type: LoadBalancer
+    nodePort: 30000
