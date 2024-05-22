@@ -1,0 +1,16 @@
+
+
+###
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+    "userName":"bilal",
+    "email":"sk.bilal.md@gmail.com",
+    "password": "Test!321"
+}
+
+###
+GET http://localhost:8080/api/users/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiaWxhbCIsImlhdCI6MTcxNjM4MzQzMSwiZXhwIjoxNzE2Mzg0ODcxfQ.mLrQlweSEtKRRICr9zcXlJgKbzl4PDLdbYcMNG5DrvE
