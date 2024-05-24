@@ -1,0 +1,15 @@
+
+
+###
+POST http://localhost:8080/authenticate
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+###
+GET http://localhost:8080/api/employees
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxNjU0OTAxOCwiZXhwIjoxNzM0NTQ5MDE4fQ.bEgrf4J1LDzLYyJcUODdUhwLIYflCqfA3nxuwcV-jMU6l4QCn2ZWHpMKH1vNKSd83jEwYEa920hJA45OIRnTfw
+

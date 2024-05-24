@@ -26,7 +26,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    @Autowired
+    private JwtService jwtService;
     
     private UserDetailsService userDetailsService;
 
@@ -36,6 +37,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         @NonNull HttpServletResponse response, 
         @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+            
+                System.out.println("Filter Intercepted");
         // TODO Auto-generated method stub
         final String authHeader = request.getHeader("Authorization");
         final String jwt;

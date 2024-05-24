@@ -21,10 +21,10 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        System.out.println("Register Endpoint");
         var user = User.builder()
         .username(request.getFirstName())
         .password(passwordEncoder.encode(request.getPassword()))
-        .roles(Role.USER)
         .build();
         
         return null;
