@@ -1,0 +1,32 @@
+
+
+###
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "firstName":"user1",
+    "lastName":"user1lastname",
+    "email":"user1@gmail.com",
+    "password":"Test!321"
+}
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email":"user1@gmail.com",
+    "password":"Test!321"
+}
+
+###
+GET http://localhost:5000/api/users/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjU3M2FlYjc3YjI0YjBkN2RiMGM3Y2EiLCJpYXQiOjE3MTY5OTMxMjYsImV4cCI6MTcxNjk5NjcyNn0.ZUuHHnkQpKWeB0tyZ3Zj-ymVGRQggUGLPvXCDOLQ2zE
+
+###
+GET http://localhost:5000/api/user/6655a62fe8e09ffed6af21ac
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjU1YTYyZmU4ZTA5ZmZlZDZhZjIxYWMiLCJpYXQiOjE3MTY4ODkxMzUsImV4cCI6MTcxNjg5MjczNX0.IqOOVFa9JWj_NDHuDtiatMHqyA5JRq06EPV06h-uTnA
+
+
+
+

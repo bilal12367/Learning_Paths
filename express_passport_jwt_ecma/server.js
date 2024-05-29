@@ -2,14 +2,14 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import 'express-async-errors'
 import cors from 'cors'
-import { AuthRouter } from './router/AuthRouter.js';
-import { UserRouter } from './router/UserRouter.js';
 import { configDotenv } from 'dotenv';
 import { connectToDb } from './utils/connectToDb.js'
 import { ErrorHandlerMiddleware } from './middleware/ErrorHandlerMiddleware.js'
 import passport from 'passport';
 import passportConfig from './middleware/passportConfig.js'
 import LoggerMiddleware from './middleware/LoggerMiddleware.js';
+import { AuthRouter } from './router/auth.route.js';
+import { UserRouter } from './router/user.route.js';
 
 configDotenv()
 
