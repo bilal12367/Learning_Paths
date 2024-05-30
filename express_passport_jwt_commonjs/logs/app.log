@@ -423,3 +423,281 @@
 
 2024-05-29T15:30:10.880 [INFO] default - Mongodb Connected Successfully!!
 
+2024-05-30T15:25:56.563 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:28:14.468 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:28:18.551 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:28:25.244 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:28:45.812 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:28:45.898 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:29:06.253 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:29:06.315 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:30:37.851 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:30:37.936 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:30:42.170 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:30:42.234 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:31:45.585 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:31:45.643 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:31:49.882 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:31:49.927 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:07.341 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:07.418 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:10.964 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:11.036 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:18.215 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:18.275 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:25.311 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:25.363 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:26.361 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:26.416 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:29.537 [DEBUG] default - Comparing Password:  Promise { false }
+
+2024-05-30T15:32:44.372 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:44.451 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:46.082 [DEBUG] default - Comparing Password:  false
+
+2024-05-30T15:32:55.010 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:32:55.058 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:32:57.477 [DEBUG] default - Comparing Password:  false
+
+2024-05-30T15:33:02.238 [DEBUG] default - Comparing Password:  true
+
+2024-05-30T15:33:16.699 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:33:16.765 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:11.602 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:11.665 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:21.900 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:21.946 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:25.799 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:25.864 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:36.500 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:36.567 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:41.825 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:41.897 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:34:50.497 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:34:50.553 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:35:09.813 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:35:09.885 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:35:15.226 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:35:15.340 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:35:18.405 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:35:18.478 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:35:20.251 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:35:20.320 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:05.826 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:05.901 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:07.498 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:07.552 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:20.259 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:20.307 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:28.489 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:28.553 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:34.207 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:34.277 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:36:48.810 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:36:48.868 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:03.753 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:03.807 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:10.456 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:10.530 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:11.736 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:11.794 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:13.551 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:13.626 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:26.531 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:26.589 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:41.480 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:41.560 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:46.141 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:46.193 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:37:54.987 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:37:55.048 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:38:07.616 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:38:07.677 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:38:16.049 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:38:16.111 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:38:24.264 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:38:24.309 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:40:14.365 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:40:14.426 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:40:15.473 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:40:15.549 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:40:22.085 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:40:22.161 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:40:27.950 [INFO] default - Server started listening at port  5000  ...
+
+2024-05-30T15:40:28.018 [INFO] default - Mongodb Connected Successfully!!
+
+2024-05-30T15:40:30.697 [ERROR] default - Error Caught:  AuthenticationError: Unauthorized
+    at allFailed (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:175:21)
+    at attempt (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:183:28)
+    at strategy.fail (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:314:9)
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:106:33
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:101:10)
+    at module.exports [as JwtVerifier] (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/verify_jwt.js:4:16)
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:104:25
+    at JwtStrategy._secretOrKeyProvider (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:40:13) {
+  status: 401
+}
+
+2024-05-30T15:44:53.187 [ERROR] default - Error Caught:  AuthenticationError: Unauthorized
+    at allFailed (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:175:21)
+    at attempt (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:183:28)
+    at strategy.fail (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport/lib/middleware/authenticate.js:314:9)
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:106:33
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:190:16
+    at getSecret (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/jsonwebtoken/verify.js:101:10)
+    at module.exports [as JwtVerifier] (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/verify_jwt.js:4:16)
+    at /home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:104:25
+    at JwtStrategy._secretOrKeyProvider (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/node_modules/passport-jwt/lib/strategy.js:40:13) {
+  status: 401
+}
+
+2024-05-30T15:44:59.779 [ERROR] default - Error Caught:  PasswordMismatch: Password Mismatch!!
+    at AuthService.loginService (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/service/AuthService.js:29:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthController.login (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/controller/AuthController.js:20:18)
+
+2024-05-30T15:45:05.784 [ERROR] default - Error Caught:  UserNotExists: User Does not Exists!!
+    at AuthService.loginService (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/service/AuthService.js:24:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async AuthController.login (/home/bilal/Learning_Paths/express_passport_jwt_commonjs/controller/AuthController.js:20:18)
+
+2024-05-30T15:45:22.392 [INFO] default - ====================================================
+
+2024-05-30T15:45:22.392 [INFO] default - Resource Access Request
+
+2024-05-30T15:45:22.397 [INFO] default - User:  {
+  _id: new ObjectId('66573aeb77b24b0d7db0c7ca'),
+  firstName: 'user1',
+  lastName: 'user1lastname',
+  email: 'user1@gmail.com',
+  password: '$2a$10$xRE6IszcltIiOdLPSAEbLe2I8GZ4K1CBNi.pRzcEPi8KzJfmNcjfy',
+  role: 'USER',
+  createdAt: 2024-05-29T14:25:47.685Z,
+  updatedAt: 2024-05-29T14:25:47.685Z,
+  __v: 0
+}
+
+2024-05-30T15:45:22.399 [INFO] default - URL:  /users/all
+
+2024-05-30T15:45:22.399 [INFO] default - Original URL:  /api/users/all
+
+2024-05-30T15:45:22.399 [INFO] default - ====================================================
+
+2024-05-30T15:45:31.962 [INFO] default - ====================================================
+
+2024-05-30T15:45:31.962 [INFO] default - Resource Access Request
+
+2024-05-30T15:45:31.966 [INFO] default - User:  {
+  _id: new ObjectId('66573aeb77b24b0d7db0c7ca'),
+  firstName: 'user1',
+  lastName: 'user1lastname',
+  email: 'user1@gmail.com',
+  password: '$2a$10$xRE6IszcltIiOdLPSAEbLe2I8GZ4K1CBNi.pRzcEPi8KzJfmNcjfy',
+  role: 'USER',
+  createdAt: 2024-05-29T14:25:47.685Z,
+  updatedAt: 2024-05-29T14:25:47.685Z,
+  __v: 0
+}
+
+2024-05-30T15:45:31.966 [INFO] default - URL:  /user/66573aeb77b24b0d7db0c7ca
+
+2024-05-30T15:45:31.967 [INFO] default - Original URL:  /api/user/66573aeb77b24b0d7db0c7ca
+
+2024-05-30T15:45:31.967 [INFO] default - ====================================================
+

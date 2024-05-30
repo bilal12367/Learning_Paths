@@ -24,7 +24,8 @@ AuthService.loginService = async (email, password) => {
         throw new UserNotExists()
     }
     const user = await User.findOne({ email })
-    if (!user.comparePassword(password)) {
+    
+    if (! await user.comparePassword(password)) {
         throw new PasswordMismatch()
     }
 

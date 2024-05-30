@@ -29,7 +29,7 @@ PassportConfig(passport)
 
 app.use("/auth", AuthRouter);
 
-app.use("/api", passport.authenticate('jwt', { session: false }), LoggerMiddleware, UserRouter)
+app.use("/api", passport.authenticate('jwt', { session: false, failWithError: true }), LoggerMiddleware, UserRouter)
 
 app.use(ErrorHandlerMiddleware)
 
