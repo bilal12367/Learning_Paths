@@ -1,0 +1,7 @@
+When you start a cluster the url looks like this
+
+mongodb://mongo-lb:27017/test?replicaSet=rs0
+
+notice the `replicaSet=rs0' at the end, this ip it redirects the write requests to primary
+and read requests from all secondary nodes.
+
