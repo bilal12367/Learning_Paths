@@ -3,7 +3,7 @@
     "host": "localhost",
     "port": 27017,
     "database": "test1",
-    "entities": ["../entity/**/*.entity{.ts}"],
+    "entities": ["/**/*.entity{.ts,.js}"],
     "synchronize": true
 }
   

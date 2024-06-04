@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Customer } from 'src/entity/user.entity';
+import { Customer } from 'src/entity/customer.entity';
 import { EncryptService } from 'src/utils/encrypt/encrypt.service';
-import { Repository } from 'typeorm';
+import { MongoRepository } from 'typeorm';
 
 @Injectable()
 export class CustomerService {
 
     constructor(
         @InjectRepository(Customer)
-        private readonly customerRepository: Repository<Customer>,
+        private readonly customerRepository: MongoRepository<Customer>,
         private readonly encrypt: EncryptService
     ) {}
 

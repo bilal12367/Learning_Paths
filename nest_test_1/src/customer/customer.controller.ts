@@ -1,5 +1,5 @@
-import { Controller, Post, Req, Res } from '@nestjs/common';
-import { Customer } from 'src/entity/user.entity';
+import { Controller, Post, Body } from '@nestjs/common';
+import { Customer } from 'src/entity/customer.entity';
 import { CustomerService } from './customer.service';
 
 @Controller('customer')
@@ -10,8 +10,8 @@ export class CustomerController {
     ) { }
 
     @Post("/register")
-    async registerCustomer(@Req() req: Request, @Res() res: Response): Promise<Customer> {
-        const { firstName, lastName, email, password } : any = req.body
+    async registerCustomer(@Body() body: any) {
+        const { firstName, lastName, email, password } : any = body
         const regCustomer = await this.customerService.registerCustomer(firstName,lastName,email,password)
         return regCustomer;
     }
