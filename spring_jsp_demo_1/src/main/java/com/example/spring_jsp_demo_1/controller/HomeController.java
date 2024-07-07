@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.spring_jsp_demo_1.dto.Employee;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class HomeController {
@@ -27,5 +29,18 @@ public class HomeController {
 
         return "home";
     }
+
+    @GetMapping("/testJson")
+    public String testJson(HttpServletRequest request) {
+        request.setAttribute("data", "Some Data");
+         List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee("John Doe", 30));
+        employees.add(new Employee("Jane Smith", 25));
+        employees.add(new Employee("Michael Johnson", 35));
+        request.setAttribute("employees", employees);
+
+        return "jsonViews/employees";
+    }
+    
 
 }
