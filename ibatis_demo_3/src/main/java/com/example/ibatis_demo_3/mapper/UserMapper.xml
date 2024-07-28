@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper namespace="com.example.ibatis_tutorial.dao.UserMapper"> -->
+<mapper namespace="com.example.ibatis_demo_3.dao.UserMapper">
+
+    <resultMap id="result" type="com.example.ibatis_demo_3.dao.model.User">
+        <id property="id" column="id" />
+        <result property="userName" column="user_name"/>
+        <result property="email" column="email"/>
+        <result property="role" column="user_role"/>
+        <result property="active" column="active"/>
+    </resultMap>
+
+    <select id="getAllUsers" resultType="com.example.ibatis_demo_3.dao.model.User" resultMap="result">
+        SELECT * FROM USERS
+    </select>
+
+<!--     
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.example.mybatis.models.User">
+        SELECT * FROM users WHERE id = #{id}
+    </select>
+
+    
+    <insert id="insertUser" parameterType="com.example.mybatis.models.User">
+        INSERT INTO users (username, password) VALUES (#{username}, #{password})
+    </insert>
+
+    
+    <update id="updateUser" parameterType="com.example.mybatis.models.User">
+        UPDATE users SET username = #{username}, password = #{password} WHERE id = #{id}
+    </update>
+
+    
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM users WHERE id = #{id}
+    </delete> -->
+
+</mapper>
