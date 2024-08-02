@@ -1,4 +1,4 @@
-package com.example.ibatis_demo_3;
+ package com.example.ibatis_demo_3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

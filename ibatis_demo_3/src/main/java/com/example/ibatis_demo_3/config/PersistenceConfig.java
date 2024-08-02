@@ -24,7 +24,7 @@ public class PersistenceConfig {
     public DataSource dataSource() {
         DriverManagerDataSource source = new DriverManagerDataSource();
         source.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        source.setUrl("jdbc:mysql://localhost:3306/TEST");
+        source.setUrl("jdbc:mysql://localhost:3306/dev");
         source.setPassword("root");
         source.setUsername("root");
         return source;
@@ -34,7 +34,7 @@ public class PersistenceConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/com/example/ibatis_demo_3/mapper/*.xml"));
+        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/com/example/ibatis_demo_3/dao/*.xml"));
         // factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*.xml"));
         return factoryBean.getObject();
     }

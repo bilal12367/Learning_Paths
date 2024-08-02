@@ -1,0 +1,25 @@
+
+
+
+###
+GET http://localhost:8080/customers/get/all
+
+
+###
+GET http://localhost:8080/customers/get/7
+
+###
+POST http://localhost:8080/customers/save
+Content-Type: application/json
+
+{
+  "customerId": 9,
+  "customerName": "Angel 1",
+  "accountBalance": 7890.12,
+  "isActive": false,
+  "gender": "F",
+  "phoneNumber": 5558765432,
+  "birthDate": "1995-08-05T00:00:00Z",
+  "address": "321 Cedar Lane, Hilltop, WA, 98001"
+}
+

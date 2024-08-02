@@ -9,6 +9,6 @@ import com.example.ibatis_demo_3.dao.model.User;
 @Mapper
 public interface UserMapper {
     
-    List<User> getAllUsers();
+    public List<User> getAllUsers();
 
 }

@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.example.jpa_practise.models.Customer;
 import com.example.jpa_practise.repository.CustomerRepository;
 
 @SpringBootApplication
+@EnableCaching
 public class JpaPractiseApplication {
 
 	public static void main(String[] args) {
