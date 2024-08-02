@@ -15,7 +15,7 @@ public class IbatisTest2Application {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctxt = SpringApplication.run(IbatisTest2Application.class, args);
 		UserMapper mapper = ctxt.getBean(UserMapper.class);
-		mapper.addUser();
+		
 		List<User> users = mapper.getAllUsers();
 		System.out.println("Printing users1: ");
 		for (User user : users) {
