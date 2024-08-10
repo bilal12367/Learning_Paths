@@ -1,0 +1,14 @@
+.bg-img {
+    display: flex;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+.std-padding {
+    padding: 0 18%;
+}
+.content {
+    width: 100%;
+    display: flex;
+
+}

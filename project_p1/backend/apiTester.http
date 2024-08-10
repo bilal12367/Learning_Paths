@@ -1,0 +1,16 @@
+
+
+
+###
+POST http://192.168.0.163:5000/auth/register
+Content-Type: application/json
+
+{
+    "fullName": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "S3cur3P@ssw0rd!",
+    "mobileNo": "+1-555-987-6543",
+    "age": 34,
+    "role": "User",
+    "userName": "johnsmith"
+}

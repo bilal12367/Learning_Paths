@@ -2,7 +2,7 @@
 
 const APP_ROUTES = {
     LANDING: '/',
-
+    SEARCH: '/search'
 }
 
 
