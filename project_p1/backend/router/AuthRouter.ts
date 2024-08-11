@@ -7,7 +7,7 @@ const router: Router = Router();
 
 
 router.post("/register",AuthController.registerUser)
-router.post(ROUTE_URL.login,AuthController.loginUser)
+router.post("/login",AuthController.loginUser)
 
 
 export default router;

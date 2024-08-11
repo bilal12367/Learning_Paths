@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { LoginUser, RegisterUser, User } from "../constants/types/AuthTypes";
+import { LoginUser, RegisterUser, User } from "../util/types/AuthTypes";
 import UserRepository from "../schema/UserRepository";
 import { NextFunction, RequestHandler } from "express";
 

@@ -1,29 +1,16 @@
 import { NextFunction, Request, Response, RequestHandler } from 'express'
 import AuthService from '../service/AuthService'
-import { RegisterUser, IResponse, User } from '../constants/types/AuthTypes'
+import { RegisterUser, IResponse, User } from '../util/types/AuthTypes'
 import HttpStatus from 'http-status'
+import { ILoginResponse, IRegisterResponse } from '../util/types/AuthControllerTypes'
+import { generateToken } from '../util/jwtToken'
 
 interface IAuthController {
     registerUser: RequestHandler,
     loginUser: RequestHandler
 }
 
-interface IRegisterResponse extends IResponse {
-    body: {
-        _id: String,
-        userName: String,
-        email: String,
-        fullName: String
-    }
-}
-interface ILoginResponse extends IResponse {
-    body: {
-        _id: String,
-        userName: String,
-        email: String,
-        fullName: String
-    }
-}
+
 
 const AuthController: IAuthController = {
     registerUser: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -38,7 +25,8 @@ const AuthController: IAuthController = {
                 _id: registeredUser._id as String,
                 email: registeredUser.email,
                 fullName: registeredUser.fullName,
-                userName: registeredUser.userName
+                userName: registeredUser.userName,
+                token: generateToken(registeredUser._id as String)
             }
         }
         res.status(HttpStatus.CREATED).json(resp)
@@ -55,9 +43,11 @@ const AuthController: IAuthController = {
                 _id: user._id as String,
                 email: user.email,
                 fullName: user.fullName,
-                userName: user.userName
+                userName: user.userName,
+                token: generateToken(user._id as String)
             }
         }
+        res.status(HttpStatus.ACCEPTED).json(resp)
     }
 }
 

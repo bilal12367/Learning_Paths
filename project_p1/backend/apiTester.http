@@ -14,3 +14,32 @@ Content-Type: application/json
     "role": "User",
     "userName": "johnsmith"
 }
+
+
+###
+POST http://192.168.0.163:5000/auth/login
+Content-Type: application/json
+
+{
+    "fullName": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "S3cur3P@ssw0rd!",
+    "mobileNo": "+1-555-987-6543",
+    "age": 34,
+    "role": "User",
+    "userName": "johnsmith"
+}
+###
+POST http://192.168.0.163:5000/test
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmI3NjAxOGYxNjhjYWY2OWU2NTI2NDEiLCJpYXQiOjE3MjMzMzg4NTMsImV4cCI6MTcyNDIzODg1M30.9iDfAjylSHj_rg0gy1ciwyhhUUJI38SaPS_XM_0OwOs
+Content-Type: application/json
+
+{
+    "fullName": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "S3cur3P@ssw0rd!",
+    "mobileNo": "+1-555-987-6543",
+    "age": 34,
+    "role": "User",
+    "userName": "johnsmith"
+}

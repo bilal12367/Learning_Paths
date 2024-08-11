@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { IUser } from "../constants/types/AuthTypes";
+import { IUser } from "../util/types/AuthTypes";
 import validator from "validator";
 
 
