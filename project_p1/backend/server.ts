@@ -1,12 +1,18 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express, NextFunction, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import AuthRouter from './router/AuthRouter'
 import 'express-async-errors'
-import connectToMongo from './util/connectToMongo'
+import connectToMongo from './config/connectToMongo'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 import passport from 'passport'
 import init_Passport from './config/InitPassport'
 import session from 'express-session'
+import ErrorHandlerMiddleware from './middleware/ErrorHandlerMiddleware'
+import { TokenExpiredError } from 'jsonwebtoken'
+import { TokenInvalid } from './util/errors/TokenInvalid'
+import AuthErrorHandler from './middleware/AuthErrorHandler'
+import ProtectedRouter from './router/ProtectedRouter'
+import cookieParser from 'cookie-parser';
 
 dotenv.configDotenv()
 
@@ -14,6 +20,8 @@ const app: Express = express();
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+app.use(cookieParser(process.env.REFRESH_SECRET))
 // Session configuration
 app.use(session({
     secret: 'your-secret-key', // Replace with a strong secret key
@@ -30,13 +38,27 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/auth", AuthRouter);
+// app.use("/test", function (req,res,next) {
+//     console.log("Middleware invoked")
+//     return passport.authenticate('jwt', { session: true },function(err:any,user:any,info:any) {
+//         console.log({err,user,info})
+//         if(err) {
+//             res.status(500).json({message: "Unauth custom error"})
+//         }
 
-app.use("/test", passport.authenticate('jwt', { session: false }), (req, res) => {
-    res.status(200).json({
-        user: req.user,
-        data: "value"
-    })
-})
+//         if(user) {
+//             next(user)
+//         }
+//     })
+// } , (req: Request, res: Response) => {
+//     res.status(200).json({
+//         user: req.user,
+//         data: "value"
+//     })
+// })
+app.use("/api", passport.authenticate('jwt', { failWithError: true, session: false }), AuthErrorHandler, ProtectedRouter)
+
+app.use(ErrorHandlerMiddleware)
 
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server Started listening at port ", process.env.PORT || 5000, "...")

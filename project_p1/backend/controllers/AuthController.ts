@@ -4,10 +4,12 @@ import { RegisterUser, IResponse, User } from '../util/types/AuthTypes'
 import HttpStatus from 'http-status'
 import { ILoginResponse, IRegisterResponse } from '../util/types/AuthControllerTypes'
 import { generateToken } from '../util/jwtToken'
+import { addCookieToResponse } from '../util/cookieHelper'
 
 interface IAuthController {
     registerUser: RequestHandler,
-    loginUser: RequestHandler
+    loginUser: RequestHandler,
+    refreshToken: RequestHandler
 }
 
 
@@ -29,6 +31,7 @@ const AuthController: IAuthController = {
                 token: generateToken(registeredUser._id as String)
             }
         }
+        res = addCookieToResponse(res, registeredUser._id as string )
         res.status(HttpStatus.CREATED).json(resp)
     },
     loginUser: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -47,7 +50,16 @@ const AuthController: IAuthController = {
                 token: generateToken(user._id as String)
             }
         }
+        res = addCookieToResponse(res, user._id as string )
         res.status(HttpStatus.ACCEPTED).json(resp)
+    },
+    refreshToken: async(req: Request, res: Response, next: NextFunction) : Promise<void> => {
+        console.log('req.signedCookies', req.signedCookies)
+        console.log('req.cookies', req.cookies)
+        res.status(200).json({
+            signed: req.signedCookies,
+            cookies: req.cookies
+        })
     }
 }
 

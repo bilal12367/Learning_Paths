@@ -30,16 +30,19 @@ Content-Type: application/json
     "userName": "johnsmith"
 }
 ###
-POST http://192.168.0.163:5000/test
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmI3NjAxOGYxNjhjYWY2OWU2NTI2NDEiLCJpYXQiOjE3MjMzMzg4NTMsImV4cCI6MTcyNDIzODg1M30.9iDfAjylSHj_rg0gy1ciwyhhUUJI38SaPS_XM_0OwOs
+POST http://192.168.0.163:5000/api/test
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmI3NjAxOGYxNjhjYWY2OWU2NTI2NDEiLCJpYXQiOjE3MjMzODAyMDEsImV4cCI6MTcyMzM4MDIyMX0.JGxtqR5dHMzT-kES2ruOlIXqF-zJaNnAAVZHC-SYWNE
+Cookie: /auth/permanentToken=s%3Aj%3A%7B%22id%22%3A%2266b76018f168caf69e652641%22%7D.tplsriebwqrrKjp6vOllV4YP%2BB3I%2B%2FWvjTT1krNRQmo; Max-Age=8640000; Domain=http://localhost:5000; Path=/refreshToken; Expires=Tue, 19 Nov 2024 13:21:54 GMT; HttpOnly; Secure; SameSite=Strict
 Content-Type: application/json
 
 {
-    "fullName": "John Smith",
-    "email": "john.smith@example.com",
-    "password": "S3cur3P@ssw0rd!",
-    "mobileNo": "+1-555-987-6543",
-    "age": 34,
-    "role": "User",
-    "userName": "johnsmith"
+
+}
+###
+POST http://192.168.0.163:5000/auth/refreshToken
+Cookie: permanentToken=s%3Aj%3A%7B%22id%22%3A%2266b76018f168caf69e652641%22%7D.tplsriebwqrrKjp6vOllV4YP%2BB3I%2B%2FWvjTT1krNRQmo; Max-Age=8640000; Domain=http://localhost:5000; Path=/auth/refreshToken; Expires=Tue, 19 Nov 2024 13:27:23 GMT; HttpOnly; Secure; SameSite=Strict,connect.sid=s%3A3ZCsgSMr9UWbqbHyZDOBdD4ddOaqD66i.zPOODHWt6b59mGcSsp6T7il82bMG0ifP4yHQ4%2FogdwM; Path=/; Expires=Mon, 12 Aug 2024 13:27:23 GMT; HttpOnly
+Content-Type: application/json
+
+{
+
 }

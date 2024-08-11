@@ -20,6 +20,7 @@ const init_Passport = (passport: PassportStatic) => {
             return done("User not found from jwt strategy", null)
         }
     }))
+
 }
 
 export default init_Passport
