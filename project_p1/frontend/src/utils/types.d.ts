@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 
 
 interface User {
@@ -6,5 +8,11 @@ interface User {
     email: String
 }
 
+interface ISearchPageMenuItem {
+    index: Number,
+    id: String,
+    name: String,
+    icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">>
+}
 
-export { User }
+export { User, ISearchPageMenuItem }
