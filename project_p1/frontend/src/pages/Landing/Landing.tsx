@@ -2,11 +2,12 @@ import React, { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { RootActions } from '../../redux/RootActions'
-import { useRegisterApiMutation } from '../../redux/rtk_query/AuthApi'
+import AuthApi from '../../redux/rtk_query/AuthApi'
+
 
 const Landing = () => {
   const user = useSelector((state: RootState) => state.authReducer.user)
-  const [registerReq, registerResp] = useRegisterApiMutation();
+  const [registerReq, registerResp] = AuthApi.useRegisterApiMutation();
   const AuthActions = RootActions.Auth;
   const dispatch = useDispatch()
   console.log("Rednere")

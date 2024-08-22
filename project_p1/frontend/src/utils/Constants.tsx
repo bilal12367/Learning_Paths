@@ -20,10 +20,17 @@ const APP_SLICES = {
 
 const APP_API_ROUTES = {
     AUTH_API: {
-        reducerPath: 'Auth_Api_Reducer_Path',
+        reducerPath: 'Auth_Api',
         baseQuery: 'https://reqres.in/api/',
         endpoints: {
             REGISTER: 'register'
+        }
+    },
+    SEARCH_AIRPORT_API: {
+        reducerPath: 'Flight_Search_Api',
+        baseQuery: 'https://localhost:5000/api',
+        endpoints: {
+            SEARCH_AIRPORT: "searchAirport"
         }
     }
 }

@@ -21,5 +21,4 @@ const AuthApi = createApi({
 })
 
 
-export const { useRegisterApiMutation } = AuthApi
 export default AuthApi

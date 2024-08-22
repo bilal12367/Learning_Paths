@@ -3,36 +3,41 @@ import './styles.css'
 import { Button, ButtonBase, Color, FormControlLabel, Radio, RadioGroup, styled, useTheme } from '@mui/material'
 import { SearchPageMenuItems } from '../../utils/Constants'
 import { ISearchPageMenuItem } from '../../utils/types'
-import LuggageRoundedIcon from '@mui/icons-material/LuggageRounded';
-import { CheckBoxRounded } from '@mui/icons-material'
+import useClickedOutside from '../../hooks/useClickedOutside'
+
+
+
 const Search = () => {
-    const theme = useTheme();
+    const fromSearchContRef: React.RefObject<HTMLDivElement> = createRef();
     const [selectedCategory, setSelectedCategory] = useState<ISearchPageMenuItem>();
     const indicatorRef: React.RefObject<HTMLDivElement> = createRef();
+    const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
+        '& .MuiTouchRipple-root': {
+            color: 'rgba(0,0,0,0.4)'
+        }
+    }))
     useEffect(() => {
         setSelectedCategory(SearchPageMenuItems[0])
         if (indicatorRef.current) {
             indicatorRef.current.style.left = 'calc(14.285 * 0%)';
         }
     }, [])
-
+    
     useEffect(() => {
         if (indicatorRef.current) {
             indicatorRef.current.style.left = 'calc(14.285 *' + selectedCategory?.index + '%)'
         }
     }, [selectedCategory])
-
-
-    const handleCategorySelected = (selectedItem: ISearchPageMenuItem): void => {
-        setSelectedCategory(selectedItem)
-    }
-
-    const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
-        '& .MuiTouchRipple-root': {
-            color: 'rgba(0,0,0,0.4)'
+    
+    const handleSelectFrom = () => {
+        if(fromSearchContRef.current) {
+            fromSearchContRef.current.classList.add("fadeIn")
         }
-    }))
-
+    }
+    const handleClickOutside = () => {
+        
+    }
+    useClickedOutside(fromSearchContRef, handleClickOutside)
     return (
         <div className='w-100 d-flex flex-column'>
             <div className='bg-img'>
@@ -44,55 +49,56 @@ const Search = () => {
                 </div>
 
                 <div className='w-100 d-flex search-cont' >
-
+                    {/* Switches the content when the search category changes. */}
+                    {/* Add Routing logic to switch */}
                     <div style={{ padding: '50px 34px' }} >
                         <RadioGroup
-                            defaultValue="male"
+                            defaultValue="one-way"
                             name="radio-buttons-group"
                             className='d-flex flex-row'
                         >
-                            <FormControlLabel value="female" control={<Radio />} label="One Way" />
-                            <FormControlLabel value="male" control={<Radio />} label="Round Trip" />
-                            <FormControlLabel value="other" control={<Radio />} label="Multi Way Trip" />
+                            <FormControlLabel value="one-way" control={<Radio />} label="One Way" />
+                            <FormControlLabel value="round-trip" control={<Radio />} label="Round Trip" />
+                            <FormControlLabel value="multi-way" control={<Radio />} label="Multi Way Trip" />
                         </RadioGroup>
 
-                        <div className='w-100 d-flex flex-row border' style={{ borderRadius: 16, overflow: 'clip' }}>
-                            <StyledButtonBase className='border' style={{ padding: '10px 14px' }}>
-                                <div className='from d-flex flex-column align-items-start '>
-                                    <span>From</span>
-                                    <span style={{ fontSize: 30, fontWeight: 'bold' }}>Delhi</span>
-                                    <span>DEL, Central Airport</span>
+                        <div className='w-100 d-flex flex-row border' style={{ borderRadius: 16 }}>
+                            <div>
+                                <div style={{ position: 'relative', minWidth: 230 }}>
+                                    <div ref={fromSearchContRef} className='src-dropdwn-cont'></div>
+                                    <StyledButtonBase onClick={handleSelectFrom} className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
+                                        <div className='from d-flex flex-column align-items-start '>
+                                            <span>From</span>
+                                            <span style={{ fontSize: 30, fontWeight: 'bold' }}>Delhi</span>
+                                            <span>DEL, Central Airport</span>
+                                        </div>
+                                    </StyledButtonBase>
                                 </div>
-                            </StyledButtonBase>
-                            <StyledButtonBase className='border' style={{ padding: '10px 14px' }}>
-                                <div className='from d-flex flex-column align-items-start '>
-                                    <span>To</span>
-                                    <span style={{ fontSize: 30, fontWeight: 'bold' }}>Mumbai</span>
-                                    <span>Chatrapati Sivaji, Mumbai Airport</span>
+                            </div>
+                            <div>
+                                <div style={{ position: 'relative', minWidth: 230 }}>
+                                    <div className='src-dropdwn-cont'></div>
+                                    <StyledButtonBase className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
+                                        <div className='from d-flex flex-column align-items-start '>
+                                            <span>To</span>
+                                            <span style={{ fontSize: 30, fontWeight: 'bold' }}>Mumbai</span>
+                                            <span>Chatrapati Sivaji, Mumbai Airport</span>
+                                        </div>
+                                    </StyledButtonBase>
                                 </div>
-                            </StyledButtonBase>
+                            </div>
                         </div>
                     </div>
+
+                    {/* Actual Search Category Selector */}
                     <div className='w-100 d-flex justify-content-center position-absolute' >
                         <div className='shadow mb-5 bg-white rounded search-category-cont' >
                             <div className='category-item-cont'>
                                 <div ref={indicatorRef} className='indicator'></div>
-                                {Object.values(SearchPageMenuItems).map((item: ISearchPageMenuItem) => {
-
-                                    const isSelf: boolean = item.index === selectedCategory?.index
-                                    return (
-                                        <StyledButtonBase key={item.name as Key} onClick={() => { handleCategorySelected(item) }} className='w-100' style={{ padding: '14px 0px' }}>
-                                            <div className='d-flex flex-column  h-100  align-items-center'>
-                                                <div>
-                                                    <item.icon sx={{ fontSize: 25, color: isSelf ? theme.palette.primary.main : theme.palette.grey[600] }} />
-                                                </div>
-                                                <div style={{ width: 100, fontSize: 12, lineHeight: 1.1, letterSpacing: 1, marginTop: 10, color: isSelf ? theme.palette.primary.main : 'black' }}>
-                                                    {item.name}
-                                                </div>
-                                            </div>
-                                        </StyledButtonBase>
-                                    )
-                                })}
+                                {
+                                    Object.values(SearchPageMenuItems)
+                                        .map((item: ISearchPageMenuItem) => SearchCategoryMenuItem(item, [selectedCategory, setSelectedCategory]))
+                                }
                             </div>
                         </div>
                     </div>
@@ -100,6 +106,34 @@ const Search = () => {
                 </div>
             </div>
         </div>
+    )
+}
+
+
+const SearchCategoryMenuItem = (item: ISearchPageMenuItem, categoryState: [ISearchPageMenuItem | undefined, React.Dispatch<React.SetStateAction<ISearchPageMenuItem | undefined>>]) => {
+    const [selectedCategory, setSelectedCategory] = categoryState;
+    const theme = useTheme();
+    const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
+        '& .MuiTouchRipple-root': {
+            color: 'rgba(0,0,0,0.4)'
+        }
+    }))
+
+    const handleCategorySelected = (selectedItem: ISearchPageMenuItem): void => {
+        setSelectedCategory(selectedItem)
+    }
+    const isSelf: boolean = item.index === selectedCategory?.index
+    return (
+        <StyledButtonBase key={item.name as Key} onClick={() => { handleCategorySelected(item) }} className='w-100' style={{ padding: '14px 0px' }}>
+            <div className='d-flex flex-column  h-100  align-items-center'>
+                <div>
+                    <item.icon sx={{ fontSize: 25, color: isSelf ? theme.palette.primary.main : theme.palette.grey[600] }} />
+                </div>
+                <div style={{ width: 100, fontSize: 12, lineHeight: 1.1, letterSpacing: 1, marginTop: 10, color: isSelf ? theme.palette.primary.main : 'black' }}>
+                    {item.name}
+                </div>
+            </div>
+        </StyledButtonBase>
     )
 }
 

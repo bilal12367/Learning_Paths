@@ -12,6 +12,19 @@ interface User {
     phoneNumber: String
 }
 
+export interface IAirportDetails {
+    icao: String,
+    iata: String,
+    name: String,
+    city: String,
+    state: String,
+    country: String,
+    elevation: Number,
+    lat: DoubleRange
+    lon: DoubleRange
+    tz: String
+}
+
 interface IUser extends User {}
 interface RegisterUser extends User {
     

@@ -2,7 +2,7 @@ import { Model } from "mongoose";
 import { LoginUser, RegisterUser, User } from "../util/types/AuthTypes";
 import UserRepository from "../schema/UserRepository";
 import { NextFunction, RequestHandler } from "express";
-
+import 'express-async-errors'
 interface IAuthService {
     registerUserService: (user: User) => Promise<User>,
     loginUserService: (user: User) => Promise<User>

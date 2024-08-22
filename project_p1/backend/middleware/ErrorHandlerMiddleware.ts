@@ -5,7 +5,7 @@ import { IResponse } from "../util/types/AuthTypes";
 
 
 const ErrorHandlerMiddleware: ErrorRequestHandler = (err, req, res, next) => {
-    console.log(err);
+    console.log("Error Caught:" , err);
     const resp: IResponse = {
         success: false,
         error: true,
