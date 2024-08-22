@@ -8,6 +8,7 @@ const useClickedOutside = (ref: React.RefObject<HTMLDivElement>, handleClickOuts
 
         if (ref.current) {
             const clickedOutside = (e: any) => {
+                console.log("Clicked Outside")
                 if (ref.current && !ref.current.contains(e.target))
                     handleClickOutside();
             }

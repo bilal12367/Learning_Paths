@@ -4,11 +4,12 @@ import { Button, ButtonBase, Color, FormControlLabel, Radio, RadioGroup, styled,
 import { SearchPageMenuItems } from '../../utils/Constants'
 import { ISearchPageMenuItem } from '../../utils/types'
 import useClickedOutside from '../../hooks/useClickedOutside'
+import HideablePanel from '../../components/HideablePanel'
 
 
 
 const Search = () => {
-    const fromSearchContRef: React.RefObject<HTMLDivElement> = createRef();
+    const [showCont, setShowCont] = useState<Boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<ISearchPageMenuItem>();
     const indicatorRef: React.RefObject<HTMLDivElement> = createRef();
     const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
@@ -22,22 +23,14 @@ const Search = () => {
             indicatorRef.current.style.left = 'calc(14.285 * 0%)';
         }
     }, [])
-    
+
     useEffect(() => {
         if (indicatorRef.current) {
             indicatorRef.current.style.left = 'calc(14.285 *' + selectedCategory?.index + '%)'
         }
     }, [selectedCategory])
-    
-    const handleSelectFrom = () => {
-        if(fromSearchContRef.current) {
-            fromSearchContRef.current.classList.add("fadeIn")
-        }
-    }
-    const handleClickOutside = () => {
-        
-    }
-    useClickedOutside(fromSearchContRef, handleClickOutside)
+
+
     return (
         <div className='w-100 d-flex flex-column'>
             <div className='bg-img'>
@@ -65,8 +58,10 @@ const Search = () => {
                         <div className='w-100 d-flex flex-row border' style={{ borderRadius: 16 }}>
                             <div>
                                 <div style={{ position: 'relative', minWidth: 230 }}>
-                                    <div ref={fromSearchContRef} className='src-dropdwn-cont'></div>
-                                    <StyledButtonBase onClick={handleSelectFrom} className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
+                                    <HideablePanel show={showCont as Boolean} onDismiss={() => { setShowCont(false) }}>
+                                        <div className='test'></div>
+                                    </HideablePanel>
+                                    <StyledButtonBase onClick={() => { setShowCont(true) }} className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
                                         <div className='from d-flex flex-column align-items-start '>
                                             <span>From</span>
                                             <span style={{ fontSize: 30, fontWeight: 'bold' }}>Delhi</span>
@@ -77,7 +72,7 @@ const Search = () => {
                             </div>
                             <div>
                                 <div style={{ position: 'relative', minWidth: 230 }}>
-                                    <div className='src-dropdwn-cont'></div>
+                                    {/* <div className='src-dropdwn-cont'></div> */}
                                     <StyledButtonBase className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
                                         <div className='from d-flex flex-column align-items-start '>
                                             <span>To</span>
