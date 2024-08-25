@@ -28,7 +28,7 @@ const APP_API_ROUTES = {
     },
     SEARCH_AIRPORT_API: {
         reducerPath: 'Flight_Search_Api',
-        baseQuery: 'https://localhost:5000/api',
+        baseQuery: 'http://localhost:5000/api/searchAirport',
         endpoints: {
             SEARCH_AIRPORT: "searchAirport"
         }
@@ -80,7 +80,7 @@ const SearchPageMenuItems: ISearchPageMenuItem[] = [
         name: "Travel Insurance",
         icon: LuggageRoundedIcon,
     },
-    
+
 ]
 
 export { APP_ROUTES, APP_SLICES, APP_API_ROUTES, SearchPageMenuItems }

@@ -15,13 +15,16 @@ import ProtectedRouter from './router/ProtectedRouter'
 import cookieParser from 'cookie-parser';
 import airportJson from './static/osm-world-airports.json';
 import fs from 'fs'
+import cors from 'cors'
+
+
 dotenv.configDotenv()
 
 const app: Express = express();
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
+app.use(cors({ origin: '*' }))
 app.use(cookieParser(process.env.REFRESH_SECRET))
 // Session configuration
 app.use(session({
@@ -62,7 +65,7 @@ app.use("/api", passport.authenticate('jwt', { failWithError: true, session: fal
 app.use(ErrorHandlerMiddleware)
 
 app.listen(process.env.PORT || 5000, () => {
-    
+
     console.log("Server Started listening at port ", process.env.PORT || 5000, "...")
     connectToMongo()
 })

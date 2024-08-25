@@ -1,34 +1,60 @@
 import React, { createRef, Key, useEffect, useRef, useState } from 'react'
 import './styles.css'
-import { Button, ButtonBase, Color, FormControlLabel, Radio, RadioGroup, styled, useTheme } from '@mui/material'
+import { Button, ButtonBase, Color, FormControlLabel, Input, Radio, RadioGroup, styled, TextField, useTheme } from '@mui/material'
 import { SearchPageMenuItems } from '../../utils/Constants'
-import { ISearchPageMenuItem } from '../../utils/types'
+import { IAirportDetails, ISearchPageMenuItem } from '../../utils/types'
 import useClickedOutside from '../../hooks/useClickedOutside'
-import HideablePanel from '../../components/HideablePanel'
-
+import HideablePanel from '../../components/ui_components/HideablePanel'
+import RippleButton from '../../components/ui_components/RippleButton'
+import AirportSearchApi from '../../redux/rtk_query/AirportApi'
+import useDebounce from '../../hooks/useDebounce'
+import AirportSelector from '../../components/service_components/AirportSelector'
 
 
 const Search = () => {
-    const [showCont, setShowCont] = useState<Boolean>(false);
-    const [selectedCategory, setSelectedCategory] = useState<ISearchPageMenuItem>();
+    const [selectedFromAirport, setSelectedFromAirport] = useState<IAirportDetails>({
+        "_id": "66c81a96cb32d2b6a9c1d5f8",
+        "icao": "K0M9",
+        "iata": "",
+        "name": "Delhi Municipal Airport",
+        "city": "Delhi",
+        "state": "Louisiana",
+        "country": "US",
+        "elevation": 91,
+        "lat": 32.4107017517,
+        "lon": -91.4987030029,
+        "tz": "America/Chicago"
+    });
+    const [selectedToAirport, setSelectedToAirport] = useState<IAirportDetails>({
+        "_id": "66c81a97cb32d2b6a9c20dcc",
+        "icao": "VABB",
+        "iata": "BOM",
+        "name": "Chhatrapati Shivaji International Airport",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "IN",
+        "elevation": 37,
+        "lat": 19.0886993408,
+        "lon": 72.8678970337,
+        "tz": "Asia/Kolkata"
+      });
+    const [selectedMenuCategory, setSelectedMenuCategory] = useState<ISearchPageMenuItem>();
     const indicatorRef: React.RefObject<HTMLDivElement> = createRef();
-    const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
-        '& .MuiTouchRipple-root': {
-            color: 'rgba(0,0,0,0.4)'
-        }
-    }))
+
+
     useEffect(() => {
-        setSelectedCategory(SearchPageMenuItems[0])
+        setSelectedMenuCategory(SearchPageMenuItems[0])
         if (indicatorRef.current) {
             indicatorRef.current.style.left = 'calc(14.285 * 0%)';
         }
     }, [])
 
+
     useEffect(() => {
         if (indicatorRef.current) {
-            indicatorRef.current.style.left = 'calc(14.285 *' + selectedCategory?.index + '%)'
+            indicatorRef.current.style.left = 'calc(14.285 *' + selectedMenuCategory?.index + '%)'
         }
-    }, [selectedCategory])
+    }, [selectedMenuCategory])
 
 
     return (
@@ -44,7 +70,7 @@ const Search = () => {
                 <div className='w-100 d-flex search-cont' >
                     {/* Switches the content when the search category changes. */}
                     {/* Add Routing logic to switch */}
-                    <div style={{ padding: '50px 34px' }} >
+                    <div className='w-100' style={{ padding: '50px 34px' }} >
                         <RadioGroup
                             defaultValue="one-way"
                             name="radio-buttons-group"
@@ -55,33 +81,9 @@ const Search = () => {
                             <FormControlLabel value="multi-way" control={<Radio />} label="Multi Way Trip" />
                         </RadioGroup>
 
-                        <div className='w-100 d-flex flex-row border' style={{ borderRadius: 16 }}>
-                            <div>
-                                <div style={{ position: 'relative', minWidth: 230 }}>
-                                    <HideablePanel show={showCont as Boolean} onDismiss={() => { setShowCont(false) }}>
-                                        <div className='test'></div>
-                                    </HideablePanel>
-                                    <StyledButtonBase onClick={() => { setShowCont(true) }} className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
-                                        <div className='from d-flex flex-column align-items-start '>
-                                            <span>From</span>
-                                            <span style={{ fontSize: 30, fontWeight: 'bold' }}>Delhi</span>
-                                            <span>DEL, Central Airport</span>
-                                        </div>
-                                    </StyledButtonBase>
-                                </div>
-                            </div>
-                            <div>
-                                <div style={{ position: 'relative', minWidth: 230 }}>
-                                    {/* <div className='src-dropdwn-cont'></div> */}
-                                    <StyledButtonBase className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
-                                        <div className='from d-flex flex-column align-items-start '>
-                                            <span>To</span>
-                                            <span style={{ fontSize: 30, fontWeight: 'bold' }}>Mumbai</span>
-                                            <span>Chatrapati Sivaji, Mumbai Airport</span>
-                                        </div>
-                                    </StyledButtonBase>
-                                </div>
-                            </div>
+                        <div className='w-100 d-flex flex-row'>
+                            <AirportSelector label={"From"} selectedAirport={selectedFromAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedFromAirport(selectedAirport) }} />
+                            <AirportSelector label={"To"} selectedAirport={selectedToAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedToAirport(selectedAirport) }} />
                         </div>
                     </div>
 
@@ -92,7 +94,7 @@ const Search = () => {
                                 <div ref={indicatorRef} className='indicator'></div>
                                 {
                                     Object.values(SearchPageMenuItems)
-                                        .map((item: ISearchPageMenuItem) => SearchCategoryMenuItem(item, [selectedCategory, setSelectedCategory]))
+                                        .map((item: ISearchPageMenuItem) => SearchCategoryMenuItem(item, [selectedMenuCategory, setSelectedMenuCategory]))
                                 }
                             </div>
                         </div>

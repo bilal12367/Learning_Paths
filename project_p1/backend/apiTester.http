@@ -31,8 +31,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:5000/api/searchAirport?airportStr=Delhi
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMwODE1Yjg2ZGJkZWNmY2VkZDE4MDAiLCJpYXQiOjE3MjM4OTIxMjcsImV4cCI6MTc1NTQyODEyN30.tEkKLHcSAkXubxo9iilNBbGKyA7PBTE18iys3L8IzMc
+GET http://localhost:5000/api/searchAirport?airportStr=De
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM4MWFiZDkyNWRjNzY0YWNhMjE3MzYiLCJpYXQiOjE3MjQzOTAwNzcsImV4cCI6MTc1NTkyNjA3N30.AL3pDIMkTM4KTTPN_nz7EAHNPYE6O7lRI1F0TzKjPzs
 
 ###
 POST http://localhost:5000/api/test

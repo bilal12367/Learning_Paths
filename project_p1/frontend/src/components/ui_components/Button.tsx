@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import './styles.css'
+import '../styles.css'
 
 const Button: React.FC<{ children: ReactNode, style: React.CSSProperties }> = ({ children, style }) => {
     const [coords, setCoords] = React.useState({ x: -1, y: -1 });

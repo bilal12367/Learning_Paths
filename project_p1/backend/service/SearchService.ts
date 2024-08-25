@@ -13,7 +13,7 @@ const SearchService: ISearchService = {
                 $regex: str,
                 $options: 'i'
             }
-        }).limit(20)
+        }).limit(10)
 
         return airportList
     }

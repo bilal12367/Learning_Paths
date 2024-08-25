@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+
+
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  font: inherit;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hover-highlight {
+  transition: background-color 0.1s ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hover-highlight:hover{
+  background-color: rgba(0,0,0,0.05);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Webkit Browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2); 
+  border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* Firefox */
+
+/* Hide scrollbars completely (requires `overflow` to be `auto` or `scroll`) */
+* {
+  scrollbar-width: thin; /* Set scrollbar width to thin */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Thumb color and track color */
+}
+
+/* Internet Explorer and older Edge versions */
+
+/* Hide arrows (Internet Explorer / older Edge) */
+::-ms-scrollbar {
+  width: 0; /* Hide scrollbar for vertical scroll */
+  height: 0; /* Hide scrollbar for horizontal scroll */
+}
+
+::-ms-scrollbar-track {
+  background: transparent; /* Hide the scroll track */
+}
+
+::-ms-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Thumb color */
+  border-radius: 6px; /* Border radius for thumb */
 }

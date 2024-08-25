@@ -1,6 +1,6 @@
 import React, { createRef, useEffect } from 'react'
-import useClickedOutside from '../hooks/useClickedOutside';
-import './styles.css'
+import useClickedOutside from '../../hooks/useClickedOutside';
+import '../styles.css'
 interface HideablePanelProps {
     children: React.ReactNode,
     show: Boolean,
@@ -20,11 +20,12 @@ const HideablePanel = (props: HideablePanelProps) => {
     }
 
     useEffect(() => {
-        console.log("props show", props.show)
         if (props.show == true && divRef.current) {
             divRef.current.classList.add("fadeIn")
             divRef.current.classList.remove("fadeOut")
             divRef.current.style.pointerEvents = 'all'
+        } else {
+            handleClickOutOfDiv()
         }
     }, [props.show])
 

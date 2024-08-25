@@ -7,6 +7,7 @@ import { APP_ROUTES } from './utils/Constants';
 import { JsxElement } from 'typescript';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import './App.css'
 // import { Provider } from 'react-redux';
 // import { store } from './redux/store';
 

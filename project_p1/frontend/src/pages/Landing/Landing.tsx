@@ -10,7 +10,6 @@ const Landing = () => {
   const [registerReq, registerResp] = AuthApi.useRegisterApiMutation();
   const AuthActions = RootActions.Auth;
   const dispatch = useDispatch()
-  console.log("Rednere")
   const setUser = () => {
     dispatch(AuthActions.setUser({ userName: "Bilal", userId: "123", email: "test@gmail.com" }))
   }
