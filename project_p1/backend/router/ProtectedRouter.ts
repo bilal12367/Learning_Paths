@@ -5,6 +5,7 @@ import { SearchController } from "../controllers/SearchController";
 const router = Router()
 
 router.get("/searchAirport", SearchController.searchAirports)
+router.get("/searchFlight", SearchController.searchFlights)
 
 router.post("/test", (req, res) => {
     console.log("Main Router hit")

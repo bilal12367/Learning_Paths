@@ -9,7 +9,9 @@ import RippleButton from '../../components/ui_components/RippleButton'
 import AirportSearchApi from '../../redux/rtk_query/AirportApi'
 import useDebounce from '../../hooks/useDebounce'
 import AirportSelector from '../../components/service_components/AirportSelector'
-
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import DatePickler from '../../components/service_components/DatePickler'
+import PassengerSelector from '../../components/service_components/TravellerSelector'
 
 const Search = () => {
     const [selectedFromAirport, setSelectedFromAirport] = useState<IAirportDetails>({
@@ -37,7 +39,7 @@ const Search = () => {
         "lat": 19.0886993408,
         "lon": 72.8678970337,
         "tz": "Asia/Kolkata"
-      });
+    });
     const [selectedMenuCategory, setSelectedMenuCategory] = useState<ISearchPageMenuItem>();
     const indicatorRef: React.RefObject<HTMLDivElement> = createRef();
 
@@ -81,11 +83,24 @@ const Search = () => {
                             <FormControlLabel value="multi-way" control={<Radio />} label="Multi Way Trip" />
                         </RadioGroup>
 
-                        <div className='w-100 d-flex flex-row'>
+                        <div className='w-100 d-flex'>
                             <AirportSelector label={"From"} selectedAirport={selectedFromAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedFromAirport(selectedAirport) }} />
                             <AirportSelector label={"To"} selectedAirport={selectedToAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedToAirport(selectedAirport) }} />
+                            <DatePickler />
+                            <DatePickler />
+                            <PassengerSelector />
                         </div>
+                        {/* Some Fancy SVG  */}
+                        {/* <div className='d-flex' style={{height: 100,position:'relative'}}>
+                            <svg viewBox='0 0 120 120'>
+                                <polygon points='0,0 20,0 60,60 20,120 0,120 40,60 0,0' fill='red'/>
+                            </svg>
+                            <svg viewBox='0 0 120 120' style={{position: 'absolute', height: '100%', left: 20}}>
+                                <polygon points='0,0 5,0 45,60 5,120 0,120 40,60 0,0' fill='red'/>
+                            </svg>
+                        </div> */}
                     </div>
+
 
                     {/* Actual Search Category Selector */}
                     <div className='w-100 d-flex justify-content-center position-absolute' >
@@ -101,7 +116,9 @@ const Search = () => {
                     </div>
 
                 </div>
+
             </div>
+
         </div>
     )
 }

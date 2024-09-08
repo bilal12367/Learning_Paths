@@ -20,6 +20,14 @@ const HideablePanel = (props: HideablePanelProps) => {
     }
 
     useEffect(() => {
+        if (divRef.current) {
+            // divRef.current.style.opacity = "0";
+            divRef.current.classList.add("fadeOut")
+            divRef.current.classList.remove("fadeIn")
+        }
+    }, [])
+
+    useEffect(() => {
         if (props.show == true && divRef.current) {
             divRef.current.classList.add("fadeIn")
             divRef.current.classList.remove("fadeOut")
@@ -32,10 +40,13 @@ const HideablePanel = (props: HideablePanelProps) => {
     useClickedOutside(divRef, handleClickOutOfDiv)
 
     return (
-        <div ref={divRef} style={{ position: 'absolute', width: '100%'}}>
-            {props.children}
+        <div ref={divRef} style={{ position: 'absolute', width: '100%' }}>
+            <div className='card'>
+                {props.children}
+            </div>
         </div>
     )
 }
+
 
 export default HideablePanel

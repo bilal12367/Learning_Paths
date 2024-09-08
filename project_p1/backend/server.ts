@@ -13,8 +13,6 @@ import { TokenInvalid } from './util/errors/TokenInvalid'
 import AuthErrorHandler from './middleware/AuthErrorHandler'
 import ProtectedRouter from './router/ProtectedRouter'
 import cookieParser from 'cookie-parser';
-import airportJson from './static/osm-world-airports.json';
-import fs from 'fs'
 import cors from 'cors'
 
 
@@ -64,8 +62,11 @@ app.use("/api", passport.authenticate('jwt', { failWithError: true, session: fal
 
 app.use(ErrorHandlerMiddleware)
 
-app.listen(process.env.PORT || 5000, () => {
+
+
+app.listen(process.env.PORT || 5000, async () => {
 
     console.log("Server Started listening at port ", process.env.PORT || 5000, "...")
-    connectToMongo()
+    await connectToMongo()
+    
 })

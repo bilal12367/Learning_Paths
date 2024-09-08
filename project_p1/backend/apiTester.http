@@ -35,6 +35,11 @@ GET http://localhost:5000/api/searchAirport?airportStr=De
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM4MWFiZDkyNWRjNzY0YWNhMjE3MzYiLCJpYXQiOjE3MjQzOTAwNzcsImV4cCI6MTc1NTkyNjA3N30.AL3pDIMkTM4KTTPN_nz7EAHNPYE6O7lRI1F0TzKjPzs
 
 ###
+GET http://localhost:5000/api/searchFlight?origin=EWR&dest=BOS&travelDate=2019-08-15
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmQyY2UyOWUwNGU1YjljNGI2MTk2NDciLCJpYXQiOjE3MjUwOTEzNzMsImV4cCI6MTc1NjYyNzM3M30.wa__k2el0ZDO-ZY-fQzXai63GCDMZ3N4I6PiO0FJ-rA
+
+
+###
 POST http://localhost:5000/api/test
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmMwODE1Yjg2ZGJkZWNmY2VkZDE4MDAiLCJpYXQiOjE3MjM4OTIxMjcsImV4cCI6MTc1NTQyODEyN30.tEkKLHcSAkXubxo9iilNBbGKyA7PBTE18iys3L8IzMc
 Cookie: /auth/permanentToken=s%3Aj%3A%7B%22id%22%3A%2266b76018f168caf69e652641%22%7D.tplsriebwqrrKjp6vOllV4YP%2BB3I%2B%2FWvjTT1krNRQmo; Max-Age=8640000; Domain=http://localhost:5000; Path=/refreshToken; Expires=Tue, 19 Nov 2024 13:21:54 GMT; HttpOnly; Secure; SameSite=Strict
