@@ -14,6 +14,7 @@ import AuthErrorHandler from './middleware/AuthErrorHandler'
 import ProtectedRouter from './router/ProtectedRouter'
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
+import { dataInitializer } from './util/data_init'
 
 
 dotenv.configDotenv()
@@ -68,5 +69,6 @@ app.listen(process.env.PORT || 5000, async () => {
 
     console.log("Server Started listening at port ", process.env.PORT || 5000, "...")
     await connectToMongo()
+    dataInitializer();
     
 })

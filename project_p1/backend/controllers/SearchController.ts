@@ -2,7 +2,6 @@ import { NextFunction, Request, RequestHandler, Response } from "express";
 import AirportDetailsRespository from "../schema/AirportDetailsRespository";
 import { SearchService } from "../service/SearchService";
 import { IAirportDetails } from "../util/types/AuthTypes";
-import AirportScheduleRepository from "../schema/AirportScheduleRepository";
 
 
 interface ISearchController {
@@ -27,10 +26,7 @@ export const SearchController: ISearchController = {
 
     searchFlights: async (req: Request, res: Response, next: NextFunction) => {
         const searchFlightQuery : ISearchFlightQuery = req.query as any;
-        const flights = await AirportScheduleRepository.find({
-            origin: searchFlightQuery.origin,
-            dest: searchFlightQuery.dest
-        }).limit(10)
-        res.status(200).json(flights)
+        
+        res.status(200).json([])
     }
 }
