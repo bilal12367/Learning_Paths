@@ -1,7 +1,7 @@
 import { IResponse } from "./AuthTypes"
 
 
-export interface RegisterRequest {
+interface RegisterRequest {
     fullName: String,
     email: String,
     password: String,
@@ -10,7 +10,7 @@ export interface RegisterRequest {
     role: String,
     userName: String
 }
-export interface IRegisterResponse extends IResponse {
+interface IRegisterResponse extends IResponse {
     body: {
         _id: String,
         userName: String,
@@ -19,7 +19,7 @@ export interface IRegisterResponse extends IResponse {
         token: String
     }
 }
-export interface ILoginResponse extends IResponse {
+interface ILoginResponse extends IResponse {
     body: {
         _id: String,
         userName: String,

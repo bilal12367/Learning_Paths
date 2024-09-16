@@ -1,57 +1,24 @@
 // src/models/Flight.ts
 
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Mongoose, Types } from 'mongoose';
+import { IFlightSchedule } from '../util/types/SchemaTypes';
 
-export interface IFlight extends Document {
-    id: number;
-    year: number;
-    month: number;
-    day: number;
-    dep_time: number;
-    sched_dep_time: number;
-    dep_delay: number;
-    arr_time: number;
-    sched_arr_time: number;
-    arr_delay: number;
-    carrier: string;
-    flight: number;
-    tailnum: string;
-    origin: string;
-    dest: string;
-    air_time: number;
-    distance: number;
-    hour: number;
-    minute: number;
-    time_hour: Date;
-    name: string;
-  }
+
 
 // Define the Mongoose schema
-const flightSchema: Schema = new Schema({
-  id: { type: Number, required: true },
-  year: { type: Number, required: true },
-  month: { type: Number, required: true },
-  day: { type: Number, required: true },
-  dep_time: { type: Number, required: true },
-  sched_dep_time: { type: Number, required: true },
-  dep_delay: { type: Number, required: true },
-  arr_time: { type: Number, required: true },
-  sched_arr_time: { type: Number, required: true },
-  arr_delay: { type: Number, required: true },
-  carrier: { type: String, required: true },
-  flight: { type: Number, required: true },
-  tailnum: { type: String, required: true },
-  origin: { type: String, required: true },
-  dest: { type: String, required: true },
-  air_time: { type: Number, required: true },
-  distance: { type: Number, required: true },
-  hour: { type: Number, required: true },
-  minute: { type: Number, required: true },
-  time_hour: { type: Date, required: true },
-  name: { type: String, required: true }
+const flightSchema: Schema<IFlightSchedule> = new Schema<IFlightSchedule>({
+  airline_name: {type: 'string', required: true},
+  flight_id: {type: 'string', required: true, unique: true},
+  from: {type: 'string', required: true},
+  to: {type: 'string', required: true},
+  dep_time: {type: 'number', required: true},
+  arr_time: {type: 'number', required: true},
+  distance: {type: 'number', required: true},
+  dayRepeat: {type: 'string', required: true},
+  flight_model_id: {type: 'string'}
 });
 
 // Create the model
-const AirportScheduleRepository = mongoose.model<IFlight>('flight_schedules', flightSchema);
+const AirportScheduleRepository = mongoose.model<IFlightSchedule>('flight_schedules', flightSchema);
 
 export default AirportScheduleRepository;

@@ -1,6 +1,7 @@
 import { ErrorRequestHandler } from "express";
 import HttpStatus  from "http-status";
 import { IResponse } from "../util/types/AuthTypes";
+import AirportNotFound from "../util/errors/AirportDetailsNotFound";
 
 
 
@@ -14,9 +15,15 @@ const ErrorHandlerMiddleware: ErrorRequestHandler = (err, req, res, next) => {
             err
         },
         code: HttpStatus.INTERNAL_SERVER_ERROR
-
     }
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(resp)
+    if(err instanceof AirportNotFound) {
+        resp.body = {
+            message: "Airport Not Found!!"
+        }
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(resp)
+    } else {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(resp)
+    }
 }
 
 
