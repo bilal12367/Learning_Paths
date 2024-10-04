@@ -18,7 +18,11 @@ export const SearchController: ISearchController = {
 
     searchAirports: async (req: Request, res: Response, next: NextFunction) => {
         const searchedAirportStr: String = req.query.airportStr as String;
-        const airportDetailsList: IAirportData[] = await SearchService.searchAirport(searchedAirportStr);
+        let airportDetailsList: IAirportData[] = await SearchService.searchAirport(searchedAirportStr);
+        airportDetailsList = airportDetailsList.map((airport: any) => ({
+            ...airport._doc,
+            city: airport._doc.municipality
+        }))
         res.status(200).json(airportDetailsList);
     },
 

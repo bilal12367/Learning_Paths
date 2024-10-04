@@ -7,14 +7,14 @@ import { IFlightSchedule } from '../util/types/SchemaTypes';
 
 // Define the Mongoose schema
 const flightSchema: Schema<IFlightSchedule> = new Schema<IFlightSchedule>({
-  airline_name: {type: 'string', required: true},
-  flight_id: {type: 'string', required: true, unique: true},
-  from: {type: 'string', required: true},
-  to: {type: 'string', required: true},
-  dep_time: {type: 'number', required: true},
-  arr_time: {type: 'number', required: true},
-  distance: {type: 'number', required: true},
-  dayRepeat: {type: 'string', required: true},
+  airline_name: {type: 'string', },
+  flight_id: {type: 'string',unique: true},
+  from: {type: 'string', },
+  to: {type: 'string', },
+  dep_time: {type: 'number', },
+  arr_time: {type: 'number', },
+  distance: {type: 'number', },
+  dayRepeat: {type: 'string', },
   flight_model_id: {type: 'string'}
 });
 

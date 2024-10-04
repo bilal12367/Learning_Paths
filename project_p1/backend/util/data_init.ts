@@ -7,6 +7,8 @@ import AirportDetailsRespository from '../schema/AirportDetailsRespository';
 import AirportNotFound from './errors/AirportDetailsNotFound';
 import AirportDetailsNotFound from './errors/AirportDetailsNotFound';
 import { IAirportData, IFlightSchedule } from './types/SchemaTypes';
+import ConsoleLogger from '../config/logger/ConsoleLogger';
+import FileLogger from '../config/logger/FileLogger';
 
 type DayRepeat = "Everyday" | "SU" | "MO" | "TU" | "WE" | "TH" | "FR" | "SA"
 
@@ -63,28 +65,32 @@ const jsonToCsv = (jsonArray: any[]) => {
 }
 
 const dataInitializer = () => {
-    let arrAirports: any = {}
+    let arrAirports: any = []
     let listIata: string[] = []
+    ConsoleLogger.debug("Initializing Data")
     fs.createReadStream('./static/airports.csv')
         .pipe(csv())
         .on('data', (data: IAirportData) => {
             // console.log("Data From Initializer: ",data)
-            if (!listIata.includes(data.iata_code) && data.iata_code.length > 2 && ['large_airport'].includes(data.type)) {
+            if (!listIata.includes(data.iata_code) && data.iata_code.length > 2 && ['large_airport','medium_airport'].includes(data.type)) {
                 // arrAirports[data.iata_code] = data
                 arrAirports.push(data)
                 listIata.push(data.iata_code)
             }
         })
         .on('end', async () => {
+            ConsoleLogger.debug("Inserting Records ...")
             await AirportDetailsRespository.insertMany(arrAirports);
+            ConsoleLogger.debug("Insertion Successfull!!")
         })
 
 
 }
 
 const generateRandomNumberInRange = (upperBound: number, lowerBound: number = 1): number => {
-    return (Math.random() * upperBound + 1) as number
+    return Math.floor((Math.random() * upperBound + 1)) as number
 }
+
 
 const generateFlightSchedules = async (from: string, to: string) => {
     let fromAirport: IAirportData = await AirportDetailsRespository.findOne({ iata_code: from }) as IAirportData
@@ -111,8 +117,10 @@ const generateFlightSchedules = async (from: string, to: string) => {
 const findFlights = async (from: string, to: string) => {
     if (!await AirportScheduleRepository.exists({ from, to })) {
         if (await AirportDetailsRespository.exists({ iata_code: { $in: [from, to] } })) {
+            ConsoleLogger.warn("Generating Schedules for Searched Flights...")
             const generatedRecs: IFlightSchedule[] = await generateFlightSchedules(from, to)
             await AirportScheduleRepository.insertMany(generatedRecs);
+            ConsoleLogger.debug("Schedules Generated...")
         } else {
             throw new AirportDetailsNotFound();
         }

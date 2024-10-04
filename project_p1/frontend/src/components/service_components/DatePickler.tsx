@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import HideablePanel from '../ui_components/HideablePanel'
 import RippleButton from '../ui_components/RippleButton'
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import getDays from '../../utils/GetDays';
+import moment from 'moment';
 
 interface DatePickerProps {
     show?: boolean,
@@ -12,52 +13,30 @@ interface DatePickerProps {
 const DatePickler = (props: DatePickerProps) => {
     const [state, setState] = useState(false);
     useEffect(() => {
+        calcDays()
     }, [])
-    const getDays1 = () => {
 
-        let weekNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-        let reqWeekNames = [...weekNames]
-        let week: any = reqWeekNames.shift()
-        reqWeekNames.push(week)
-        let x = new Date(new Date().getFullYear(), 8, 1)
-        let y: any = new Date(x.getFullYear(), x.getMonth() + 1, 1)
-        let z = new Date(y - 1)
-        let dates = []
-        let daysInCurrentMonth = z.getDate();
-        let dayOfFirstDate = new Date(x.getFullYear(), x.getMonth(), 1).getDay()
-        let dayOfLastDate = new Date(x.getFullYear(), x.getMonth(), z.getDate()).getDay()
-        console.log("Month Name: ", x.toString())
-        console.log(`Date: 1 Day: ${weekNames[dayOfFirstDate]} , Last Date: ${daysInCurrentMonth} Day: ${weekNames[dayOfLastDate]}`)
-        console.log("Day Of First Date: ", weekNames[dayOfFirstDate])
+    const calcDays = useCallback(() => {
+        const days = [];
+        const numDays = moment().daysInMonth();
 
-        if (dayOfFirstDate == 0) dayOfFirstDate = 6
-        else dayOfFirstDate -= 1
-        console.log("This many days after from monday: ", dayOfFirstDate)
-        let a = new Date()
-        a.setDate(x.getDate() - dayOfFirstDate)
-        for (let i = 0; i < dayOfFirstDate; i++) {
-            let temp = new Date(a.getFullYear(), a.getMonth(), a.getDate() + i)
-            dates.push({ Date: temp.getDate(), Day: reqWeekNames[temp.getDay() - 1] })
+        for (let day = 1; day <= numDays; day++) {
+            const date = moment(`${moment().year()}-${moment().month()+1}-${day}`, "YYYY-MM-DD");
+            days.push({
+                date: date.format("YYYY-MM-DD"),
+                dateNo: date.format("DD"),
+                day: date.format("dddd") // Get the full name of the day
+            });
         }
-        for (let i = 1; i <= daysInCurrentMonth; i++) {
-            let temp = new Date(x.getFullYear(), x.getMonth(), i)
-            dates.push({ Date: temp.getDate(), Day: weekNames[temp.getDay()] })
-        }
-        let b = new Date(x.getFullYear(), x.getMonth(), daysInCurrentMonth)
-        let daysFromLastDate = 0
-        if (b.getDay() != 0) daysFromLastDate = 7 - b.getDay()
-        b.setDate(daysInCurrentMonth + daysFromLastDate)
-        console.log("Days From Last Date is sunday: ", `${b.getFullYear()}-${b.getMonth()}-${b.getDate()}`)
+        console.log('days', days)
+    }, [])
 
-
-        return dates
-    }
     return (
         <div className='d-flex border position-relative'>
 
             <HideablePanel show={state} onDismiss={() => { setState(false) }}>
                 <div className='d-flex flex-column' style={{ width: 500, backgroundColor: 'white' }}>
-                    <div className='w-100 row flex-wrap' style={{marginLeft: 0}}>
+                    <div className='w-100 row flex-wrap' style={{ marginLeft: 0 }}>
                         <div className='weekCol'>Mon</div>
                         <div className='weekCol'>Tue</div>
                         <div className='weekCol'>Wed</div>
@@ -70,7 +49,7 @@ const DatePickler = (props: DatePickerProps) => {
                         {
                             Object.values(getDays()).map((date: any) => {
                                 return (
-                                    <div className='weekCol d-flex flex-column align-items-center' style={{height: 50}}>
+                                    <div className='weekCol d-flex flex-column align-items-center' style={{ height: 50 }}>
                                         <span>{date.Date}</span>
                                     </div>
                                 )

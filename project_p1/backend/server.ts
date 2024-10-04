@@ -16,6 +16,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import { dataInitializer } from './util/data_init'
 import AirportDetailsRespository from './schema/AirportDetailsRespository'
+import ConsoleLogger from './config/logger/ConsoleLogger'
+
 
 
 dotenv.configDotenv()
@@ -68,7 +70,7 @@ app.use(ErrorHandlerMiddleware)
 
 app.listen(process.env.PORT || 5000, async () => {
 
-    console.log("Server Started listening at port ", process.env.PORT || 5000, "...")
+    ConsoleLogger.info("Server Started listening at port ", process.env.PORT || 5000, "...")
     await connectToMongo()
     if(await AirportDetailsRespository.find({}).countDocuments() == 0)
         dataInitializer();

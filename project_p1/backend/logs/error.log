@@ -1,0 +1,226 @@
+[2024-10-02T21:41:07.028] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727885275, exp: 1759421275 }
+[2024-10-02T23:27:13.990] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:27:30.644] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:27:52.049] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:30:18.805] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.010] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.034] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.048] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.062] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.075] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.085] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.098] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.107] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.117] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.128] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.136] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.148] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.168] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.185] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.200] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.218] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.237] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.250] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.270] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:30:19.284] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.744] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.769] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.800] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.808] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.816] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.823] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.832] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.839] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.847] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.855] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.861] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.869] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.877] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.884] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.891] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.933] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.941] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.956] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.964] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.971] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:23.979] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:24.994] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.007] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.016] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.024] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.031] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.037] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.043] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.050] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.055] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.062] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.068] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.074] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.082] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.088] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.094] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.101] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.107] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.114] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.119] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.125] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:25.132] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.491] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.499] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.511] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.523] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.531] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.539] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.547] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.557] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.569] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.578] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.587] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.598] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.605] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.633] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.641] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.653] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.660] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.670] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.679] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.686] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:41:38.695] [INFO] fl - JWT Payload:  { _id: '66c81abd925dc764aca21736', iat: 1724390077, exp: 1755926077 }
+[2024-10-02T23:43:20.955] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:28.972] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:30.173] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:31.760] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:34.137] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:51.936] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:43:52.912] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:44:43.558] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:44:43.571] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:44:45.555] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:44:45.564] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:45:42.757] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:45:52.812] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:18.702] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:41.250] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:46.853] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:51.361] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:52.295] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:46:53.580] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:47:01.614] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:47:02.555] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:47:03.955] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:47:04.992] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:47:36.592] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.600] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.607] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.613] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.619] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.625] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.631] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.637] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.643] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.649] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:36.655] [INFO] fl - JWT Payload:  { _id: '66d2ce29e04e5b9c4b619647', iat: 1725091373, exp: 1756627373 }
+[2024-10-02T23:47:46.829] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:51:31.847] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:55:18.614] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:59:00.565] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-02T23:59:00.588] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 143.16266644858413,
+  arr_time: 2010.1891560343793,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: '17013afd-b5b4-478b-9764-e0294ac75dd2',
+  flight_model_id: 'eb313fc5-c5cc-4ec4-b9f4-3551673728f1'
+}
+[2024-10-02T23:59:00.588] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 70.04484104375852,
+  arr_time: 1903.9272892845802,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: 'e345aab0-a6ea-43a5-851b-3cd2bcd804db',
+  flight_model_id: 'bcc6e420-7878-48b7-8615-04d7590a27c0'
+}
+[2024-10-02T23:59:00.588] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 1037.76936458552,
+  arr_time: 1899.3346069943193,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: '6c87bdc1-c141-4215-a834-8fef7ff24abc',
+  flight_model_id: '15b28378-f701-483f-be13-eca4b4dd06bf'
+}
+[2024-10-02T23:59:00.588] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 141.76857476648482,
+  arr_time: 2328.820916076769,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: 'bea63356-a05f-40b0-8fae-fce380b7f278',
+  flight_model_id: 'b9e4d3f2-0dd5-442f-94ec-69e73d187db2'
+}
+[2024-10-02T23:59:00.589] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 1135.7422446288515,
+  arr_time: 2216.3163605128657,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: 'aa4f0b72-b544-4c35-aa89-1cd0d3960d3a',
+  flight_model_id: '75d95a8b-86d5-4b5b-88b0-c4bb194b5b4c'
+}
+[2024-10-02T23:59:00.589] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 5.762697049733422,
+  arr_time: 1828.616437638127,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: 'eea07db4-5c2a-4666-be67-703f597534fa',
+  flight_model_id: 'aa62cd28-aea4-4849-9d02-70c3fb235e63'
+}
+[2024-10-02T23:59:00.589] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 927.986220349316,
+  arr_time: 1688.355233894942,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: 'e9283eb6-6707-428f-bca8-26d111227e50',
+  flight_model_id: 'e58fd597-b3bd-40fa-8e3f-2125ea6f506a'
+}
+[2024-10-02T23:59:00.589] [DEBUG] fl - {
+  from: 'EWR',
+  to: 'BOS',
+  airline_name: undefined,
+  dep_time: 474.8514727564183,
+  arr_time: 1388.0381448896258,
+  dayRepeat: undefined,
+  distance: 335.876312026762,
+  flight_id: '43c6ffa3-d07b-4851-a642-d20bf62763fb',
+  flight_model_id: '1870ca22-6e20-40d4-b70a-1b81a43926e3'
+}
+[2024-10-03T00:02:16.252] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-03T00:04:10.469] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-03T00:04:19.682] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:02:46.871] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:02:51.306] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:17:33.467] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:26:35.857] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:27:00.008] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:35:37.340] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:37:21.343] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:37:28.083] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }
+[2024-10-04T00:40:07.266] [INFO] fl - JWT Payload:  { _id: '66fd6fdb06888eec5c4df476', iat: 1727891823, exp: 1759427823 }

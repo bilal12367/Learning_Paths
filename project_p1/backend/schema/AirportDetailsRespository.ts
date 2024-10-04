@@ -4,23 +4,23 @@ import { IAirportData } from "../util/types/SchemaTypes";
 
 
 const airportSchema = new Schema<IAirportData>({
-    ident: { type: String, required: true },
-    type: { type: String, required: true },
-    name: { type: String, required: true },
-    latitude_deg: { type: String, required: true },
-    longitude_deg: { type: String, required: true },
-    elevation_ft: { type: String, required: true }, 
-    continent: { type: String, required: true },
-    iso_country: { type: String, required: true },
-    iso_region: { type: String, required: true },
-    municipality: { type: String, required: true },
+    ident: { type: String, },
+    type: { type: String, },
+    name: { type: String, },
+    latitude_deg: { type: String },
+    longitude_deg: { type: String, },
+    elevation_ft: { type: String }, 
+    continent: { type: String, },
+    iso_country: { type: String, },
+    iso_region: { type: String },
+    municipality: { type: String },
     scheduled_service: { type: String, required: true },
-    gps_code: { type: String, required: true },
-    iata_code: { type: String, required: true },
-    local_code: { type: String, required: true },
-    home_link: { type: String, required: false },
-    wikipedia_link: { type: String, required: false },
-    keywords: { type: String, required: false }
+    gps_code: { type: String },
+    iata_code: { type: String, },
+    local_code: { type: String, },
+    home_link: { type: String },
+    wikipedia_link: { type: String },
+    keywords: { type: String, }
 })
 
 export default model("AirportDetails",airportSchema)

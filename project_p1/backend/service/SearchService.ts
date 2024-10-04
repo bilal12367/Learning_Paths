@@ -14,7 +14,7 @@ interface ISearchFlightsService {
 const SearchService: ISearchService = {
     searchAirport: async (str: String) => {
         const airportList: IAirportData[] = await AirportDetailsRespository.find({
-            city: {
+            municipality: {
                 $regex: str,
                 $options: 'i'
             }

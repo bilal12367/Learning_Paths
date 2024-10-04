@@ -30,7 +30,6 @@ const getDays = () => {
     while (dates.length % 7 !== 0) {
         dates.push({ Date: null, Day: reqWeekNames[dates.length % 7], IsCurrentMonth: false });
     }
-    console.log(dates)
     return dates;
 }
 

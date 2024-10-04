@@ -1,9 +1,9 @@
 import mongoose from "mongoose"
-
+import ConsoleLogger from "./logger/ConsoleLogger"
 
 const connectToMongo = async () => {
     await mongoose.connect(process.env.URL as string).then( () => {
-        console.log("Mongo Connected Successfully!!")
+        ConsoleLogger.debug("Mongo Connected Successfully!!")
     })
 }
 

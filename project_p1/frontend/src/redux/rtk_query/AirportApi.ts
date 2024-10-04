@@ -4,7 +4,7 @@ import { IAirportDetails } from "../../utils/types";
 
 
 const setHeaders = (headers: Headers) => {
-    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM4MWFiZDkyNWRjNzY0YWNhMjE3MzYiLCJpYXQiOjE3MjQzOTAwNzcsImV4cCI6MTc1NTkyNjA3N30.AL3pDIMkTM4KTTPN_nz7EAHNPYE6O7lRI1F0TzKjPzs')
+    headers.append('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZkNmZkYjA2ODg4ZWVjNWM0ZGY0NzYiLCJpYXQiOjE3Mjc4OTE4MjMsImV4cCI6MTc1OTQyNzgyM30.fzfawgAkodApaiko2uVIXHNYMkhBn_23qiJLWj0cUwI')
 
 }
 
