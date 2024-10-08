@@ -12,8 +12,10 @@ import AirportSelector from '../../components/service_components/AirportSelector
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import DatePickler from '../../components/service_components/DatePickler'
 import PassengerSelector from '../../components/service_components/TravellerSelector'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 const Search = () => {
+    const navigate = useNavigate();
     const [selectedFromAirport, setSelectedFromAirport] = useState<IAirportDetails>({
         "_id": "66c81a96cb32d2b6a9c1d5f8",
         "icao": "K0M9",
@@ -49,6 +51,7 @@ const Search = () => {
         if (indicatorRef.current) {
             indicatorRef.current.style.left = 'calc(14.285 * 0%)';
         }
+        navigate("/search/Flights")
     }, [])
 
 
@@ -73,23 +76,7 @@ const Search = () => {
                     {/* Switches the content when the search category changes. */}
                     {/* Add Routing logic to switch */}
                     <div className='w-100' style={{ padding: '50px 34px' }} >
-                        <RadioGroup
-                            defaultValue="one-way"
-                            name="radio-buttons-group"
-                            className='d-flex flex-row'
-                        >
-                            <FormControlLabel value="one-way" control={<Radio />} label="One Way" />
-                            <FormControlLabel value="round-trip" control={<Radio />} label="Round Trip" />
-                            <FormControlLabel value="multi-way" control={<Radio />} label="Multi Way Trip" />
-                        </RadioGroup>
-
-                        <div className='w-100 d-flex'>
-                            <AirportSelector label={"From"} selectedAirport={selectedFromAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedFromAirport(selectedAirport) }} />
-                            <AirportSelector label={"To"} selectedAirport={selectedToAirport} onSelectionChange={(selectedAirport: IAirportDetails) => { setSelectedToAirport(selectedAirport) }} />
-                            <DatePickler />
-                            <DatePickler />
-                            <PassengerSelector />
-                        </div>
+                        <Outlet />
                         {/* Some Fancy SVG  */}
                         {/* <div className='d-flex' style={{height: 100,position:'relative'}}>
                             <svg viewBox='0 0 120 120'>
@@ -101,6 +88,11 @@ const Search = () => {
                         </div> */}
                     </div>
 
+                    <div className='w-100 d-flex justify-content-center position-absolute' style={{bottom: '-30px'}} >
+                        <Button variant="contained" style={{ padding: '15px 80px', borderRadius: 100 }}>
+                            <span style={{ fontSize: 15, fontWeight: 'bold' }}>Search</span>
+                        </Button>
+                    </div>
 
                     {/* Actual Search Category Selector */}
                     <div className='w-100 d-flex justify-content-center position-absolute' >
@@ -117,6 +109,8 @@ const Search = () => {
 
                 </div>
 
+                
+
             </div>
 
         </div>
@@ -125,6 +119,7 @@ const Search = () => {
 
 
 const SearchCategoryMenuItem = (item: ISearchPageMenuItem, categoryState: [ISearchPageMenuItem | undefined, React.Dispatch<React.SetStateAction<ISearchPageMenuItem | undefined>>]) => {
+    const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = categoryState;
     const theme = useTheme();
     const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
@@ -134,6 +129,8 @@ const SearchCategoryMenuItem = (item: ISearchPageMenuItem, categoryState: [ISear
     }))
 
     const handleCategorySelected = (selectedItem: ISearchPageMenuItem): void => {
+        navigate("/search/"+selectedItem.name.split(" ")[0])
+        // navigate("/")
         setSelectedCategory(selectedItem)
     }
     const isSelf: boolean = item.index === selectedCategory?.index

@@ -10,7 +10,9 @@ import LuggageRoundedIcon from '@mui/icons-material/LuggageRounded';
 
 const APP_ROUTES = {
     LANDING: '/',
-    SEARCH: '/search'
+    SEARCH: '/search',
+    SEARCH_FLIGHTS: '/search/Flights',
+    SEARCH_HOTELS: '/search/Hotels'
 }
 
 

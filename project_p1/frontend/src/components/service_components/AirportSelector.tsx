@@ -46,7 +46,7 @@ const AirportSelector = (props: IAirportSelectorProps) => {
                     </div>
                 </div>
             </HideablePanel>
-            <RippleButton onClick={() => { setShowFromCont(true) }} className='border w-100 justify-content-start' style={{ padding: '10px 14px' }}>
+            <RippleButton onClick={() => { setShowFromCont(true) }} className='border w-100 justify-content-start' style={{ padding: '10px 14px',position:'sticky',top: 0 }}>
                 <div className='from d-flex flex-column justify-content-between align-items-start'>
                     <span data-testid="label">{props.label}</span>
                     <span data-testid="city" style={{ fontSize: 30, fontWeight: 'bold' }}>{props.selectedAirport.city}</span>

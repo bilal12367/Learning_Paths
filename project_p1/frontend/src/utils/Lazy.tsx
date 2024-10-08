@@ -16,7 +16,9 @@ const Fallback = (props: FallbackProps) => {
 
 const LAZY = {
     LANDING_PAGE: lazy(() => import('../pages/Landing/Landing')),
-    SEARCH_PAGE: lazy(() => import('../pages/Search/Search'))
+    SEARCH_PAGE: lazy(() => import('../pages/Search/Search')),
+    SEARCH_FLIGHTS: lazy(() => import('../pages/Search/flight_search/FlightSearch')),
+    SEARCH_HOTELS: lazy(() => import('../pages/Search/hotel_search/HotelSearch'))
 }
 
-export default LAZY
+export {LAZY , Fallback}
