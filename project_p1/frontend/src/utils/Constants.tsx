@@ -12,7 +12,8 @@ const APP_ROUTES = {
     LANDING: '/',
     SEARCH: '/search',
     SEARCH_FLIGHTS: '/search/Flights',
-    SEARCH_HOTELS: '/search/Hotels'
+    SEARCH_HOTELS: '/search/Hotels',
+    FLIGHT_LIST: '/flights'
 }
 
 
@@ -21,6 +22,9 @@ const APP_SLICES = {
 }
 
 const APP_API_ROUTES = {
+    Common: {
+        baseQuery: 'http://localhost:5000/api'
+    },
     AUTH_API: {
         reducerPath: 'Auth_Api',
         baseQuery: 'https://reqres.in/api/',
@@ -29,10 +33,17 @@ const APP_API_ROUTES = {
         }
     },
     SEARCH_AIRPORT_API: {
-        reducerPath: 'Flight_Search_Api',
+        reducerPath: 'Airport_Search_Api',
         baseQuery: 'http://localhost:5000/api/searchAirport',
         endpoints: {
             SEARCH_AIRPORT: "searchAirport"
+        }
+    },
+    SEARCH_FLIGHT_API: {
+        reducerPath: 'Flight_Search_Api',
+        baseQuery: 'http://localhost:5000/api/searchFlight',
+        endpoints: {
+            SEARCH_FLIGHT: 'searchFlight'
         }
     }
 }

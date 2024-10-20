@@ -14,13 +14,12 @@ const init_Passport = (passport: PassportStatic) => {
         // algorithms: ["RS512","HS256"],
     }
     passport.use(new JwtStrategy(opts, async (jwtPayload, done) => {
-        ConsoleLogger.debug("JWT Payload: ", jwtPayload);
-        FileLogger.info("JWT Payload: ", jwtPayload)
         const userId = jwtPayload?._id;
         const requestUser: User | null = await UserRepository.findById(userId);
         if (requestUser) {
             return done(null, requestUser);
         } else {
+            ConsoleLogger.error("Token Expired")
             return done("User not found from jwt strategy", null)
         }
     }))

@@ -1,47 +1,16 @@
-import React, { createRef, Key, useEffect, useRef, useState } from 'react'
+import React, { createRef, Key, useCallback, useEffect, useRef, useState } from 'react'
 import './styles.css'
 import { Button, ButtonBase, Color, FormControlLabel, Input, Radio, RadioGroup, styled, TextField, useTheme } from '@mui/material'
 import { SearchPageMenuItems } from '../../utils/Constants'
 import { IAirportDetails, ISearchPageMenuItem } from '../../utils/types'
-import useClickedOutside from '../../hooks/useClickedOutside'
-import HideablePanel from '../../components/ui_components/HideablePanel'
-import RippleButton from '../../components/ui_components/RippleButton'
-import AirportSearchApi from '../../redux/rtk_query/AirportApi'
-import useDebounce from '../../hooks/useDebounce'
-import AirportSelector from '../../components/service_components/AirportSelector'
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import DatePickler from '../../components/service_components/DatePickler'
-import PassengerSelector from '../../components/service_components/TravellerSelector'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
 const Search = () => {
+    const searchQuery = useSelector((state: RootState) => state.searchState)
+
     const navigate = useNavigate();
-    const [selectedFromAirport, setSelectedFromAirport] = useState<IAirportDetails>({
-        "_id": "66c81a96cb32d2b6a9c1d5f8",
-        "icao": "K0M9",
-        "iata": "",
-        "name": "Delhi Municipal Airport",
-        "city": "Delhi",
-        "state": "Louisiana",
-        "country": "US",
-        "elevation": 91,
-        "lat": 32.4107017517,
-        "lon": -91.4987030029,
-        "tz": "America/Chicago"
-    });
-    const [selectedToAirport, setSelectedToAirport] = useState<IAirportDetails>({
-        "_id": "66c81a97cb32d2b6a9c20dcc",
-        "icao": "VABB",
-        "iata": "BOM",
-        "name": "Chhatrapati Shivaji International Airport",
-        "city": "Mumbai",
-        "state": "Maharashtra",
-        "country": "IN",
-        "elevation": 37,
-        "lat": 19.0886993408,
-        "lon": 72.8678970337,
-        "tz": "Asia/Kolkata"
-    });
     const [selectedMenuCategory, setSelectedMenuCategory] = useState<ISearchPageMenuItem>();
     const indicatorRef: React.RefObject<HTMLDivElement> = createRef();
 
@@ -60,6 +29,12 @@ const Search = () => {
             indicatorRef.current.style.left = 'calc(14.285 *' + selectedMenuCategory?.index + '%)'
         }
     }, [selectedMenuCategory])
+
+    const search = () => {
+        console.log(`Search Query:`)
+        console.log(searchQuery)
+        navigate(`../flights?from=${searchQuery.from}&to=${searchQuery.to}&travelDate=${searchQuery.travelDate}`)
+    }
 
 
     return (
@@ -88,8 +63,8 @@ const Search = () => {
                         </div> */}
                     </div>
 
-                    <div className='w-100 d-flex justify-content-center position-absolute' style={{bottom: '-30px'}} >
-                        <Button variant="contained" style={{ padding: '15px 80px', borderRadius: 100 }}>
+                    <div className='w-100 d-flex justify-content-center position-absolute' style={{ bottom: '-30px' }} >
+                        <Button onClick={() => { search() }} variant="contained" style={{ padding: '15px 80px', borderRadius: 100 }}>
                             <span style={{ fontSize: 15, fontWeight: 'bold' }}>Search</span>
                         </Button>
                     </div>
@@ -109,7 +84,7 @@ const Search = () => {
 
                 </div>
 
-                
+
 
             </div>
 
@@ -129,7 +104,7 @@ const SearchCategoryMenuItem = (item: ISearchPageMenuItem, categoryState: [ISear
     }))
 
     const handleCategorySelected = (selectedItem: ISearchPageMenuItem): void => {
-        navigate("/search/"+selectedItem.name.split(" ")[0])
+        navigate("/search/" + selectedItem.name.split(" ")[0])
         // navigate("/")
         setSelectedCategory(selectedItem)
     }

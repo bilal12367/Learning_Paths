@@ -21,7 +21,8 @@ export const SearchController: ISearchController = {
         let airportDetailsList: IAirportData[] = await SearchService.searchAirport(searchedAirportStr);
         airportDetailsList = airportDetailsList.map((airport: any) => ({
             ...airport._doc,
-            city: airport._doc.municipality
+            city: airport._doc.municipality,
+            iata: airport._doc.iata_code
         }))
         res.status(200).json(airportDetailsList);
     },

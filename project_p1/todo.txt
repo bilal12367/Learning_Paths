@@ -1,0 +1,8 @@
+
+Continue From FlightSearchApi.ts
+
+continue building search flight api and display list in the frontend
+
+Stylize the results page also think further about filtering intermediate stops
+and other things which are needed in search page take ideas from make my trip
+

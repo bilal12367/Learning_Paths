@@ -17,6 +17,8 @@ import cors from 'cors'
 import { dataInitializer } from './util/data_init'
 import AirportDetailsRespository from './schema/AirportDetailsRespository'
 import ConsoleLogger from './config/logger/ConsoleLogger'
+import ApiLoggerMiddleware from './middleware/ApiLoggerMiddleware'
+import ResponseLoggerMiddleware from './middleware/ResponseLoggerMiddleware'
 
 
 
@@ -42,6 +44,10 @@ app.use(session({
 init_Passport(passport);
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(ApiLoggerMiddleware)
+
+app.use(ResponseLoggerMiddleware)
 
 app.use("/auth", AuthRouter);
 // app.use("/test", function (req,res,next) {

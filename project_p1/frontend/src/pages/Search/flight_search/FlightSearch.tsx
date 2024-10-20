@@ -1,16 +1,22 @@
 
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AirportSelector from '../../../components/service_components/AirportSelector'
 import DatePickler from '../../../components/service_components/DatePickler'
 import { IAirportDetails } from '../../../utils/types'
 import PassengerSelector from '../../../components/service_components/TravellerSelector'
+import Button from '../../../components/ui_components/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootActions } from '../../../redux/RootActions'
+import { RootState } from '../../../redux/store'
 
 const FlightSearch = () => {
+    const dispatch = useDispatch()
+    const searchQuery = useSelector((state: RootState) => state.searchState)
     const [selectedFromAirport, setSelectedFromAirport] = useState<IAirportDetails>({
         "_id": "66c81a96cb32d2b6a9c1d5f8",
         "icao": "K0M9",
-        "iata": "",
+        "iata": "DEL",
         "name": "Delhi Municipal Airport",
         "city": "Delhi",
         "state": "Louisiana",
@@ -33,6 +39,24 @@ const FlightSearch = () => {
         "lon": 72.8678970337,
         "tz": "Asia/Kolkata"
     });
+
+    const updateChangesToSearchQuery = () => {
+        const query: ISearchSliceState = {
+            from: selectedFromAirport.iata,
+            to: selectedToAirport.iata,
+            searchType: 'flight',
+            passengers: null,
+            travelDate: new Date().toDateString()
+        }
+        dispatch(RootActions.Search.setFlightSearchDetails(query))
+    }
+    useEffect(()=> {
+        updateChangesToSearchQuery()
+    },[])
+    useEffect(() => {
+        updateChangesToSearchQuery()
+    }, [selectedFromAirport, selectedToAirport])
+
     return (
         <div>
             <RadioGroup
@@ -51,6 +75,9 @@ const FlightSearch = () => {
                 <DatePickler />
                 <DatePickler />
                 <PassengerSelector />
+            </div>
+            <div>
+                Search Query: {JSON.stringify(searchQuery)}
             </div>
         </div>
     )

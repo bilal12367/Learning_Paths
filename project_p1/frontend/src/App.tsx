@@ -17,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes >
           <Route path={APP_ROUTES.LANDING} element={<Navigate to={APP_ROUTES.SEARCH} replace />} />
+          <Route path={APP_ROUTES.FLIGHT_LIST} element={<Fallback>{LAZY.SEARCH_RESULTS}</Fallback>} />
           <Route path={APP_ROUTES.SEARCH} element={<Fallback>{LAZY.SEARCH_PAGE}</Fallback>}>
             <Route index path={APP_ROUTES.SEARCH_FLIGHTS} element={<Fallback>{LAZY.SEARCH_FLIGHTS}</Fallback>}/>
             <Route path={APP_ROUTES.SEARCH_HOTELS} element={<Fallback>{LAZY.SEARCH_HOTELS}</Fallback>}/>
