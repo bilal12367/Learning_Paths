@@ -1,0 +1,38 @@
+
+
+###
+GET http://localhost:3000/test/123/321
+###
+GET http://localhost:3000/test/query?id=123
+###
+POST http://localhost:3000/test/post
+Content-Type: application/json
+
+{
+    "name":"bilal",
+    "age": 23,
+    "email":"test@gmail.com",
+    "password": "test!321",
+    "gender": "M"
+}
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name":"bilal",
+    "age": 23,
+    "email":"test3@gmail.com",
+    "password": "test!321",
+    "gender": "M"
+}
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email":"test3@gmail.com",
+    "password": "test!321"
+}

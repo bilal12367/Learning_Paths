@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express_passport_auth_test_1": "file:",
     "express-async-errors": "^3.1.1",
     "httpstatus": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
