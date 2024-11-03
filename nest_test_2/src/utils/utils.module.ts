@@ -1,9 +1,10 @@
 import { Module } from "@nestjs/common";
-import { UtilService } from "./EncryptService";
+import { EncryptionService } from "./EncryptService";
+import { JwtService } from "./jwt.service";
 
 @Module({
-    providers: [UtilService],
-    exports: [UtilService]
+    providers: [JwtService, EncryptionService],
+    exports: [EncryptionService, JwtService]
 })
 
 

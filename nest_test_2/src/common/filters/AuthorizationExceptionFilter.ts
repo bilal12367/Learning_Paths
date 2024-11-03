@@ -1,12 +1,14 @@
-import { ArgumentsHost, Catch, HttpStatus } from "@nestjs/common";
+import { ArgumentsHost, Catch, HttpException, HttpStatus, UnauthorizedException } from "@nestjs/common";
 import { BaseExceptionFilter } from "@nestjs/core";
-import { AuthorizationException, PasswordMismatch, UserAlreadyExistsException, UserNotFound } from "../exceptions/AuthorizationException.ts";
+import { AuthorizationException, PasswordMismatch, UserAlreadyExistsException, UserNotFound, WeakPassword } from "../exceptions/AuthorizationException.ts";
 import { HttpArgumentsHost } from "@nestjs/common/interfaces";
 import { Response } from 'express'
+import { JsonWebTokenError } from "jsonwebtoken";
 
-@Catch(AuthorizationException)
+@Catch(AuthorizationException, JsonWebTokenError)
 export class AuthorizationExceptionFilter extends BaseExceptionFilter {
-    catch(exception: AuthorizationException, host: ArgumentsHost): void {
+    catch(exception: HttpException, host: ArgumentsHost): void {
+        console.log("Exception Caught: ",exception)
         const ctx: HttpArgumentsHost = host.switchToHttp()
         const res = ctx.getResponse<Response>()
         if (exception instanceof UserAlreadyExistsException) {
@@ -15,6 +17,10 @@ export class AuthorizationExceptionFilter extends BaseExceptionFilter {
             res.status(HttpStatus.UNAUTHORIZED).json({ ...exception })
         } else if (exception instanceof PasswordMismatch) {
             res.status(HttpStatus.UNAUTHORIZED).json({ ...exception })
+        } else if (exception instanceof WeakPassword) {
+            res.status(HttpStatus.BAD_REQUEST).json({ ...exception })
+        } else if (exception instanceof JsonWebTokenError) {
+            res.status(HttpStatus.UNAUTHORIZED).json({...exception})
         }
     }
 }

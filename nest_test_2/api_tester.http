@@ -17,22 +17,26 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/users
+POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
     "name":"bilal",
     "age": 23,
     "email":"test3@gmail.com",
-    "password": "test!321",
+    "password": "Test!321",
     "gender": "M"
 }
 
 ###
-POST http://localhost:3000/users/login
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
     "email":"test3@gmail.com",
-    "password": "test!321"
+    "password": "Test!321"
 }
+
+###
+GET http://localhost:3000/api/users/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1MDJlNTU4YS1jZWUwLTQwY2ItODU5Zi1lYzFmZmFmODgxMjIiLCJpYXQiOjE3MzA1NzgyMTF9.oU98_AWZhgXCKvU0DHOto_EbCJH20Q9OjKzLsEJF9tM

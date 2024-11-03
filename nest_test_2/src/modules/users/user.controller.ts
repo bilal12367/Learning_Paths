@@ -1,14 +1,14 @@
 import { Body, Controller, Get, Inject, Post, UseFilters } from "@nestjs/common";
 import { PasswordMismatch } from "src/common/exceptions/AuthorizationException.ts";
 import { AuthorizationExceptionFilter } from "src/common/filters/AuthorizationExceptionFilter";
-import { UserService } from "./user.service";
+import { AuthService } from "./user.service";
 
 
 
-@Controller("/users")
-export class UserController {
-    constructor(@Inject() private userService: UserService) {}
-    @Post()
+@Controller("/auth")
+export class AuthController {
+    constructor(@Inject() private userService: AuthService) {}
+    @Post("/register")
     @UseFilters(AuthorizationExceptionFilter)
     registerUser(@Body() reqBody: IRegisterUser) {
         return this.userService.registerUser(reqBody);

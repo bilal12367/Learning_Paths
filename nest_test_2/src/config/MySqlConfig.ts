@@ -6,8 +6,8 @@ const mysqlConfig : TypeOrmModuleOptions = {
     host: '192.168.0.9',
     port: 3306,
     username: 'root',
-    password: 'root_password',
-    database: 'mydb',
+    password: 'root',
+    database: 'test',
     entities: [User],
     synchronize: true,
 }

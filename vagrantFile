@@ -10,7 +10,18 @@ Vagrant.configure("2") do |config|
     # Run the MySQL container using Docker
     config.vm.provision "shell", inline: <<-SHELL
       docker pull mysql:latest
-      docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=mydb -p 3306:3306 -d mysql:latest
+      docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test -p 3306:3306 -d mysql:latest
+      docker start mysql
+      # Create a startup script
+      echo '#!/bin/bash' > /etc/init.d/my_startup_script
+      echo docker start mysql >> /etc/init.d/my_startup_script
+      echo 'sudo apt-get update' >> /etc/init.d/my_startup_script
+
+      # Make the script executable
+      chmod +x /etc/init.d/my_startup_script
+
+      # Register the script to run at boot
+      update-rc.d my_startup_script defaults
     SHELL
   
     # Expose port 3306 for MySQL
