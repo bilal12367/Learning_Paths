@@ -5,6 +5,8 @@ import { UserModule } from "../users/user.module";
 import { UtilModule } from "src/utils/utils.module";
 import { JwtService } from "src/utils/jwt.service";
 import { UserService } from "./users/user.service";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "../entities/user.entity";
 
 
 
@@ -12,7 +14,7 @@ import { UserService } from "./users/user.service";
     controllers: [UserDataController],
     providers: [JwtService, UserService],
     exports: [DataModule],
-    imports: [UserModule, UtilModule]
+    imports: [TypeOrmModule.forFeature([User]),UserModule, UtilModule]
 })
 
 export class DataModule implements NestModule{
