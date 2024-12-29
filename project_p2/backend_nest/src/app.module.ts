@@ -3,10 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './users/entities/user.entity';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { User } from './api/users/entities/user.entity';
+import { AuthModule } from './api/auth/auth.module';
+import { UsersModule } from './api/users/users.module';
 import { JwtService } from './jwt/jwt.service';
 import { JwtModule } from './jwt/jwt.module';
 

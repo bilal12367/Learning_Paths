@@ -1,8 +1,9 @@
 import { ArgumentsHost, Catch, ConsoleLogger, ExceptionFilter, HttpException } from "@nestjs/common";
-import { PasswordMismatch, UserAlreadyExists, UserNotFound } from "./auth.exceptions";
+import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from "./auth.exceptions";
 
 
-@Catch(UserNotFound, UserAlreadyExists, PasswordMismatch)
+
+@Catch(UserNotFoundException, UserAlreadyExistsException, PasswordMismatchException)
 class AuthExceptionFilter implements ExceptionFilter {
 
 

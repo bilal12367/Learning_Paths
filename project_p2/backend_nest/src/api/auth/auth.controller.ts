@@ -2,9 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from 'src/api/users/dto/create-user.dto';
+import { ExemptRoute } from 'src/exempt/exempt.decorator';
 
 @Controller('auth')
+@ExemptRoute()
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
 
@@ -16,6 +18,11 @@ export class AuthController {
         .setLastName(registerUser.lastName)
         .setIsActive(true)
       )
+  }
+
+  @Post('login')
+  public async loginUser(@Body() loginUser: LoginUserDto) {
+    return await this.authService.
   }
 
 }

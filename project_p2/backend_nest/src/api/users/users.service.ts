@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
 
 @Injectable()
 export class UsersService {
@@ -26,8 +27,12 @@ export class UsersService {
     return await this.userRepository.find({});
   }
 
-  async findOne(id: number) {
-    return await this.userRepository.find({ where: { id: id } })
+  async findOne(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { email } })
+    if (!user) {
+      throw new UserNotFoundException()
+    }
+    return user;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
