@@ -18,7 +18,8 @@ export class AuthGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request: IRequest = context.switchToHttp().getRequest()
 
-    const exemptRoute = this.reflector.get<boolean>('exempt',context.getHandler())
+    const exemptRoute = this.reflector.get<boolean>('exempt',context.getClass())
+    
     if(exemptRoute) 
       return true;
     const token = this.extractTokenFromHeader(request)

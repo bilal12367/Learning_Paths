@@ -3,12 +3,18 @@ import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundExce
 
 
 
-@Catch(UserNotFoundException, UserAlreadyExistsException, PasswordMismatchException)
-class AuthExceptionFilter implements ExceptionFilter {
+@Catch(HttpException)
+export class AuthExceptionFilter implements ExceptionFilter {
 
 
     catch(exception: any, host: ArgumentsHost) {
-        
+        console.log("Exception Caught!!", exception)
+        const ctxt = host.switchToHttp()
+        const res = ctxt.getResponse()
+
+
+        res.status(400).json({ exception });
+
     }
-    
+
 }

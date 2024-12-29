@@ -5,13 +5,14 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
+import { RegisterUserDto } from '../auth/dto/register.dto';
 
 @Injectable()
 export class UsersService {
 
   constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
 
-  async create(createUserDto: CreateUserDto): Promise<CreateUserDto> {
+  async create(createUserDto: RegisterUserDto): Promise<CreateUserDto> {
     const user = await this.userRepository.save(createUserDto);
     return CreateUserDto
       .build()
@@ -23,15 +24,16 @@ export class UsersService {
       .setIsActive(user.isActive);
   }
 
+  async exists(email: string): Promise<boolean> {
+    return await this.userRepository.exists({ where: { email } })
+  }
+
   async findAll() {
     return await this.userRepository.find({});
   }
 
   async findOne(email: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { email } })
-    if (!user) {
-      throw new UserNotFoundException()
-    }
     return user;
   }
 

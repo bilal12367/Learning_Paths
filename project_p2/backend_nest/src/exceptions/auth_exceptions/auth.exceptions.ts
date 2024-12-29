@@ -18,7 +18,7 @@ class UserAlreadyExistsException extends HttpException {
 
 class PasswordMismatchException extends HttpException {
     constructor(message: string = "Password Mismatch Exception!!") {
-        super(message, HttpStatus.NOT_FOUND);
+        super(message, HttpStatus.UNAUTHORIZED);
     }
 }
 

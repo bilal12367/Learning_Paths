@@ -1,0 +1,27 @@
+
+
+### Register Test
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "bilal",
+    "lastName": "shaik",
+    "password":"Test@1234",
+    "email": "test1@gmail.com",
+    "isActive": true
+}
+
+
+
+### Login Test
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password":"Test@1234"
+}
+
