@@ -6,6 +6,7 @@ import { CreateUserDto } from 'src/api/users/dto/create-user.dto';
 import { ExemptRoute } from 'src/exempt/exempt.decorator';
 import { LoginUserDto } from './dto/login.dto';
 import { AuthExceptionFilter } from 'src/exceptions/auth_exceptions/auth.exception.filter';
+import { ForgetUserDto } from './auth.types';
 
 @Controller('auth')
 @ExemptRoute()
@@ -23,4 +24,9 @@ export class AuthController {
     return await this.authService.loginUser(loginUser)
   }
 
+
+  @Post('forgetPassword')
+  public async forgetPassword(@Body() forgetUserDto: ForgetUserDto) {
+    await this.authService.forgetUser(forgetUserDto)
+  }
 }

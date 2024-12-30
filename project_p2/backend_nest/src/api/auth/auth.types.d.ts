@@ -4,3 +4,7 @@ export interface IUserToken {
     token: string,
     isActive: boolean
 }
+
+export interface ForgetUserDto {
+    email: string
+}

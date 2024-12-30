@@ -7,13 +7,12 @@ import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundExce
 export class AuthExceptionFilter implements ExceptionFilter {
 
 
-    catch(exception: any, host: ArgumentsHost) {
-        console.log("Exception Caught!!", exception)
+    catch(ex: any, host: ArgumentsHost) {
         const ctxt = host.switchToHttp()
         const res = ctxt.getResponse()
 
-
-        res.status(400).json({ exception });
+        console.log(ex)
+        res.status(ex.status).json({ success: false, message: ex.message });
 
     }
 

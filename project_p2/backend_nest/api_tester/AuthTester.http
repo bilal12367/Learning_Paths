@@ -25,3 +25,10 @@ Content-Type: application/json
     "password":"Test@1234"
 }
 
+### Forget Password
+
+POST http://localhost:3000/auth/forgetPassword
+
+{
+    "email": "sk.bilal.md@gmail.com"
+}

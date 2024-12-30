@@ -3,4 +3,4 @@
 ### Users
 
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE3MzU0Njc0MTAsImV4cCI6MTczODA1OTQxMH0.fohC3WDUC9q8x90N14aD_oc6_rkdkTudzvWoxwX2Jw0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE3MzU1NjYwNDEsImV4cCI6MTczODE1ODA0MX0.j4GxC-hPQRJwqmhURnaPGkoU-kcd-faHv2_OPe-u15w
