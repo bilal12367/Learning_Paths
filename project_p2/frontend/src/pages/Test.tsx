@@ -8,7 +8,7 @@ const Test = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const pc = new RTCPeerConnection();
+    // const pc = new RTCPeerConnection();
   },[])
 
   return (

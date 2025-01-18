@@ -8,6 +8,6 @@ async function bootstrap() {
 
   app.useGlobalGuards(new AuthGuard(app.get(JwtService), app.get(Reflector)))
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 5000);
 }
 bootstrap();

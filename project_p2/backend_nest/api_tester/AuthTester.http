@@ -2,7 +2,7 @@
 
 ### Register Test
 
-POST http://localhost:3000/auth/register
+POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 ### Login Test
 
-POST http://localhost:3000/auth/login
+POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {

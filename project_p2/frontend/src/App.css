@@ -1,4 +1,15 @@
 
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+@font-face {
+  font-family: 'gg-sans';
+  src: url('assets/fonts/gg_sans_Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 .hover-highlight {
