@@ -16,7 +16,8 @@ interface ThemeState {
         error: string
         success: string
         warning: string
-        info: string
+        info: string,
+        grad1: (deg: number) => string
     }
     typography: {
         f1: string
@@ -41,13 +42,17 @@ interface ThemeState {
             medium: string
             small: string
         }
-        shadows: {
-            light: string
-            medium: string
-            heavy: string
-        }
+    },
+    
+    shadows: {
+        light: string
+        medium: string
+        heavy: string
     },
     padding: {
+        std: string
+    },
+    transition: {
         std: string
     }
 }
@@ -70,7 +75,10 @@ const PrimaryTheme: ThemeState = {
         error: '#C6595B',
         success: '#3DE78A',
         warning: '#F0AE1F',
-        info: '#2380EA'
+        info: '#2380EA',
+        grad1: (deg: number = 0) => {
+            return `linear-gradient(${deg}deg,var(--accent),#FFFFFF)`
+        }
     },
     typography: {
         f1: "gg-sans",
@@ -94,16 +102,23 @@ const PrimaryTheme: ThemeState = {
             large: '1.125rem',
             medium: '1rem',
             small: '0.875rem',
-        },
-        shadows: {
-            light: '0 1px 3px rgba(0, 0, 0, 0.1)',
-            medium: '0 4px 6px rgba(0, 0, 0, 0.14)',
-            heavy: '0 10px 20px rgba(0, 0, 0, 0.2)',
-        },
+        }
+    },
+    shadows: {
+        light: '0 1px 3px rgba(0, 0, 0, 0.1)',
+        medium: '0 4px 6px rgba(0, 0, 0, 0.14)',
+        heavy: '0 10px 20px rgba(0, 0, 0, 0.2)',
     },
     padding: {
         std: '0.75rem 2.5rem'
+    },
+    transition: {
+        std: 'all 0.4s ease-in-out'
     }
+}
+
+const setTheme = (theme: ThemeState) => {
+
 }
 
 const Themes = { PrimaryTheme }

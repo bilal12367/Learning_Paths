@@ -1,8 +1,20 @@
 import React from 'react'
+import Header from '../components/service_components/Header/Header'
+import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { IRootState } from '../store/store'
 
 const Home = () => {
+  const theme = useSelector((state: IRootState) => state.theme)
   return (
-    <div>Home</div>
+    <React.Fragment>
+      <section style={{width:'100%',height: '100%', background: theme.colors.grad1(120)}} >
+        
+      </section>
+      <section style={{width:'100%',height: '100%', background: theme.colors.b1}} >
+
+      </section>
+    </React.Fragment>
   )
 }
 

@@ -1,3 +1,15 @@
-.head {
-    
+.head1 {
+    font-size: 1.6rem;
+    color: white;
+    letter-spacing: 4px;
+    font-weight: bold;
+    color: var(--accent)
+}
+input, input:active, input:focus {
+    border: none;
+    outline: none;
+}
+
+input:active {
+    background: var(--g1);
 }

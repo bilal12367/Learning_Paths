@@ -8,7 +8,8 @@ const themeSlice = createSlice({
     reducers: {
         switchTheme(state, action: PayloadAction<{ theme_name: 'primary' | 'theme2' | 'theme3' }>) {
             state = Themes.PrimaryTheme
-        }
+        },
+        
     }
 })
 
