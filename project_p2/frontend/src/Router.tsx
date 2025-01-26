@@ -13,6 +13,8 @@ import Servers from './pages/Servers'
 import AboutUs from './pages/AboutUs'
 import Starter from './pages/Starter'
 import Selectors from './store/Selectors'
+import { Dashboard } from '@mui/icons-material'
+import App from './App'
 
 
 const Router = () => {
@@ -30,6 +32,9 @@ const Router = () => {
           <Route path='download' Component={Download} />
           <Route path='servers' Component={Servers} />
           <Route path='aboutus' Component={AboutUs} />
+        </Route>
+        <Route path="/app" Component={App}>
+          <Route path='dashboard' Component={Dashboard} />
         </Route>
       </Routes>
 

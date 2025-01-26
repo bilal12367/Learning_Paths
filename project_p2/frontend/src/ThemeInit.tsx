@@ -11,11 +11,12 @@ const ThemeInit = (props: { children: ReactNode }) => {
     useEffect(() => {
         console.log(theme.colors)
         Object.keys(theme.colors).forEach((key: any) => {
+            console.log(typeof (theme.colors[key]))
             if (typeof (theme.colors[key]) == 'string') {
                 document.documentElement.style.setProperty('--' + key, theme.colors[key])
                 return
             }
-            document.documentElement.style.setProperty('--' + key, theme.colors[key]())
+            // document.documentElement.style.setProperty('--' + key, theme.colors[key]())
         })
         setLoading(false)
     }, [])

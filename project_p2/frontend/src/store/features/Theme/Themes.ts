@@ -17,7 +17,7 @@ interface ThemeState {
         success: string
         warning: string
         info: string,
-        grad1: (deg: number) => string
+        grad1: string[]
     }
     typography: {
         f1: string
@@ -43,7 +43,7 @@ interface ThemeState {
             small: string
         }
     },
-    
+
     shadows: {
         light: string
         medium: string
@@ -76,9 +76,8 @@ const PrimaryTheme: ThemeState = {
         success: '#3DE78A',
         warning: '#F0AE1F',
         info: '#2380EA',
-        grad1: (deg: number = 0) => {
-            return `linear-gradient(${deg}deg,var(--accent),#FFFFFF)`
-        }
+        grad1: ['var(--accent)', '#FFFFFF']
+
     },
     typography: {
         f1: "gg-sans",
@@ -117,10 +116,15 @@ const PrimaryTheme: ThemeState = {
     }
 }
 
+export const getGrad = (gradArr: string[], deg: number = 0) => {
+    return `linear-gradient(${deg.toString()}deg,${gradArr.join(',')})`
+}
+
 const setTheme = (theme: ThemeState) => {
 
 }
 
 const Themes = { PrimaryTheme }
+
 
 export default Themes

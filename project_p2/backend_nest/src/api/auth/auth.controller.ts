@@ -8,7 +8,7 @@ import { LoginUserDto } from './dto/login.dto';
 import { AuthExceptionFilter } from 'src/exceptions/auth_exceptions/auth.exception.filter';
 import { ForgetUserDto } from './auth.types';
 
-@Controller('auth')
+@Controller('api/auth')
 @ExemptRoute()
 @UseFilters(AuthExceptionFilter)
 export class AuthController {

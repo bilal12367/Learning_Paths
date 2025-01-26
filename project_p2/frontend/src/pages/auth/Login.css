@@ -5,11 +5,31 @@
     font-weight: bold;
     color: var(--accent)
 }
-input, input:active, input:focus {
+
+input,
+input:active,
+input:focus {
     border: none;
     outline: none;
 }
 
 input:active {
     background: var(--g1);
+}
+
+.submit-btn {
+    position: relative;
+    /* padding: 10px 46px; */
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--g1);
+    border-radius: 100px;
+    bottom: 0px;
+    box-shadow: 0 4px 6px 4px rgba(0, 0, 0, 0);
+    transition: all 0.4s ease-in-out;
+}
+
+.submit-btn:hover {
+    bottom: 4px;
+    box-shadow: 0 6px 6px 4px rgba(0, 0, 0, 0.4);
 }
