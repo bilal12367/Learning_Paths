@@ -33,3 +33,12 @@ input:active {
     bottom: 4px;
     box-shadow: 0 6px 6px 4px rgba(0, 0, 0, 0.4);
 }
+
+.page {
+    height: 100%;
+    min-width: 100%;
+}
+
+.page-slider {
+    transition: all 0.2s ease-in-out;
+}

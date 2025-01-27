@@ -1,10 +1,14 @@
-import React, { useCallback, useState } from 'react'
+import React, { CSSProperties, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import isLoginPage from '../../../hooks/LoginPageDetector.hook'
-
 // This component has logic for selection of link with view style.
 interface ILinkSelector {
-    links: { title: string, path: string }[]
+    links: { title: string, path: string }[],
+    linkStyle?: {
+        fontSize: number,
+        sliderWidth: number,
+        sliderOffset: number,
+
+    }
 }
 
 const Link_Selector = (props: ILinkSelector) => {
@@ -13,22 +17,23 @@ const Link_Selector = (props: ILinkSelector) => {
 
     const navigateTo = useCallback((path: string) => {
         nav(path)
-    },[])
+    }, [])
 
     return (
         <React.Fragment>
             {
                 props.links.length > 0 &&
                 <div className='d-flex flex-row links'>
-                    <div className='link-slider' style={{ left: state }}>
-                        <div className='slider'></div>
+                    <div className='link-slider' style={{ left: state, width: props.linkStyle?.sliderWidth || 100 }}>
+                        <div className='slider' style={{top: props.linkStyle?.sliderOffset}}></div>
                     </div>
                     {
                         Object.values(props.links).map((link, idx: number) =>
-                            <span 
-                            key={link.title} 
-                            onClick={() => { setState(100 * idx); navigateTo(link.path); }} 
-                            className='link'>{link.title}</span>
+                            <span
+                                key={link.title}
+                                onClick={() => { setState(100 * idx); navigateTo(link.path); }}
+                                style={{ width: props.linkStyle?.sliderWidth, fontSize: props.linkStyle?.fontSize || 28 }}
+                                className='link'>{link.title}</span>
                         )
                     }
                 </div>

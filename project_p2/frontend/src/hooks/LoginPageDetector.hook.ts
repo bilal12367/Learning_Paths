@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom"
 
 
-const IsLoginPage = () : boolean => {
+const IsAuthPage = (): boolean => {
     const location = useLocation()
-    return location.pathname == '/login'
+    return location.pathname.startsWith("/auth") || location.pathname.startsWith("auth")
 }
 
-export default IsLoginPage
+export default IsAuthPage

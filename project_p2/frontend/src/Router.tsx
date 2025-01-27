@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Routes, Route, BrowserRouter as MainRouter, Navigate } from 'react-router-dom'
 import Test from './pages/Test'
 import Register from './pages/auth/Register'
-import Login from './pages/auth/Login'
+import Login from './pages/auth/Auth'
 import Auth from './pages/auth/Auth'
 import { useDispatch, useSelector } from 'react-redux'
 import Actions from './store/RootAction'
@@ -21,13 +21,13 @@ const Router = () => {
   return (
     <MainRouter>
       <Routes>
-        <Route path="/auth" Component={Auth}>
-          <Route path="register" Component={Register} />
-          <Route path="login" Component={Login} />
-        </Route>
         <Route path="" Component={Starter}>
-          <Route path="register" Component={Register} />
-          <Route path="login" Component={Login} />
+          <Route path="auth" Component={Auth}>
+            <Route index path="login" Component={Login} />
+            <Route path="register" Component={Register} />
+          </Route>
+          {/* <Route path="register" Component={Register} />
+          <Route path="login" Component={Login} /> */}
           <Route index path='home' Component={Home} />
           <Route path='download' Component={Download} />
           <Route path='servers' Component={Servers} />
