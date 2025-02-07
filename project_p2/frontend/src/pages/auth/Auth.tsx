@@ -10,8 +10,6 @@ import Link_Selector from '../../components/service_components/Header/Link_Selec
 
 
 const Auth = () => {
-  const theme = useSelector(Selectors.selectTheme)
-  const parentRef = useRef<any>(null)
   const [page, setPage] = useState(0)
 
   return (
@@ -26,7 +24,7 @@ const Auth = () => {
 
             <div className='d-flex flex-column z-3' style={{ width: '40%', overflowX: 'hidden' }}>
               <div className='d-flex justify-content-center'><span className='head1'>
-                <Link_Selector linkStyle={{ fontSize: 28, sliderOffset: 42, sliderWidth: 200 }} links={[{ path: './login', title: 'Login' }, { path: './register', title: 'Register' }]} />
+                <Link_Selector onLinkChange={(selectedPage) => { setPage(selectedPage) }} linkStyle={{ fontSize: 28, sliderOffset: 52, sliderWidth: 200 }} links={[{ path: './login', title: 'Login' }, { path: './register', title: 'Register' }]} />
               </span></div>
               <div style={{ overflow: 'hidden' }} className='d-flex position-relative h-100'>
                 <div className='page-slider position-absolute d-flex h-100 w-100' style={{ left: "-" + page * 100 + "%" }}>
@@ -38,8 +36,6 @@ const Auth = () => {
                   </div>
                 </div>
               </div>
-              <button onClick={() => { setPage(page + 1) }}>Next</button>
-              <button onClick={() => { setPage(page - 1) }}>Previous</button>
             </div>
           </div>
         </div>

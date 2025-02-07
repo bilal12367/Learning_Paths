@@ -2,7 +2,6 @@
     color: var(--g1);
     font-weight: 500;
     width: 100px;
-    height: 30px;
     text-align: center;
     cursor: pointer;
     border-radius: 4px;
@@ -14,7 +13,6 @@
 } */
 .links {
     position: relative;
-
 }
 
 .links > :not(:first-child)  {

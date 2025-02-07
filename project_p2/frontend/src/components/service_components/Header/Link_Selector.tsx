@@ -7,8 +7,9 @@ interface ILinkSelector {
         fontSize: number,
         sliderWidth: number,
         sliderOffset: number,
-
-    }
+    },
+    selectedLink?: number,
+    onLinkChange?: (selectedLink: number) => void
 }
 
 const Link_Selector = (props: ILinkSelector) => {
@@ -23,15 +24,15 @@ const Link_Selector = (props: ILinkSelector) => {
         <React.Fragment>
             {
                 props.links.length > 0 &&
-                <div className='d-flex flex-row links'>
+                <div className='d-flex flex-row links '>
                     <div className='link-slider' style={{ left: state, width: props.linkStyle?.sliderWidth || 100 }}>
-                        <div className='slider' style={{top: props.linkStyle?.sliderOffset}}></div>
+                        <div className='slider' style={{ top: props.linkStyle?.sliderOffset }}></div>
                     </div>
                     {
                         Object.values(props.links).map((link, idx: number) =>
                             <span
                                 key={link.title}
-                                onClick={() => { setState(100 * idx); navigateTo(link.path); }}
+                                onClick={() => { setState((props.linkStyle?.sliderWidth || 100) * idx); navigateTo(link.path); props.onLinkChange?.(idx); }}
                                 style={{ width: props.linkStyle?.sliderWidth, fontSize: props.linkStyle?.fontSize || 28 }}
                                 className='link'>{link.title}</span>
                         )
