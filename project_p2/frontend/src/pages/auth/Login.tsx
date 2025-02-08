@@ -46,7 +46,7 @@ const Login = () => {
     }
 
     return (
-        <form className='d-flex flex-column mt-5' onSubmit={submitLogin} >
+        <form className='form d-flex flex-column mt-5' onSubmit={submitLogin} >
             <Input
                 containerStyle={{ marginTop: 20 }}
                 type='email'

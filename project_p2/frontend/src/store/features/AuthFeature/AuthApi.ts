@@ -12,10 +12,16 @@ const AuthApi = createApi({
                 method: 'POST',
                 body,
             }),
-            
+        }),
+        registerApi: builder.mutation({
+            query: (body) => ({
+                url: '/register',
+                method: 'POST',
+                body
+            })
         })
     })
 })
 
 export default AuthApi
-export const { useLoginApiMutation } = AuthApi
+export const { useLoginApiMutation, useRegisterApiMutation } = AuthApi

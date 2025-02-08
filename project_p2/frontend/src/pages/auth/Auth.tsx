@@ -22,10 +22,12 @@ const Auth = () => {
           <img className='position-absolute' style={{ zIndex: -3, objectFit: 'cover' }} height={'100%'} src={LoginRect} />
           <div className='h-100 w-100 d-flex justify-content-center' style={{ padding: '10rem 0' }}>
 
-            <div className='d-flex flex-column z-3' style={{ width: '40%', overflowX: 'hidden' }}>
-              <div className='d-flex justify-content-center'><span className='head1'>
-                <Link_Selector onLinkChange={(selectedPage) => { setPage(selectedPage) }} linkStyle={{ fontSize: 28, sliderOffset: 52, sliderWidth: 200 }} links={[{ path: './login', title: 'Login' }, { path: './register', title: 'Register' }]} />
-              </span></div>
+            <div className='d-flex flex-column z-3' style={{ width: '50%', overflowX: 'hidden' }}>
+              <div className='d-flex justify-content-center'>
+                <span className='head1'>
+                  <Link_Selector onLinkChange={(selectedPage) => { setPage(selectedPage) }} linkStyle={{ fontSize: 28, sliderOffset: 52, sliderWidth: 200 }} links={[{ path: './login', title: 'Login' }, { path: './register', title: 'Register' }]} />
+                </span>
+              </div>
               <div style={{ overflow: 'hidden' }} className='d-flex position-relative h-100'>
                 <div className='page-slider position-absolute d-flex h-100 w-100' style={{ left: "-" + page * 100 + "%" }}>
                   <div className='page'>

@@ -6,6 +6,15 @@
     color: var(--accent)
 }
 
+.form {
+    padding: 30px 18px 0px 18px;
+}
+
+.form > :not(:first-child) {
+    margin-top: 24px;
+    
+}
+
 input,
 input:active,
 input:focus {
