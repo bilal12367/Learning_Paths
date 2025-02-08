@@ -41,7 +41,7 @@ const Register = () => {
   }
 
   return (
-    <form className='form d-flex flex-column' onSubmit={registerUser}>
+    <form className='form d-flex flex-column justify-content-center h-100' onSubmit={registerUser}>
       <Input
         icon={PersonIcon}
         type='text'

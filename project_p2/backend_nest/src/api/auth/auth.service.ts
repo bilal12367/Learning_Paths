@@ -11,17 +11,19 @@ import fs from 'fs'
 import { Repository } from 'typeorm';
 import { UserOtp } from './entities/user_otp.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { TestLogger } from 'src/config/logger.config';
 
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>, private readonly userService: UsersService, private readonly jwtService: JwtService) { }
+  constructor(@InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>, private readonly userService: UsersService, private readonly jwtService: JwtService,private readonly logger: TestLogger) { }
 
   async registerUser(createUserDto: RegisterUserDto): Promise<IUserToken> {
     if (await this.userService.exists(createUserDto.email)) {
       throw new UserAlreadyExistsException()
     }
-    console.log(createUserDto)
+    this.logger.log(createUserDto)
+    console.log("Hello")
     createUserDto.password = await this.hashPassword(createUserDto.password)
     const regUser = await this.userService.create(createUserDto);
     const token = this.jwtService.generateToken({ id: regUser.id.toString() })

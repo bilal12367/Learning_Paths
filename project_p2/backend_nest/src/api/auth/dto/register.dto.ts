@@ -1,10 +1,9 @@
 export class RegisterUserDto {
 
-    firstName: string;
-    lastName: string;
+    username: string;
     password: string;
     email: string;
-    age: string;
-    isActive: boolean;
+    dob: Date;
+    agreement: boolean;
     
 }
