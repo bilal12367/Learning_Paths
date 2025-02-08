@@ -13,12 +13,11 @@ export class UsersService {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
 
   async create(createUserDto: RegisterUserDto): Promise<CreateUserDto> {
-    const user = await this.userRepository.save(createUserDto);
+    const user = await this.userRepository.save({ ...createUserDto, userName: createUserDto.username });
     return CreateUserDto
       .build()
       .setId(user.id)
-      .setFirstName(user.firstName)
-      .setLastName(user.lastName)
+      .setUserName(user.username)
       .setEmail(user.email)
       .setPassword(user.password)
       .setIsActive(user.isActive);
@@ -26,6 +25,10 @@ export class UsersService {
 
   async exists(email: string): Promise<boolean> {
     return await this.userRepository.exists({ where: { email } })
+  }
+
+  async existsById(userId: string): Promise<boolean> {
+    return await this.userRepository.exists({ where: { id: parseInt(userId) } })
   }
 
   async findAll() {

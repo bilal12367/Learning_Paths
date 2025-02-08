@@ -16,6 +16,18 @@ export class UserOtp {
     @Column()
     otp: string;
 
+    @Column()
+    otp_expiration: Date;
+
+    @Column()
+    otp_type: string;
+
+    @Column()
+    shortened_Token: string | null;
+
+    @Column()
+    expired: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 

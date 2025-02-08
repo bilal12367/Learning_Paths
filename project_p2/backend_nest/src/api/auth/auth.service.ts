@@ -12,22 +12,29 @@ import { Repository } from 'typeorm';
 import { UserOtp } from './entities/user_otp.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TestLogger } from 'src/config/logger.config';
+import { OtpService } from './otp/otp.service';
 
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>, private readonly userService: UsersService, private readonly jwtService: JwtService,private readonly logger: TestLogger) { }
+  constructor(
+    @InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>,
+    private readonly userService: UsersService,
+    private readonly jwtService: JwtService,
+    private readonly logger: TestLogger,
+    private readonly otpService: OtpService
+  ) { }
 
-  async registerUser(createUserDto: RegisterUserDto): Promise<IUserToken> {
+  async registerUser(createUserDto: RegisterUserDto): Promise<any> {
+    this.logger.log(createUserDto)
     if (await this.userService.exists(createUserDto.email)) {
       throw new UserAlreadyExistsException()
     }
-    this.logger.log(createUserDto)
-    console.log("Hello")
     createUserDto.password = await this.hashPassword(createUserDto.password)
     const regUser = await this.userService.create(createUserDto);
-    const token = this.jwtService.generateToken({ id: regUser.id.toString() })
-    return { email: regUser.email, isActive: regUser.isActive, token }
+    // const token = this.jwtService.generateToken({ id: regUser.id.toString() })
+    await this.otpService.sendVerificationEmail(createUserDto.email)
+    return { email: regUser.email, isActive: regUser.isActive }
   }
 
   async loginUser(loginUserDto: LoginUserDto): Promise<IUserToken> {
@@ -39,47 +46,13 @@ export class AuthService {
     const token = this.jwtService.generateToken({ id: user.id.toString() });
     return { email: loginUserDto.email, token, isActive: user.isActive }
   }
-  // pass 'brzw xtpc zmkd yomv' 2nd email
+  
   async forgetUser(forgetUserDto: ForgetUserDto) {
-    fs.readFile('src/assets/html/Forget_Password_Template.html', 'utf-8', async (err, template) => {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: '',
-          pass: ''
-        }
-      })
-      if (err) {
-        console.error('Error reading template:', err);
-        return;
-      }
-      const user = await this.userService.findOne(forgetUserDto.email);
-      const otp = Math.floor(Math.random() * 900000) + 100000;
-      await this.userOtpRepository.save({
-        otp: otp.toString(),
-        user_Id: user.id,
-      })
-      // Replace placeholders in the template
-      const htmlContent = template
-        .replace('{{otp}}', otp.toString());
+    return await this.otpService.sendForgetPasswordOtp(forgetUserDto.email)
+  }
 
-
-      let mailOptions = {
-        from: 'user.test@example.com',
-        to: '',
-        subject: 'Test OTP Email',
-        html: htmlContent
-      };
-
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log('Error sending email:', error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
-    });
-
+  async emailVerification(token: string) {
+    return await this.otpService.emailVerification(token)
   }
 
   async hashPassword(password: string): Promise<string> {

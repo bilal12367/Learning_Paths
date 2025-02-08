@@ -5,8 +5,12 @@ import fs from 'fs'
 
 export class TestLogger extends Logger {
 
-    appendToFile(data: any, fileName: string) {
+    appendToFile(data: any, fileName: string,logLevel: 'log' | 'error' = 'log') {
         data = JSON.stringify(data)
+        let date = new Date()
+        let dateLog = `${date.toISOString()} [level]=${logLevel}      `
+        // let dateLog = `[${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}] ${date.getDay()} [level]= ${logLevel}      `
+        data = dateLog + data
         if(!fs.existsSync('./logs')) {
             fs.mkdirSync('./logs')
         }
@@ -18,7 +22,7 @@ export class TestLogger extends Logger {
     }
 
     error(message: unknown, stack?: unknown, context?: unknown, ...rest: unknown[]): void {
-        this.appendToFile(message,'error')
+        this.appendToFile(message,'error', 'error')
         super.error(message,stack, context, ...rest)
     }
 

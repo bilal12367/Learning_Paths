@@ -1,9 +1,7 @@
 export class CreateUserDto {
       id: number;
     
-      firstName: string;
-    
-      lastName: string;
+      username: string; 
 
       email: string;
 
@@ -25,20 +23,16 @@ export class CreateUserDto {
             return this;
       }
 
+      setUserName(username: string) : this {
+            this.username = username;
+            return this
+      }
+
       setPassword(password: string): this {
             this.password = password;
             return this;
       }
 
-      setFirstName(firstName: string) : this {
-            this.firstName = firstName;
-            return this
-      }
-
-      setLastName(lastName: string): this {
-            this.lastName = lastName
-            return this
-      }
 
       setIsActive(isActive: boolean) : this {
             this.isActive = isActive
