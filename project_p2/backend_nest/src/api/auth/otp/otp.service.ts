@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import fs from 'fs'
-import nodemailer from 'nodemailer'
+import nodemailer, { SentMessageInfo } from 'nodemailer'
 import { UsersService } from 'src/api/users/users.service';
 import { Repository } from 'typeorm';
 import { UserOtp } from '../entities/user_otp.entity';
@@ -9,6 +9,7 @@ import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { JwtService } from 'src/jwt/jwt.service';
 import crypto from 'crypto'
+import { TestLogger } from 'src/config/logger.config';
 
 interface IOtpService {
     sendForgetPasswordOtp(email: string): Promise<boolean>;
@@ -19,9 +20,10 @@ interface IOtpService {
 export class OtpService implements IOtpService {
 
     constructor(
-        @Inject() private readonly userService: UsersService,
+        private readonly userService: UsersService,
         @InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>,
-        private readonly jwtService: JwtService
+        private readonly jwtService: JwtService,
+        private readonly logger: TestLogger
     ) { }
 
     private async generateOtp(email: string, expiration: Date, type: 'NUMERIC' | 'TOKEN'): Promise<string> {
@@ -88,7 +90,7 @@ export class OtpService implements IOtpService {
     }
 
 
-    async sendVerificationEmail(email: string): Promise<boolean> {
+    async sendVerificationEmail(email: string): Promise<SentMessageInfo> {
         try {
             var template = fs.readFileSync('src/assets/html/Forget_Password_Template.html', { encoding: 'utf8', flag: 'r' })
             const transporter = nodemailer.createTransport({
@@ -109,17 +111,12 @@ export class OtpService implements IOtpService {
                 subject: 'Test OTP Email',
                 html: htmlContent
             };
-            const info = await transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log('Error sending email:', error);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                }
-            });
-            return true
+            const info = await transporter.sendMail(mailOptions);
+            this.logger.log("Email Sent: "+info)
+            return info
         } catch (error) {
-            console.log("Sending email failed")
-            console.log(error)
+            this.logger.error("Sending Email Failed to: "+ email)
+            this.logger.error(error)
             return false
         }
     }
@@ -128,7 +125,7 @@ export class OtpService implements IOtpService {
         const userOtp = await this.userOtpRepository.findOne({ where: { shortened_Token: token } })
         const payload = this.jwtService.verifyToken(userOtp.otp);
         if(!await this.userService.existsById(payload.id)) {
-            throw new Error("")
+            throw new Error("Email Verification Failed")
         }
         return true
     }

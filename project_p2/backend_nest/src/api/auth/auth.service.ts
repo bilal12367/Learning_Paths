@@ -33,8 +33,8 @@ export class AuthService {
     createUserDto.password = await this.hashPassword(createUserDto.password)
     const regUser = await this.userService.create(createUserDto);
     // const token = this.jwtService.generateToken({ id: regUser.id.toString() })
-    await this.otpService.sendVerificationEmail(createUserDto.email)
-    return { email: regUser.email, isActive: regUser.isActive }
+    const emailTransportInfo = await this.otpService.sendVerificationEmail(createUserDto.email)
+    return { email: regUser.email, emailTransportInfo: emailTransportInfo }
   }
 
   async loginUser(loginUserDto: LoginUserDto): Promise<IUserToken> {
@@ -46,7 +46,7 @@ export class AuthService {
     const token = this.jwtService.generateToken({ id: user.id.toString() });
     return { email: loginUserDto.email, token, isActive: user.isActive }
   }
-  
+
   async forgetUser(forgetUserDto: ForgetUserDto) {
     return await this.otpService.sendForgetPasswordOtp(forgetUserDto.email)
   }
