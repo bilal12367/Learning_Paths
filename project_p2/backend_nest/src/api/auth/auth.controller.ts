@@ -14,13 +14,13 @@ import { TransactionInterceptor } from 'src/interceptors/transaction.interceptor
 @UseFilters(AuthExceptionFilter)
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
-  
+
   @Post('register')
   @UseInterceptors(TransactionInterceptor)
   public async registerUser(@Body() registerUser: RegisterUserDto) {
     return await this.authService.registerUser(registerUser)
   }
-  
+
   @Post('login')
   public async loginUser(@Body() loginUser: LoginUserDto) {
     return await this.authService.loginUser(loginUser)
@@ -30,5 +30,10 @@ export class AuthController {
   @Post('forgetPassword')
   public async forgetPassword(@Body() forgetUserDto: ForgetUserDto) {
     await this.authService.forgetUser(forgetUserDto)
+  }
+
+  @Post('emailVerification')
+  public async verifyEmail(@Body() verifyDTO: verifyDTO) {
+    return await this.authService.emailVerification(verifyDTO.token)
   }
 }

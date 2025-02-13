@@ -11,9 +11,10 @@ import { ConfigModule } from 'src/config/config.module';
 import { OtpService } from './otp/otp.service';
 import { OtpModule } from './otp/otp.module';
 import { TransactionInterceptor } from 'src/interceptors/transaction.interceptor';
+import { UserEmailVerification } from './entities/user_email_verification.entity';
 
 @Module({
-  imports: [UsersModule, JwtModule, ConfigModule, TypeOrmModule.forFeature([UserOtp]), OtpModule],
+  imports: [UsersModule, JwtModule, ConfigModule, TypeOrmModule.forFeature([UserOtp, UserEmailVerification]), OtpModule],
   controllers: [AuthController],
   providers: [AuthService, OtpService],
 })

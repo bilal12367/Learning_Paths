@@ -10,6 +10,8 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { JwtService } from 'src/jwt/jwt.service';
 import crypto from 'crypto'
 import { TestLogger } from 'src/config/logger.config';
+import { JwtPayload } from 'jsonwebtoken';
+import { UserEmailVerification } from '../entities/user_email_verification.entity';
 
 interface IOtpService {
     sendForgetPasswordOtp(email: string): Promise<boolean>;
@@ -22,11 +24,12 @@ export class OtpService implements IOtpService {
     constructor(
         private readonly userService: UsersService,
         @InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>,
+        @InjectRepository(UserEmailVerification) private readonly emailVerificationRepository: Repository<UserEmailVerification>,
         private readonly jwtService: JwtService,
         private readonly logger: TestLogger
     ) { }
 
-    private async generateOtp(email: string, expiration: Date, type: 'NUMERIC' | 'TOKEN'): Promise<string> {
+    private async generateOtp(email: string, expiration: Date, type: 'NUMERIC' | 'TOKEN'): Promise<UserOtp> {
         const user = await this.userService.findOne(email);
         await this.userOtpRepository.update({ user_Id: user.id, expired: false }, { expired: true })
         var otp = null
@@ -46,8 +49,9 @@ export class OtpService implements IOtpService {
             otpRecord.otp = this.jwtService.generateToken({ id: user.id.toString() })
             otpRecord.shortened_Token = shortened_token
         }
-        await this.userOtpRepository.save(otpRecord)
-        return otp || ('http://localhost:3000/verify_token?token=' + shortened_token)
+        const userOtp: UserOtp = await this.userOtpRepository.save(otpRecord)
+        userOtp.otp = otp || ('http://localhost:3000/verify_token?token=' + shortened_token)
+        return userOtp
     }
 
     // pass 'brzw xtpc zmkd yomv' 2nd email
@@ -61,10 +65,10 @@ export class OtpService implements IOtpService {
                     pass: 'brzw xtpc zmkd yomv'
                 }
             })
-            const otp = await this.generateOtp(email, new Date(Date.now() + (5 * 60 * 1000)), 'NUMERIC')
+            const userOtpRecord = await this.generateOtp(email, new Date(Date.now() + (5 * 60 * 1000)), 'NUMERIC')
             // Replace placeholders in the template
             const htmlContent = template
-                .replace('{{otp}}', otp.toString());
+                .replace('{{otp}}', userOtpRecord.otp.toString());
 
 
             let mailOptions = {
@@ -92,7 +96,7 @@ export class OtpService implements IOtpService {
 
     async sendVerificationEmail(email: string): Promise<SentMessageInfo> {
         try {
-            var template = fs.readFileSync('src/assets/html/Forget_Password_Template.html', { encoding: 'utf8', flag: 'r' })
+            var template = fs.readFileSync('src/assets/html/Verification_Email_Template.html', { encoding: 'utf8', flag: 'r' })
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -100,33 +104,49 @@ export class OtpService implements IOtpService {
                     pass: 'brzw xtpc zmkd yomv'
                 }
             })
-            const otp = await this.generateOtp(email, new Date(Date.now() + (5 * 60 * 1000)), 'TOKEN')
+            const userOtpRecord = await this.generateOtp(email, new Date(Date.now() + (5 * 60 * 1000)), 'TOKEN')
+
             // Replace placeholders in the template
             const htmlContent = template
-                .replace('{{otp}}', otp.toString());
+                .replace('{{otp}}', userOtpRecord.otp.toString());
 
-            let mailOptions = {
+            let mailOptions: Mail.Options = {
                 from: 'user.test@example.com',
                 to: email,
                 subject: 'Test OTP Email',
-                html: htmlContent
+                html: htmlContent,
+                attachments: [
+                    {
+                        filename: 'discord_logo_blue.png',
+                        path: './src/assets/images/discord_logo_blue.png',
+                        cid: 'logo1'
+                    }
+                ]
             };
             const info = await transporter.sendMail(mailOptions);
-            this.logger.log("Email Sent: "+info)
+            this.logger.log("Email Sent: " + info)
+            await this.emailVerificationRepository.save({
+                emailInfo: info.response,
+                emailVerified: false,
+                otpId: userOtpRecord.id,
+                userId: userOtpRecord.user_Id,
+            })
             return info
         } catch (error) {
-            this.logger.error("Sending Email Failed to: "+ email)
+            this.logger.error("Sending Email Failed to: " + email)
             this.logger.error(error)
             return false
         }
     }
 
-    async emailVerification(token: string): Promise<boolean> {
+    async emailVerification(token: string): Promise<JwtPayload> {
         const userOtp = await this.userOtpRepository.findOne({ where: { shortened_Token: token } })
-        const payload = this.jwtService.verifyToken(userOtp.otp);
-        if(!await this.userService.existsById(payload.id)) {
-            throw new Error("Email Verification Failed")
+        const payload: any = this.jwtService.verifyToken(userOtp.otp);
+        if (!await this.userService.existsById(payload.id)) {
+            payload.verified = false
         }
-        return true
+        await this.emailVerificationRepository.update({ otpId: userOtp.id }, { emailVerified: true })
+        payload.verified = true
+        return payload
     }
 }

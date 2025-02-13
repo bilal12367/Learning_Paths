@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-const url = "http://localhost:5000/api/auth"
+const url = "http://192.168.0.7:5000/api/auth"
 
 
 const AuthApi = createApi({
@@ -19,9 +19,16 @@ const AuthApi = createApi({
                 method: 'POST',
                 body
             })
+        }),
+        verifyToken: builder.mutation({
+            query: (body) => ({
+                url:'/emailVerification',
+                method: 'POST',
+                body
+            })
         })
     })
 })
 
 export default AuthApi
-export const { useLoginApiMutation, useRegisterApiMutation } = AuthApi
+export const { useLoginApiMutation, useRegisterApiMutation, useVerifyTokenMutation } = AuthApi

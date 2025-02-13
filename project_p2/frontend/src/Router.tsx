@@ -15,14 +15,16 @@ import Starter from './pages/Starter'
 import Selectors from './store/Selectors'
 import { Dashboard } from '@mui/icons-material'
 import App from './App'
+import VerifyToken from './pages/auth/VerifyToken'
 
 
 const Router = () => {
   return (
     <MainRouter>
       <Routes>
+        <Route path="verify_token" Component={VerifyToken} />
         <Route path="" Component={Starter}>
-          <Route path="auth" Component={Auth}>
+          <Route path="auth" Component={Auth}>1
             <Route index path="login" Component={Login} />
             <Route path="register" Component={Register} />
           </Route>

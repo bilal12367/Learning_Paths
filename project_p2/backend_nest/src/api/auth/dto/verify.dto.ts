@@ -1,0 +1,4 @@
+
+interface verifyDTO {
+    token: string
+}

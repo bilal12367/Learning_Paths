@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserOtp } from 'src/api/auth/entities/user_otp.entity';
 import { User } from 'src/api/users/entities/user.entity';
 import { TestLogger } from './logger.config';
+import { UserEmailVerification } from 'src/api/auth/entities/user_email_verification.entity';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { TestLogger } from './logger.config';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [User, UserOtp],
+      entities: [User, UserOtp, UserEmailVerification],
       synchronize: true,
     }),
   ],

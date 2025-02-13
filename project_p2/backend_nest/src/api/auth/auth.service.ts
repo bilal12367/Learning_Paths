@@ -6,13 +6,14 @@ import { LoginUserDto } from './dto/login.dto';
 import { genSalt, hash, compare } from 'bcryptjs'
 import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
 import { RegisterUserDto } from './dto/register.dto';
-import nodemailer from 'nodemailer'
+import nodemailer, { SentMessageInfo } from 'nodemailer'
 import fs from 'fs'
 import { Repository } from 'typeorm';
 import { UserOtp } from './entities/user_otp.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TestLogger } from 'src/config/logger.config';
 import { OtpService } from './otp/otp.service';
+import { UserEmailVerification } from './entities/user_email_verification.entity';
 
 
 @Injectable()
