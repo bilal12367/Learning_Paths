@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from 'src/api/users/users.service';
 import { JwtService } from 'src/jwt/jwt.service';
-import { ForgetUserDto, IUserToken } from './auth.types';
+import { ForgetUserDto, ISentEmailInfo, IUserToken } from './auth.types';
 import { LoginUserDto } from './dto/login.dto';
 import { genSalt, hash, compare } from 'bcryptjs'
 import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
@@ -48,12 +48,19 @@ export class AuthService {
     return { email: loginUserDto.email, token, isActive: user.isActive }
   }
 
+
   async forgetUser(forgetUserDto: ForgetUserDto) {
-    return await this.otpService.sendForgetPasswordOtp(forgetUserDto.email)
+    if (!await this.userService.exists(forgetUserDto.email)) {
+      throw new UserNotFoundException()
+    }
+
+    const resp: ISentEmailInfo = await this.otpService.sendForgetPasswordOtp(forgetUserDto.email)
+    return resp
   }
 
   async emailVerification(token: string) {
-    return await this.otpService.emailVerification(token)
+    const payload = await this.otpService.emailVerification(token)
+    return "Email Verified Successfully!!"
   }
 
   async hashPassword(password: string): Promise<string> {

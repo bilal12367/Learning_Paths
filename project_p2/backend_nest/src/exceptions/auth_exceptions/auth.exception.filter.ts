@@ -1,5 +1,5 @@
-import { ArgumentsHost, Catch, ConsoleLogger, ExceptionFilter, HttpException } from "@nestjs/common";
-import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from "./auth.exceptions";
+import { ArgumentsHost, Catch, ConsoleLogger, ExceptionFilter, HttpException, HttpStatus } from "@nestjs/common";
+import { InvalidTokenException, PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from "./auth.exceptions";
 
 
 
@@ -12,7 +12,13 @@ export class AuthExceptionFilter implements ExceptionFilter {
         const res = ctxt.getResponse()
 
         console.log(ex)
-        res.status(ex.status).json({ success: false, message: ex.message });
+
+        if(ex instanceof InvalidTokenException) {
+            res.status(HttpStatus.UNAUTHORIZED).json({success: false, message: 'Expired Token!'})
+        } else {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ success: false, message: ex.message });
+        }
+
 
     }
 

@@ -8,6 +8,7 @@ import { LoginUserDto } from './dto/login.dto';
 import { AuthExceptionFilter } from 'src/exceptions/auth_exceptions/auth.exception.filter';
 import { ForgetUserDto } from './auth.types';
 import { TransactionInterceptor } from 'src/interceptors/transaction.interceptor';
+import { ResponseBuilder } from 'src/common/builders/ResponseBuilder';
 
 @Controller('api/auth')
 @ExemptRoute()
@@ -34,6 +35,7 @@ export class AuthController {
 
   @Post('emailVerification')
   public async verifyEmail(@Body() verifyDTO: verifyDTO) {
-    return await this.authService.emailVerification(verifyDTO.token)
+    const message = await this.authService.emailVerification(verifyDTO.token)
+    return new ResponseBuilder().setStatus('success').setData(message).setMessage(message).build()
   }
 }

@@ -1,4 +1,4 @@
-import React, { CSSProperties, FormEvent, useState } from 'react'
+import React, { CSSProperties, FormEvent, useEffect, useState } from 'react'
 import Input from '../../components/ui_components/Input'
 import { EmailOutlined } from '@mui/icons-material'
 import { useSelector } from 'react-redux'
@@ -37,8 +37,13 @@ const Register = () => {
 
   const registerUser = (e: FormEvent) => {
     e.preventDefault()
+    console.log(formState)
     registerApi(formState)
   }
+
+  useEffect(() => {
+    console.log("Register API change: ",registerApiState)
+  }, [registerApiState])
 
   return (
     <form className='form d-flex flex-column justify-content-center h-100' onSubmit={registerUser}>

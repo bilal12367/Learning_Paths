@@ -12,22 +12,30 @@ import crypto from 'crypto'
 import { TestLogger } from 'src/config/logger.config';
 import { JwtPayload } from 'jsonwebtoken';
 import { UserEmailVerification } from '../entities/user_email_verification.entity';
+import { ConfigService } from '@nestjs/config';
+import { ISentEmailInfo } from '../auth.types';
+import { InvalidTokenException, UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
 
 interface IOtpService {
-    sendForgetPasswordOtp(email: string): Promise<boolean>;
+    sendForgetPasswordOtp(email: string): Promise<ISentEmailInfo>;
     sendVerificationEmail(email: string): Promise<boolean>;
 }
 
+
+
 @Injectable()
 export class OtpService implements IOtpService {
-
+    private sendEmail: boolean = false;
     constructor(
         private readonly userService: UsersService,
         @InjectRepository(UserOtp) private readonly userOtpRepository: Repository<UserOtp>,
         @InjectRepository(UserEmailVerification) private readonly emailVerificationRepository: Repository<UserEmailVerification>,
         private readonly jwtService: JwtService,
-        private readonly logger: TestLogger
-    ) { }
+        private readonly logger: TestLogger,
+        private configService: ConfigService
+    ) {
+        this.sendEmail =  (this.configService.get("SEND_EMAIL") == "true")
+    }
 
     private async generateOtp(email: string, expiration: Date, type: 'NUMERIC' | 'TOKEN'): Promise<UserOtp> {
         const user = await this.userService.findOne(email);
@@ -55,7 +63,7 @@ export class OtpService implements IOtpService {
     }
 
     // pass 'brzw xtpc zmkd yomv' 2nd email
-    async sendForgetPasswordOtp(email: string): Promise<boolean> {
+    async sendForgetPasswordOtp(email: string): Promise<ISentEmailInfo> {
         try {
             var template = fs.readFileSync('src/assets/html/Forget_Password_Template.html', { encoding: 'utf8', flag: 'r' })
             const transporter = nodemailer.createTransport({
@@ -77,18 +85,37 @@ export class OtpService implements IOtpService {
                 subject: 'Test OTP Email',
                 html: htmlContent
             };
-
-            const info = await transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    console.log('Error sending email:', error);
-                } else {
-                    console.log('Email sent: ' + info.response);
+            var info: ISentEmailInfo;
+            if (this.sendEmail) {
+                this.logger.log("Sending Real Email: " + email)
+                const emailInfo: SentMessageInfo = await transporter.sendMail(mailOptions);
+                info = { 
+                    success: emailInfo.emailTransportInfo.success, 
+                    email: emailInfo.emailTransportInfo.email, 
+                    error: false, 
+                    message:  emailInfo.emailTransportInfo.message, 
+                    messageId: emailInfo.emailTransportInfo.messageId
                 }
-            });
+            } else {
+                this.logger.log("Not Sending Real Email")
+                info = {
+                    success: true,
+                    email,
+                    error: false,
+                    message: 'Email Sent Successfully: (Not Sent)',
+                    messageId: crypto.randomBytes(64).toString('hex')
+                }
 
-            return true
+            }
+            return info
         } catch (err) {
-            return false
+            return {
+                success: false,
+                email,
+                error: true,
+                messageId: '',
+                message: "Error while sending forget password email!!!"
+            }
         }
 
     }
@@ -123,10 +150,16 @@ export class OtpService implements IOtpService {
                     }
                 ]
             };
-            const info = await transporter.sendMail(mailOptions);
-            this.logger.log("Email Sent: " + info)
+            var info:any = {}
+            if (this.sendEmail) {
+                info = await transporter.sendMail(mailOptions);
+                info = { ...info, success: true, message: "Email Sent Successfully!" }
+            } else {
+                info = { ...info, success: true, message: "Email Not Sent Flag Intentionally", response: "Dummy Email Sent Record" }
+            }
+            this.logger.log("Email Sent: " + JSON.stringify(info))
             await this.emailVerificationRepository.save({
-                emailInfo: info.response,
+                emailInfo: info.response || 'Dummy Email' ,
                 emailVerified: false,
                 otpId: userOtpRecord.id,
                 userId: userOtpRecord.user_Id,
@@ -135,15 +168,23 @@ export class OtpService implements IOtpService {
         } catch (error) {
             this.logger.error("Sending Email Failed to: " + email)
             this.logger.error(error)
-            return false
+            return {
+                success: false,
+                error: true,
+                message: "Error while sending verification Email!!!"
+            }
         }
     }
 
     async emailVerification(token: string): Promise<JwtPayload> {
         const userOtp = await this.userOtpRepository.findOne({ where: { shortened_Token: token } })
-        const payload: any = this.jwtService.verifyToken(userOtp.otp);
+        if(userOtp == null) {
+            throw new InvalidTokenException()
+        }
+        const payload: JwtPayload = this.jwtService.verifyToken(userOtp.otp);
+        this.logger.customLog("Email Verified: "+ JSON.stringify(payload), 'EmailVerification')
         if (!await this.userService.existsById(payload.id)) {
-            payload.verified = false
+            throw new UserNotFoundException()
         }
         await this.emailVerificationRepository.update({ otpId: userOtp.id }, { emailVerified: true })
         payload.verified = true

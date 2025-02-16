@@ -1,0 +1,40 @@
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 600
+ETag: W/"258-ctjZLe8RO6YGf9+hEfAX8IqE/Os"
+Date: Sat, 15 Feb 2025 18:45:44 GMT
+Connection: close
+
+{
+  "email": "sk.bilal.md@gmail.com",
+  "emailTransportInfo": {
+    "accepted": [
+      "sk.bilal.md@gmail.com"
+    ],
+    "rejected": [],
+    "ehlo": [
+      "SIZE 35882577",
+      "8BITMIME",
+      "AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH",
+      "ENHANCEDSTATUSCODES",
+      "PIPELINING",
+      "CHUNKING",
+      "SMTPUTF8"
+    ],
+    "envelopeTime": 711,
+    "messageTime": 917,
+    "messageSize": 41339,
+    "response": "250 2.0.0 OK  1739645143 41be03b00d2f7-adb5813a6cdsm4176592a12.23 - gsmtp",
+    "envelope": {
+      "from": "user.test@example.com",
+      "to": [
+        "sk.bilal.md@gmail.com"
+      ]
+    },
+    "messageId": "<a243d63c-6d15-1d62-733b-4dccea3ce6f2@example.com>",
+    "success": true,
+    "message": "Email Sent Successfully!"
+  }
+}

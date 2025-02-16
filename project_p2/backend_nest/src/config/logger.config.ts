@@ -26,6 +26,11 @@ export class TestLogger extends Logger {
         super.error(message,stack, context, ...rest)
     }
 
+    customLog(message: any, fileName: string = 'log'): void {
+        this.appendToFile(message, fileName, 'log')
+        super.log(message)
+    }
+
     log(message: unknown, context?: unknown, ...rest: unknown[]): void {
         this.appendToFile(message,'app')
         super.log(message, context, ...rest)
