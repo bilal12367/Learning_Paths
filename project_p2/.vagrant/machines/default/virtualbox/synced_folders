@@ -1,1 +1,0 @@
-{"virtualbox":{"/vagrant_data":{"type":"virtualbox","mount_options":["dmode=777","fmode=777","uid=1000","gid=1000","_netdev"],"guestpath":"/vagrant_data","hostpath":"C:/Users/bilal/Documents/New_Workspace/Learning_Paths/project_p2","disabled":false,"__vagrantfile":true}}}
