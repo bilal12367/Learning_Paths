@@ -4,7 +4,7 @@ import { JwtService } from 'src/jwt/jwt.service';
 import { ForgetUserDto, ISentEmailInfo, IUserToken } from './auth.types';
 import { LoginUserDto } from './dto/login.dto';
 import { genSalt, hash, compare } from 'bcryptjs'
-import { PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
+import { EmailNotVerifiedException, PasswordMismatchException, UserAlreadyExistsException, UserNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
 import { RegisterUserDto } from './dto/register.dto';
 import nodemailer, { SentMessageInfo } from 'nodemailer'
 import fs from 'fs'
@@ -42,6 +42,9 @@ export class AuthService {
     const user = await this.userService.findOne(loginUserDto.email);
     if (!user) {
       throw new UserNotFoundException();
+    }
+    if(!await this.otpService.isEmailVerified(user.id)) {
+      throw new EmailNotVerifiedException();
     }
     await this.comparePassword(user.password, loginUserDto.password)
     const token = this.jwtService.generateToken({ id: user.id.toString() });

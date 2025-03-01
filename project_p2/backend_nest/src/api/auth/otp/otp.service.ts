@@ -19,6 +19,7 @@ import { InvalidTokenException, UserNotFoundException } from 'src/exceptions/aut
 interface IOtpService {
     sendForgetPasswordOtp(email: string): Promise<ISentEmailInfo>;
     sendVerificationEmail(email: string): Promise<boolean>;
+    isEmailVerified(email: number): Promise<boolean>;
 }
 
 
@@ -34,7 +35,12 @@ export class OtpService implements IOtpService {
         private readonly logger: TestLogger,
         private configService: ConfigService
     ) {
-        this.sendEmail =  (this.configService.get("SEND_EMAIL") == "true")
+        this.sendEmail = (this.configService.get("SEND_EMAIL") == "true")
+    }
+    async isEmailVerified(userId: number): Promise<boolean> {
+        const userEmailVerification: UserEmailVerification = (await this.emailVerificationRepository.findOne({where: {userId: userId}}));
+        console.log({userEmailVerification})
+        return userEmailVerification.emailVerified
     }
 
     private async generateOtp(email: string, expiration: Date, type: 'NUMERIC' | 'TOKEN'): Promise<UserOtp> {
@@ -89,11 +95,11 @@ export class OtpService implements IOtpService {
             if (this.sendEmail) {
                 this.logger.log("Sending Real Email: " + email)
                 const emailInfo: SentMessageInfo = await transporter.sendMail(mailOptions);
-                info = { 
-                    success: emailInfo.emailTransportInfo.success, 
-                    email: emailInfo.emailTransportInfo.email, 
-                    error: false, 
-                    message:  emailInfo.emailTransportInfo.message, 
+                info = {
+                    success: emailInfo.emailTransportInfo.success,
+                    email: emailInfo.emailTransportInfo.email,
+                    error: false,
+                    message: emailInfo.emailTransportInfo.message,
                     messageId: emailInfo.emailTransportInfo.messageId
                 }
             } else {
@@ -150,7 +156,7 @@ export class OtpService implements IOtpService {
                     }
                 ]
             };
-            var info:any = {}
+            var info: any = {}
             if (this.sendEmail) {
                 info = await transporter.sendMail(mailOptions);
                 info = { ...info, success: true, message: "Email Sent Successfully!" }
@@ -159,7 +165,7 @@ export class OtpService implements IOtpService {
             }
             this.logger.log("Email Sent: " + JSON.stringify(info))
             await this.emailVerificationRepository.save({
-                emailInfo: info.response || 'Dummy Email' ,
+                emailInfo: info.response || 'Dummy Email',
                 emailVerified: false,
                 otpId: userOtpRecord.id,
                 userId: userOtpRecord.user_Id,
@@ -178,11 +184,11 @@ export class OtpService implements IOtpService {
 
     async emailVerification(token: string): Promise<JwtPayload> {
         const userOtp = await this.userOtpRepository.findOne({ where: { shortened_Token: token } })
-        if(userOtp == null) {
+        if (userOtp == null) {
             throw new InvalidTokenException()
         }
         const payload: JwtPayload = this.jwtService.verifyToken(userOtp.otp);
-        this.logger.customLog("Email Verified: "+ JSON.stringify(payload), 'EmailVerification')
+        this.logger.customLog("Email Verified: " + JSON.stringify(payload), 'EmailVerification')
         if (!await this.userService.existsById(payload.id)) {
             throw new UserNotFoundException()
         }

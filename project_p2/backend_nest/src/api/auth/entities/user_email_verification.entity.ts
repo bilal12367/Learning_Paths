@@ -1,16 +1,16 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 import { UserOtp } from "./user_otp.entity";
 import { SentMessageInfo } from "nodemailer";
 import { User } from "src/api/users/entities/user.entity";
 
 
-@Entity({ name: 'UserEmailVerification' })
+@Entity({ name: 'user_email_verification' })
 export class UserEmailVerification {
 
     @PrimaryGeneratedColumn('uuid')
     id: number;
 
-    @Column()
+    @Column({unique: true})
     @ManyToOne(type => User)
     @JoinColumn()
     userId: number;

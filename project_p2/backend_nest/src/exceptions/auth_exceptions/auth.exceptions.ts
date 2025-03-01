@@ -3,21 +3,26 @@ import { HttpException, HttpStatus } from "@nestjs/common";
 
 
 class UserNotFoundException extends HttpException {
-    constructor(message: string = "User Not Found Exception!!") {
+    constructor(message: string = "User Not Found!!") {
         super(message, HttpStatus.NOT_FOUND);
     }
 }
 
+class EmailNotVerifiedException extends HttpException {
+    constructor(message: string = "User Email Not Verified!!") {
+        super(message, HttpStatus.NOT_FOUND);
+    }
+}
 
 class UserAlreadyExistsException extends HttpException {
-    constructor(message: string = "User Already Exists Exception!!") {
+    constructor(message: string = "User Already Exists!!") {
         super(message, HttpStatus.BAD_GATEWAY);
     }
 }
 
 
 class PasswordMismatchException extends HttpException {
-    constructor(message: string = "Password Mismatch Exception!!") {
+    constructor(message: string = "Password Mismatch!!") {
         super(message, HttpStatus.UNAUTHORIZED);
     }
 }
@@ -30,4 +35,4 @@ class InvalidTokenException extends HttpException {
 
 
 
-export { UserNotFoundException , UserAlreadyExistsException, PasswordMismatchException, InvalidTokenException}
+export { UserNotFoundException , UserAlreadyExistsException, PasswordMismatchException, InvalidTokenException, EmailNotVerifiedException}

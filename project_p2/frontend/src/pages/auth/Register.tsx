@@ -31,7 +31,14 @@ const Register = () => {
     },
     submitBtnStyle: { borderRadius: 100, padding: '10px 46px', backgroundColor: theme.colors.secondary }
   }
-  const [formState, setFormState] = useState<RegisterForm | {}>({})
+  const [formState, setFormState] = useState<RegisterForm | {}>({
+    agreement: true,
+    confirm_password: 'Test!321',
+    dob: '2000-03-06',
+    email: 'sk.bilal.md@gmail.com',
+    password: 'Test!321',
+    username: 'Test312'
+  })
 
   const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => { setFormState({ ...formState, [e.target.name]: e.target.value }) }
 
