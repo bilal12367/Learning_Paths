@@ -8,52 +8,22 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { ButtonBase } from '@mui/material'
+import { Alert, ButtonBase } from '@mui/material'
 import { useRegisterApiMutation } from '../../store/features/AuthFeature/AuthApi'
-interface RegisterForm {
-  email: string | null,
-  password: string | null,
-  confirm_password: string | null,
-  username: string | null,
-  dob: Date | null,
-  agreement: boolean | null
-}
+import useRegisterHook from './RegisterHook'
+
 
 const Register = () => {
-  const [registerApi, registerApiState] = useRegisterApiMutation()
-  const theme = useSelector(Selectors.selectTheme)
-  const styles: { [key: string]: CSSProperties } = {
-    inputStyle: {
-      background: getGrad(theme.colors.grad1, 300),
-      boxShadow: theme.shadows.heavy,
-      borderRadius: '8px',
-      padding: '8px 0px 8px 55px'
-    },
-    submitBtnStyle: { borderRadius: 100, padding: '10px 46px', backgroundColor: theme.colors.secondary }
-  }
-  const [formState, setFormState] = useState<RegisterForm | {}>({
-    agreement: true,
-    confirm_password: 'Test!321',
-    dob: '2000-03-06',
-    email: 'sk.bilal.md@gmail.com',
-    password: 'Test!321',
-    username: 'Test312'
-  })
-
-  const onFormChange = (e: React.ChangeEvent<HTMLInputElement>) => { setFormState({ ...formState, [e.target.name]: e.target.value }) }
-
-  const registerUser = (e: FormEvent) => {
-    e.preventDefault()
-    console.log(formState)
-    registerApi(formState)
-  }
-
-  useEffect(() => {
-    console.log("Register API change: ",registerApiState)
-  }, [registerApiState])
+  const { formState, onFormChange, styles, registerUser } = useRegisterHook()
 
   return (
     <form className='form d-flex flex-column justify-content-center h-100' onSubmit={registerUser}>
+      {
+        formState.alert.show &&
+        <Alert severity={formState.alert.type} >
+          {formState.alert.message}
+        </Alert>
+      }
       <Input
         icon={PersonIcon}
         type='text'

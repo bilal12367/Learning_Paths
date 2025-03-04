@@ -20,14 +20,19 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "test1@gmail.com",
-    "password":"Test@1234"
+    "email": "sk.bilal.md@gmail.com",
+    "password":"Test!321"
 }
 
 ### Forget Password
 
-POST http://localhost:3000/auth/forgetPassword
+POST http://localhost:3000/api/auth/forgetPassword
 
 {
     "email": "sk.bilal.md@gmail.com"
 }
+
+### Verify User
+
+GET http://localhost:5000/api/auth/verifyUser
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJpYXQiOjE3NDA5MTc1NDUsImV4cCI6MTc0MzUwOTU0NX0.s7nbL9UN494zncYBD0RNnfa-HsuF5_vZBHUhA2Ft0Gs; Path=/

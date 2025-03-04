@@ -1,14 +1,7 @@
 
 
 export class ResponseBuilder<T> {
-    private response: {
-        status: 'success' | 'error',
-        data?: T,
-        message?: string,
-        error: boolean,
-        success: boolean,
-        timestamp?: Date
-    }
+    private response: IResponseType
 
     constructor() {
         this.response = { status: 'error', success: false, error: true }
@@ -36,8 +29,8 @@ export class ResponseBuilder<T> {
         return this
     }
 
-    build(): this {
-        return this
+    build(): IResponseType {
+        return this.response
     }
 
 }

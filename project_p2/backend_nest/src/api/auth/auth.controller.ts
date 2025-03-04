@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseFilters, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseFilters, UseInterceptors, Res, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
@@ -9,12 +9,15 @@ import { AuthExceptionFilter } from 'src/exceptions/auth_exceptions/auth.excepti
 import { ForgetUserDto } from './auth.types';
 import { TransactionInterceptor } from 'src/interceptors/transaction.interceptor';
 import { ResponseBuilder } from 'src/common/builders/ResponseBuilder';
+import { Response, Request } from 'express';
+import { TokenNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
+import { UsersService } from '../users/users.service';
 
 @Controller('api/auth')
 @ExemptRoute()
 @UseFilters(AuthExceptionFilter)
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService, private readonly userService: UsersService) { }
 
   @Post('register')
   @UseInterceptors(TransactionInterceptor)
@@ -23,8 +26,18 @@ export class AuthController {
   }
 
   @Post('login')
-  public async loginUser(@Body() loginUser: LoginUserDto) {
-    return await this.authService.loginUser(loginUser)
+  public async loginUser(@Body() loginUser: LoginUserDto, @Res({passthrough: true}) res: Response) {
+    const payload = await this.authService.loginUser(loginUser)
+    res.cookie('token',payload.token)
+    payload.token = undefined
+    return payload
+  }
+
+  @Get('verifyUser') 
+  public async verifyUser(@Req() req: Request) {
+    await this.userService.verifyUser(req.cookies)
+
+    return new ResponseBuilder().setStatus('success').setMessage("User Verified").build()
   }
 
 
@@ -36,6 +49,6 @@ export class AuthController {
   @Post('emailVerification')
   public async verifyEmail(@Body() verifyDTO: verifyDTO) {
     const message = await this.authService.emailVerification(verifyDTO.token)
-    return new ResponseBuilder().setStatus('success').setData(message).setMessage(message).build()
+  return new ResponseBuilder().setStatus('success').setData(message).setMessage(message).build()
   }
 }

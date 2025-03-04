@@ -33,6 +33,12 @@ class InvalidTokenException extends HttpException {
     }
 }
 
+class TokenNotFoundException extends HttpException {
+    constructor(message: string = 'Token Not Found!!') {
+        super(message, HttpStatus.UNAUTHORIZED)
+    }
+}
 
 
-export { UserNotFoundException , UserAlreadyExistsException, PasswordMismatchException, InvalidTokenException, EmailNotVerifiedException}
+
+export { TokenNotFoundException, UserNotFoundException , UserAlreadyExistsException, PasswordMismatchException, InvalidTokenException, EmailNotVerifiedException}

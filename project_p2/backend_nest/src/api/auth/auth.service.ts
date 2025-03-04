@@ -14,7 +14,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { TestLogger } from 'src/config/logger.config';
 import { OtpService } from './otp/otp.service';
 import { UserEmailVerification } from './entities/user_email_verification.entity';
-
+import { ResponseBuilder } from 'src/common/builders/ResponseBuilder';
 
 @Injectable()
 export class AuthService {
@@ -33,22 +33,22 @@ export class AuthService {
     }
     createUserDto.password = await this.hashPassword(createUserDto.password)
     const regUser = await this.userService.create(createUserDto);
-    // const token = this.jwtService.generateToken({ id: regUser.id.toString() })
-    const emailTransportInfo = await this.otpService.sendVerificationEmail(createUserDto.email)
-    return { email: regUser.email, emailTransportInfo: emailTransportInfo }
+    const token = this.jwtService.generateToken({ id: regUser.id.toString() })
+    // const emailTransportInfo = await this.otpService.sendVerificationEmail(createUserDto.email)
+    return new ResponseBuilder().setStatus('success').setData({ ...regUser, token }).build()
   }
 
-  async loginUser(loginUserDto: LoginUserDto): Promise<IUserToken> {
+  async loginUser(loginUserDto: LoginUserDto): Promise<any> {
     const user = await this.userService.findOne(loginUserDto.email);
     if (!user) {
       throw new UserNotFoundException();
     }
-    if(!await this.otpService.isEmailVerified(user.id)) {
-      throw new EmailNotVerifiedException();
-    }
+    // if(!await this.otpService.isEmailVerified(user.id)) {
+    //   throw new EmailNotVerifiedException();
+    // }
     await this.comparePassword(user.password, loginUserDto.password)
     const token = this.jwtService.generateToken({ id: user.id.toString() });
-    return { email: loginUserDto.email, token, isActive: user.isActive }
+    return new ResponseBuilder().setStatus('success').setData({ ...user, token }).build()
   }
 
 
