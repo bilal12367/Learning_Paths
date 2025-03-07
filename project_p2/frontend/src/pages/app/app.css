@@ -1,3 +1,11 @@
+
+
+.app-root-cont {
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* #1 Side Navigation */
 .side-nav {
     min-width: 3%;
     height: 100%;
@@ -5,7 +13,6 @@
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 4px 0px #888888;
 }
-
 
 .item {
     padding: 14px;
@@ -29,10 +36,6 @@
     font: 'calibri';
 }
 
-.app-root-cont {
-    background-color: rgb(255, 255, 255);
-}
-
 .side-nav-tile {
     border-radius: 4px;
     overflow: hidden;
@@ -45,4 +48,14 @@
     object-fit: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+/*  #2 Chat List Section */
+.chat-list-section {
+    width: 20%;
+    border-right: 1px solid #e7e7e7;
+}
+.search-cont {
+    padding: 14px 20px;
+
 }

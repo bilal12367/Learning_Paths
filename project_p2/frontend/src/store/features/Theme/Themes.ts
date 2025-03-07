@@ -6,6 +6,7 @@ interface ThemeState {
         b3: string
         b4: string
         g1: string
+        g2: string
         primary: string
         secondary: string
         accent: string
@@ -65,6 +66,7 @@ const PrimaryTheme: ThemeState = {
         b3: '#282B30',
         b4: '#1E2124',
         g1: '#E7E7E7',
+        g2: '#c7c7c7',
         primary: '#7289DA',
         secondary: '#F8325C',
         accent: '#E7ECFF',

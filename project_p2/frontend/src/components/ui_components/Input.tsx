@@ -8,6 +8,7 @@ import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 
 interface InputProps {
     name?: string,
+    iconColor?: string,
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string; },
     containerStyle?: CSSProperties,
     type: HTMLInputTypeAttribute,
