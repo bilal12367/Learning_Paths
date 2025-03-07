@@ -6,8 +6,10 @@ import { useSelector } from 'react-redux'
 import { getGrad } from '../../store/features/Theme/Themes'
 import { CSSProperties } from 'styled-components'
 import Selectors from '../../store/Selectors'
+import { useNavigate } from 'react-router-dom'
 
 const useRegisterHook = () => {
+    const nav = useNavigate()
     const [registerApi, registerApiState] = useRegisterApiMutation()
     const theme = useSelector(Selectors.selectTheme)
     const styles: { [key: string]: CSSProperties } = {
@@ -56,12 +58,15 @@ const useRegisterHook = () => {
 
     useEffect(() => {
         if (registerApiState.isError || registerApiState.isSuccess) {
-            console.log("Register API change: ", registerApiState.data.message)
+            console.log("Register API change: ", registerApiState)
             showAlert({
                 type: registerApiState.isSuccess ? 'success' : 'error',
                 message: registerApiState.data.message,
                 show: true
             })
+            if(registerApiState.isSuccess) {
+                nav('../app/dashboard')
+            }
         }
     }, [registerApiState])
 

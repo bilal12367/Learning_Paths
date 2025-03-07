@@ -1,0 +1,48 @@
+.side-nav {
+    min-width: 3%;
+    height: 100%;
+    transition: min-width 0.1s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 4px 0px #888888;
+}
+
+
+.item {
+    padding: 14px;
+    position: relative;
+    border-radius: 4px;
+    margin: 5px 8px;
+    background-color: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: rgba(0,0,0,0.14);
+}
+
+
+.item > span {
+    margin-left: 14px;
+    letter-spacing: 1.3px;
+    font-size: 12px;
+    font: 'calibri';
+}
+
+.app-root-cont {
+    background-color: rgb(255, 255, 255);
+}
+
+.side-nav-tile {
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tile-img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

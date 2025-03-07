@@ -3,6 +3,7 @@ interface IFormState {
     show: boolean,
     type: 'success' | 'error',
     message: string,
+    onClose?: () => void
   },
   formErrors: {
     email?: string,

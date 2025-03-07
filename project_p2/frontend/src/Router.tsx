@@ -13,16 +13,18 @@ import Servers from './pages/Servers'
 import AboutUs from './pages/AboutUs'
 import Starter from './pages/Starter'
 import Selectors from './store/Selectors'
-import { Dashboard } from '@mui/icons-material'
-import App from './App'
 import VerifyToken from './pages/auth/VerifyToken'
-
+import app from './pages/app';
+import Dashboard from './pages/app/Dashboard'
 
 const Router = () => {
   return (
     <MainRouter>
       <Routes>
         <Route path="verify_token" Component={VerifyToken} />
+        <Route path="app" Component={app}>
+          <Route path='dashboard' Component={Dashboard} />
+        </Route>
         <Route path="" Component={Starter}>
           <Route path="auth" Component={Auth}>1
             <Route index path="login" Component={Login} />
@@ -34,9 +36,6 @@ const Router = () => {
           <Route path='download' Component={Download} />
           <Route path='servers' Component={Servers} />
           <Route path='aboutus' Component={AboutUs} />
-        </Route>
-        <Route path="/app" Component={App}>
-          <Route path='dashboard' Component={Dashboard} />
         </Route>
       </Routes>
 

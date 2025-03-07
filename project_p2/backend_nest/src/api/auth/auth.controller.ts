@@ -26,14 +26,15 @@ export class AuthController {
   }
 
   @Post('login')
-  public async loginUser(@Body() loginUser: LoginUserDto, @Res({passthrough: true}) res: Response) {
+  public async loginUser(@Body() loginUser: LoginUserDto, @Res({ passthrough: true }) res: Response) {
     const payload = await this.authService.loginUser(loginUser)
-    res.cookie('token',payload.token)
+    res.cookie('token', payload.token)
     payload.token = undefined
+    payload.message = "Logged In Successfully!!"
     return payload
   }
 
-  @Get('verifyUser') 
+  @Get('verifyUser')
   public async verifyUser(@Req() req: Request) {
     await this.userService.verifyUser(req.cookies)
 
@@ -49,6 +50,6 @@ export class AuthController {
   @Post('emailVerification')
   public async verifyEmail(@Body() verifyDTO: verifyDTO) {
     const message = await this.authService.emailVerification(verifyDTO.token)
-  return new ResponseBuilder().setStatus('success').setData(message).setMessage(message).build()
+    return new ResponseBuilder().setStatus('success').setData(message).setMessage(message).build()
   }
 }

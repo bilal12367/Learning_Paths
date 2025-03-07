@@ -9,6 +9,7 @@ import RemoveRedEyeRoundedIcon from '@mui/icons-material/RemoveRedEyeRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { Alert, ButtonBase } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 
 interface ILoginformDataState {
@@ -16,6 +17,7 @@ interface ILoginformDataState {
     password: string
 }
 const Login = () => {
+    const nav = useNavigate()
     const theme = useSelector(Selectors.selectTheme)
     const authInfo = useSelector(Selectors.selectAuth)
     const styles: { [key: string]: CSSProperties } = {
@@ -39,14 +41,21 @@ const Login = () => {
         password: 'Test@1234'
     })
 
-    const showAlert = (alertType: IFormState['alert'], delay: number = 3000) => {
-        setFormState({
-            ...formState,
-            alert: alertType
-        })
-        setTimeout(() => {
-            setFormState({ ...formState, alert: { show: false, type: 'success', message: '' } })
-        }, delay)
+    const showAlert = (alertType: IFormState['alert'], delay: number = 3000, noTiming: boolean = false) => {
+        if (noTiming) {
+            setFormState({
+                ...formState,
+                alert: { ...alertType, onClose: () => { setFormState({ ...formState, alert: { show: false, message: '', type: 'success' } }) } }
+            })
+        } else {
+            setFormState({
+                ...formState,
+                alert: alertType
+            })
+            setTimeout(() => {
+                setFormState({ ...formState, alert: { show: false, type: 'success', message: '' } })
+            }, delay)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,18 +65,19 @@ const Login = () => {
 
     const submitLogin = (e: FormEvent) => {
         e.preventDefault()
-        console.log("Triggered")
         loginApi(formDataState)
     }
 
     useEffect(() => {
         if (loginApiState.isError || loginApiState.isSuccess) {
-            console.log("Register API change: ", loginApiState.data.message)
             showAlert({
                 type: loginApiState.isSuccess ? 'success' : 'error',
                 message: loginApiState.data.message,
-                show: true
-            })
+                show: true,
+            }, 3000, true)
+            if(loginApiState.isSuccess) {
+                nav('../app/dashboard')
+            }
         }
     }, [loginApiState])
 
@@ -75,7 +85,7 @@ const Login = () => {
         <form className='form d-flex flex-column mt-5' onSubmit={submitLogin} >
             {
                 formState.alert.show &&
-                <Alert severity={formState.alert.type} >
+                <Alert severity={formState.alert.type} onClose={formState.alert.onClose} >
                     {formState.alert.message}
                 </Alert>
             }
