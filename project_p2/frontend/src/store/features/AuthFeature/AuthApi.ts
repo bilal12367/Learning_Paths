@@ -4,7 +4,7 @@ const url = "http://localhost:5000/api/auth"
 
 const AuthApi = createApi({
     reducerPath: 'auth_api',
-    baseQuery: fetchBaseQuery({ baseUrl: url }),
+    baseQuery: fetchBaseQuery({ baseUrl: url, credentials: 'include'}),
     endpoints: (builder) => ({
         loginApi: builder.mutation({
             query: (body) => ({
@@ -22,13 +22,16 @@ const AuthApi = createApi({
         }),
         verifyToken: builder.mutation({
             query: (body) => ({
-                url:'/emailVerification',
+                url: '/emailVerification',
                 method: 'POST',
                 body
             })
+        }),
+        verifyUser: builder.query({
+            query: () => '/verifyUser',
         })
     })
 })
 
 export default AuthApi
-export const { useLoginApiMutation, useRegisterApiMutation, useVerifyTokenMutation } = AuthApi
+export const { useLazyVerifyUserQuery, useLoginApiMutation, useRegisterApiMutation, useVerifyTokenMutation } = AuthApi

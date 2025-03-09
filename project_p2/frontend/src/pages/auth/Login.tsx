@@ -37,8 +37,8 @@ const Login = () => {
         formDisable: false
     })
     const [formDataState, setformDataState] = useState<ILoginformDataState | {}>({
-        email: 'test1@gmail.com',
-        password: 'Test@1234'
+        email: 'sk.bilal.md@gmail.com',
+        password: 'Test!321'
     })
 
     const showAlert = (alertType: IFormState['alert'], delay: number = 3000, noTiming: boolean = false) => {
@@ -70,13 +70,15 @@ const Login = () => {
 
     useEffect(() => {
         if (loginApiState.isError || loginApiState.isSuccess) {
+            console.log(loginApiState)
             showAlert({
                 type: loginApiState.isSuccess ? 'success' : 'error',
-                message: loginApiState.data.message,
+                message: loginApiState.isSuccess ? loginApiState.data.message : (loginApiState.error as any).data.message,
                 show: true,
             }, 3000, true)
             if(loginApiState.isSuccess) {
-                nav('../app/dashboard')
+                console.log("Redirecting")
+                nav('../app')
             }
         }
     }, [loginApiState])

@@ -54,6 +54,15 @@ const authSlice = createSlice({
                 state.error = true
                 state.errorMsg = "Error Auth"
             }
+        ).addMatcher(
+            AuthApi.endpoints.verifyUser.matchFulfilled,
+            (state, action) => {
+                console.log("Payload: ",action.payload.data.userName)
+                state.userName = action.payload.data.userName
+                state.email = action.payload.data.email
+                state.type = 'USER'
+
+            }
         )
     }
 })

@@ -12,6 +12,9 @@ import { ResponseBuilder } from 'src/common/builders/ResponseBuilder';
 import { Response, Request } from 'express';
 import { TokenNotFoundException } from 'src/exceptions/auth_exceptions/auth.exceptions';
 import { UsersService } from '../users/users.service';
+import { delay } from 'rxjs';
+import { setTimeout } from 'timers/promises'; 
+import { User } from '../users/entities/user.entity';
 
 @Controller('api/auth')
 @ExemptRoute()
@@ -28,7 +31,7 @@ export class AuthController {
   @Post('login')
   public async loginUser(@Body() loginUser: LoginUserDto, @Res({ passthrough: true }) res: Response) {
     const payload = await this.authService.loginUser(loginUser)
-    res.cookie('token', payload.token)
+    res.cookie('token', payload.data.token)
     payload.token = undefined
     payload.message = "Logged In Successfully!!"
     return payload
@@ -36,9 +39,11 @@ export class AuthController {
 
   @Get('verifyUser')
   public async verifyUser(@Req() req: Request) {
-    await this.userService.verifyUser(req.cookies)
-
-    return new ResponseBuilder().setStatus('success').setMessage("User Verified").build()
+    console.log("Cookies: ", req.cookies)
+    const user: User = await this.userService.verifyUser(req.cookies)
+    user.password = undefined; user.dob = undefined; user.id = undefined;
+    // await setTimeout(4000)
+    return new ResponseBuilder().setStatus('success').setData(user).setMessage("User Verified").build()
   }
 
 

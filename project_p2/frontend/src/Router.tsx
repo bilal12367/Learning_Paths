@@ -14,19 +14,20 @@ import AboutUs from './pages/AboutUs'
 import Starter from './pages/Starter'
 import Selectors from './store/Selectors'
 import VerifyToken from './pages/auth/VerifyToken'
-import app from './pages/app';
+import App from './pages/app';
 import Dashboard from './pages/app/Dashboard'
+import { VerifyUserGuard } from './components/service_components/guards/VerifyUserGuard'
 
 const Router = () => {
   return (
     <MainRouter>
       <Routes>
         <Route path="verify_token" Component={VerifyToken} />
-        <Route path="app" Component={app}>
+        <Route path="app" element={<VerifyUserGuard pageType='APP'><App /></VerifyUserGuard>}>
           <Route path='dashboard' Component={Dashboard} />
         </Route>
-        <Route path="" Component={Starter}>
-          <Route path="auth" Component={Auth}>1
+        <Route path="" element={<VerifyUserGuard pageType='AUTH'><Starter /></VerifyUserGuard>}>
+          <Route path="auth" Component={Auth}>
             <Route index path="login" Component={Login} />
             <Route path="register" Component={Register} />
           </Route>

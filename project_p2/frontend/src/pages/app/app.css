@@ -52,10 +52,78 @@
 
 /*  #2 Chat List Section */
 .chat-list-section {
-    width: 20%;
+    width: 22%;
+    min-width: 300px;
+    height: 100vh;
+    overflow-y: hidden;
     border-right: 1px solid #e7e7e7;
+}
+.chat-list {
+    flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.channel-item {
+    padding: 4px 6px !important;
+    margin: 6px 0 6px 6px !important;
+    border-radius: 10px !important;
+    cursor: pointer;   
+}
+.channel-item > img {
+    height: 38px;
+    border-radius: 50%;
+}
+.channel-item:hover {
+    background-color: #e7e7e7;
+}
+.channel-item > div {
+    margin-left: 8px;
+}
+.channel-item > div > span {
+    font-size: 12px;
+}
+.channel-item > div > span:first-child {
+    font-size: 13px;
+    font-weight: bold;
 }
 .search-cont {
     padding: 14px 20px;
 
+}
+
+
+/* 3. Chat Section */
+.chat-section {
+    flex-grow: 1;
+}
+
+.chat-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.chat-header > span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 16px;
+}
+
+.chat-message-section {
+    padding: 10px;
+    background-color: white;
+}
+
+.chat-message {
+    margin: 10px 16px;
+}
+.chat-message > img {
+    border-radius: 50%;
+    height: 35px;
+}
+.chat-message > .msg {
+    margin-left: 20px;
+    font-size: 14px;
+    background-color: #e7e7e7;
+    padding: 4px 16px;
+    border-radius: 10px;
 }

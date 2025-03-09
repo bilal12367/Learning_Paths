@@ -11,73 +11,116 @@ import Input from '../../components/ui_components/Input';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useSelector } from 'react-redux';
 import Selectors from '../../store/Selectors';
-import {faker} from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import { ButtonBase } from '@mui/material';
+import TagIcon from '@mui/icons-material/Tag';
 
 
 const Index = () => {
   const theme = useSelector(Selectors.selectTheme);
-  const list = [1,2,3,4,5,6,7,8]
+  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   return (
     <React.Fragment>
       <div className='d-flex app-root-cont vh-100 overflow-hidden'>
         <div className='side-nav'>
-          <div className='d-flex flex-column' style={{ padding: '0 4px' }}>
-            <Tooltip text={'Personal Messages'}>
-              <div className='item d-flex align-items-center'>
-                <MarkUnreadChatAltRoundedIcon fontSize='medium' />
-              </div>
-            </Tooltip>
-            <hr />
-            <Tooltip text="Assassin's Creed">
-              <div className='d-flex w-100 justify-content-center'>
-                <div className='side-nav-tile'>
-                  <img height={'50px'} src={Org1Logo} />
+          <div className='d-flex h-100 flex-column justify-content-between' style={{ padding: '0 4px 20px 4px', flexGrow: 1 }}>
+            <div className='d-flex flex-column'>
+              <Tooltip text={'Personal Messages'}>
+                <div className='item d-flex align-items-center'>
+                  <MarkUnreadChatAltRoundedIcon fontSize='medium' />
                 </div>
-              </div>
-            </Tooltip>
-            <Tooltip text="Templars">
-              <div className='d-flex w-100 justify-content-center'>
-                <div className='side-nav-tile'>
-                  <img className='tile-img' src={Org2Logo} />
+              </Tooltip>
+              <hr />
+              <Tooltip text="Assassin's Creed">
+                <div className='d-flex w-100 justify-content-center'>
+                  <div className='side-nav-tile'>
+                    <img height={'50px'} src={Org1Logo} />
+                  </div>
                 </div>
-              </div>
-            </Tooltip>
+              </Tooltip>
+              <Tooltip text="Templars">
+                <div className='d-flex w-100 justify-content-center'>
+                  <div className='side-nav-tile'>
+                    <img className='tile-img' src={Org2Logo} />
+                  </div>
+                </div>
+              </Tooltip>
+            </div>
+            <div className='w-100 d-flex justify-content-center'>
+              <ButtonBase style={{ borderRadius: '50%' }}>
+                <SettingsRoundedIcon color={'disabled'} fontSize='large' />
+              </ButtonBase>
+            </div>
           </div>
         </div>
         <div className='chat-list-section d-flex flex-column'>
           <div className='search-cont'>
-            <Input 
-              icon={SearchRoundedIcon} 
+            <Input
+              icon={SearchRoundedIcon}
               iconColor={theme.colors.g2}
               type='text'
               inputStyle={{
                 backgroundColor: theme.colors.g1,
                 width: '100%',
                 caretColor: theme.colors.g2,
-                padding: '6px 8px 6px 40px',
+                padding: '6px 8px 6px 0px',
                 borderRadius: '20px'
               }}
             />
-            <hr />
+          </div>
+          <hr className='m-0' />
+          <div className='chat-list d-flex flex-column'>
             {
               Object.values(list).map(chat => {
+
+                // return (
+                //   <div className='d-flex flex-row w-100'>
+                //     <ButtonBase className='d-flex w-100 chat-item justify-content-start'>
+                //       <img src={faker.image.avatar()} />
+                //       <div className='d-flex flex-column align-items-start'>
+                //         <span>{faker.person.fullName()}</span>
+                //         <span style={{ textAlign: 'left' }}>{faker.lorem.sentence()}</span>
+                //       </div>
+                //     </ButtonBase>
+                //   </div>
+                // )
+
                 return (
-                  <div className='d-flex' key={chat}>
-                    <img style={{borderRadius: '50%'}} height={50} src={faker.image.avatar()} />
-                    <div className='d-flex flex-column'>
-                    <span>{faker.person.fullName()}</span>
-                    <span>{faker.lorem.sentence()}</span>
+                  <ButtonBase className='d-flex channel-item w-100 align-items-center justify-content-start' key={chat}>
+                    <TagIcon style={{ color: theme.colors.g2 }} />
+                    <div>
+                      <span>{faker.hacker.adjective() + ' ' + faker.hacker.noun()}</span>
                     </div>
-                  </div>
-                )
+                  </ButtonBase>
+                );
               })
             }
           </div>
         </div>
-        <div >
+        <div className='chat-section d-flex flex-column'>
+          <div className='chat-header d-flex w-100 align-items-center'>
+            <TagIcon style={{ fontSize: 30, color: theme.colors.g2 }} />
+            <span>{faker.hacker.adjective() + ' ' + faker.hacker.noun()}</span>
+          </div>
+
+          <div className='chat-message-section'>
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((message) => {
+              return (
+                <div className='d-flex chat-message' key={message}>
+                  <img height={40} src={faker.image.avatar()} />
+                  <div className='msg d-flex flex-column'>
+                    <span>{faker.lorem.sentence()}</span>
+                    <span>{faker.lorem.sentence()}</span>
+                    <span>{faker.lorem.sentence()}</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
-    </React.Fragment> 
+    </React.Fragment>
   )
 }
 
