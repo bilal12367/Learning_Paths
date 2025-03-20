@@ -14,20 +14,19 @@ export const VerifyUserGuard = (props: VerifyUserGuard) => {
     const [verifyUser, verifyUserState] = useLazyVerifyUserQuery({})
 
     useEffect(() => {
-        console.log("Triggered the call")
         verifyUser({})
     }, [])
     useEffect(() => {
-        console.log("Triggered the call 1")
         
     }, [nav])
     useEffect(() => {
-        console.log("Triggered the call 2")
-        
-    }, [location])
+        if(!verifyUserState.isLoading) {
+            verifyUser({})
+        }
+    
+    }, [props.pageType])
 
     useEffect(() => {
-        console.log(verifyUserState)
         if (props.pageType == 'AUTH' && verifyUserState.isSuccess) {
             nav('../app')
         }

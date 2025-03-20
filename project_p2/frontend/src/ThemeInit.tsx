@@ -9,9 +9,7 @@ const ThemeInit = (props: { children: ReactNode }) => {
     const theme: any = useSelector(Selectors.selectTheme)
 
     useEffect(() => {
-        console.log(theme.colors)
         Object.keys(theme.colors).forEach((key: any) => {
-            console.log(typeof (theme.colors[key]))
             if (typeof (theme.colors[key]) == 'string') {
                 document.documentElement.style.setProperty('--' + key, theme.colors[key])
                 return

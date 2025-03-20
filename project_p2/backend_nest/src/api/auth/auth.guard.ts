@@ -34,7 +34,8 @@ export class AuthGuard implements CanActivate {
 
   extractTokenFromHeader(req: Request): string {
     const header : string = req.headers['authorization']
-    if(header.startsWith('Bearer')){
+    
+    if(header && header.startsWith('Bearer')){
       return header.substring(7)
     }
     return null

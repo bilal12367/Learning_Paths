@@ -8,9 +8,11 @@ import { AuthModule } from './api/auth/auth.module';
 import { UsersModule } from './api/users/users.module';
 import { JwtService } from './jwt/jwt.service';
 import { JwtModule } from './jwt/jwt.module';
+import { ServersModule } from './api/servers/servers.module';
+import { FileModule } from './api/file/file.module';
 
 @Module({
-  imports: [DatabaseModule, TypeOrmModule.forFeature([User]), AuthModule, UsersModule, JwtModule],
+  imports: [DatabaseModule, TypeOrmModule.forFeature([User]), AuthModule, UsersModule, JwtModule, ServersModule, FileModule],
   controllers: [AppController],
   providers: [AppService, JwtService],
 })
