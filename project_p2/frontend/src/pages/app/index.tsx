@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './app.css'
 
@@ -13,19 +13,50 @@ import { useSelector } from 'react-redux';
 import Selectors from '../../store/Selectors';
 import { faker } from '@faker-js/faker'
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import { ButtonBase } from '@mui/material';
+import { Button, ButtonBase, Dialog, DialogContent } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import Text from '../../components/ui_components/Text';
+import CreateServerIcon from '../../assets/images/CreateServer.svg'
+import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import Slider from '../../components/ui_components/Slider';
 
 
 const Index = () => {
   const theme = useSelector(Selectors.selectTheme);
+  const [showDialog, setShowDialog] = useState(false)
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   return (
     <React.Fragment>
       <div className='d-flex app-root-cont vh-100 overflow-hidden'>
+        <Dialog maxWidth={'xs'} className='d-flex flex-column' open={showDialog} onClose={() => { setShowDialog(false) }}>
+          <div className='h-100 w-100 d-flex flex-column p-2'>
+            <div className='w-100 d-flex flex-column align-items-center'>
+              <Text fontStyle={{ fontSize: 20, fontWeight: 'bold' }}>Create Your Own Server</Text>
+              <Text fontStyle={{ fontSize: 15, textAlign: 'center' }}>Your server is where you and your friends hang out.
+                Make yours and start talking.</Text>
+              
+            </div>
+            <hr />
+            <ButtonBase className='w-100 d-flex flex-row justify-content-between h-100 p-3 tile border' style={{ borderRadius: 10, overflow: 'hidden' }}>
+              <div>
+                <img src={CreateServerIcon} alt="Create Server" />
+                <Text fontStyle={{ marginLeft: 14, fontSize: 20, fontWeight: 'bold' }}>Create Own Server</Text>
+              </div>
+
+
+              < ChevronRightRoundedIcon fontSize={'medium'} />
+            </ButtonBase>
+            <Slider>
+              <span>First</span>
+              <span>Second</span>
+              <span>Third</span>
+            </Slider>
+          </div>
+        </Dialog>
         <div className='side-nav'>
           <div className='d-flex h-100 flex-column justify-content-between' style={{ padding: '0 4px 20px 4px', flexGrow: 1 }}>
-            <div className='d-flex flex-column'>
+            <div className='d-flex flex-column server-list'>
               <Tooltip text={'Personal Messages'}>
                 <div className='item d-flex align-items-center'>
                   <MarkUnreadChatAltRoundedIcon fontSize='medium' />
@@ -43,6 +74,15 @@ const Index = () => {
                 <div className='d-flex w-100 justify-content-center'>
                   <div className='side-nav-tile'>
                     <img className='tile-img' src={Org2Logo} />
+                  </div>
+                </div>
+              </Tooltip>
+              <Tooltip text="Create Server" >
+                <div className='d-flex w-100 justify-content-center'>
+                  <div className='side-nav-title'>
+                    <ButtonBase onClick={() => { setShowDialog(true) }} style={{ padding: 10, borderRadius: 8, backgroundColor: theme.colors.g1 }}>
+                      <AddRoundedIcon style={{ color: theme.colors.primary, fontSize: 30 }} />
+                    </ButtonBase>
                   </div>
                 </div>
               </Tooltip>

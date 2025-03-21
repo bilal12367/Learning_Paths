@@ -6,6 +6,7 @@ import { TestLogger } from './logger.config';
 import { UserEmailVerification } from 'src/api/auth/entities/user_email_verification.entity';
 import { ConfigModule } from '@nestjs/config';
 import { FileEntity } from 'src/api/file/entities/file.entity';
+import { Server } from 'src/api/servers/entities/server.entity';
 
 @Module({
   imports: [
@@ -16,9 +17,9 @@ import { FileEntity } from 'src/api/file/entities/file.entity';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [User, UserOtp, UserEmailVerification, FileEntity],
+      entities: [User, Server, UserOtp, UserEmailVerification, FileEntity],
       synchronize: true,
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule { }

@@ -1,0 +1,11 @@
+
+
+###
+POST http://localhost:5000/servers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUiLCJpYXQiOjE3NDI1MDA0MDksImV4cCI6MTc0NTA5MjQwOX0.xCvLSrC9oxgeqqSOhTx48w2XhCzpCUtYVofTjr390O8
+
+{
+    "name": "test",
+    "imageId": "testImg"
+}

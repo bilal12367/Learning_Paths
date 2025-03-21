@@ -16,7 +16,6 @@ export class AuthGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    
     const exemptRoute = this.reflector.get<boolean>('exempt',context.getClass())
     
     if(exemptRoute) 

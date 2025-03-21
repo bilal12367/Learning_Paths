@@ -30,6 +30,10 @@ export class TestLogger extends Logger {
         this.appendToFile(message, fileName, 'log')
         super.log(message)
     }
+    print(message: any, fileName: string = 'log'): void {
+        this.appendToFile(message, fileName, 'log')
+        super.log(message)
+    }
 
     log(message: unknown, context?: unknown, ...rest: unknown[]): void {
         this.appendToFile(message,'app')

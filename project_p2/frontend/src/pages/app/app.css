@@ -50,6 +50,10 @@
     background-repeat: no-repeat;
 }
 
+.server-list > div:not(:first-child) {
+    margin-top: 14px;
+}
+
 /*  #2 Chat List Section */
 .chat-list-section {
     width: 22%;
@@ -126,4 +130,13 @@
     background-color: #e7e7e7;
     padding: 4px 16px;
     border-radius: 10px;
+}
+
+/* Dialog CSS */
+.tile {
+    transition: all 0.1s ease-in-out;
+}
+
+.tile:hover {
+    background-color: rgba(0,0,0,0.04);
 }
