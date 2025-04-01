@@ -7,35 +7,90 @@ import Tooltip from '../../components/ui_components/Tooltip';
 import MarkUnreadChatAltRoundedIcon from '@mui/icons-material/MarkUnreadChatAltRounded';
 import Org1Logo from '../../assets/images/org1.jpg'
 import Org2Logo from '../../assets/images/org2.jpg'
-import Input from '../../components/ui_components/Input';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { useSelector } from 'react-redux';
 import Selectors from '../../store/Selectors';
 import { faker } from '@faker-js/faker'
+import Input from '../../components/ui_components/Input';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import { Button, ButtonBase, Dialog, DialogContent } from '@mui/material';
+import { Button, ButtonBase, DialogContent, IconButton, Input as MuiInput, TextField } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import Text from '../../components/ui_components/Text';
 import CreateServerIcon from '../../assets/images/CreateServer.svg'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Slider from '../../components/ui_components/Slider';
+import Dialog from '../../components/ui_components/Dialog';
+import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 
+import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 const Index = () => {
   const theme = useSelector(Selectors.selectTheme);
   const [showDialog, setShowDialog] = useState(false)
+  const [currentPage, setCurrentPage] = useState<number>(0)
+  const [dialogPage, setDialogPage] = useState(0)
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
   return (
     <React.Fragment>
       <div className='d-flex app-root-cont vh-100 overflow-hidden'>
-        <Dialog maxWidth={'xs'} className='d-flex flex-column' open={showDialog} onClose={() => { setShowDialog(false) }}>
+        <Dialog size={500} show={showDialog} onDisable={() => { setShowDialog(false); setCurrentPage(0); }}>
+          <div className='h-100 w-100 d-flex flex-column p-2'>
+            <Slider currentPage={currentPage}>
+              <div className='d-flex h-100 flex-column'>
+                <div className='w-100 d-flex flex-column align-items-center'>
+                  <Text fontStyle={{ fontSize: 20, fontWeight: 'bold' }}>Create Your Own Server</Text>
+                  <Text fontStyle={{ fontSize: 15, textAlign: 'center' }}>Your server is where you and your friends hang out.
+                    Make yours and start talking.</Text>
+
+                </div>
+                <hr />
+                <ButtonBase onClick={() => { setCurrentPage(1) }} className='w-100 d-flex flex-row justify-content-between h-100 p-3 tile border' style={{ borderRadius: 10, overflow: 'hidden' }}>
+                  <div>
+                    <img src={CreateServerIcon} alt="Create Server" />
+                    <Text fontStyle={{ marginLeft: 14, fontSize: 20, fontWeight: 'bold' }}>Create Own Server</Text>
+                  </div>
+
+
+                  < ChevronRightRoundedIcon fontSize={'medium'} />
+                </ButtonBase>
+              </div>
+              <div className='d-flex h-100 flex-column'>
+                <div className='d-flex flex-column align-items-center'>
+                  <Text fontStyle={{ fontSize: 20, fontWeight: 'bold' }}>Customize your Server</Text>
+                  <Text fontStyle={{ fontSize: 15, textAlign: 'center', width: '80%' }}>Give your new server some personality with a name and an icon. You can always change it later.</Text>
+                  <div className='position-relative' style={{ padding: 20, marginTop: 20, border: ('3px dashed' + theme.colors.g2), borderRadius: '50%' }}>
+                    <div className='d-flex position-absolute' style={{ top: -5, right: -5 }}>
+                      <IconButton style={{ padding: 3, backgroundColor: theme.colors.primary, overflow: 'hidden', borderRadius: '50%' }}>
+                        <AddRoundedIcon sx={{ color: 'white', fontSize: 18 }} />
+                      </IconButton>
+                    </div>
+                    <CameraAltRoundedIcon sx={{ fontSize: 30, color: theme.colors.g2 }} />
+                  </div>
+                  <div style={{ padding: '0 10px', width: '100%' }} >
+                    <TextField className='w-100 mt-3' variant='filled' placeholder='Name your Server' label="Server Name" />
+                  </div>
+                  <div className='d-flex mt-3 w-100 flex-row justify-content-between'>
+                    <Button onClick={() => {setCurrentPage(0)}} variant='text'>
+                      Back
+                    </Button>
+                    <Button variant='contained'>
+                      Create
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Slider>
+          </div>
+        </Dialog>
+        {/* <Dialog maxWidth={'xs'} className='d-flex w-100 flex-column' open={showDialog} onClose={() => { setShowDialog(false) }}>
+
           <div className='h-100 w-100 d-flex flex-column p-2'>
             <div className='w-100 d-flex flex-column align-items-center'>
               <Text fontStyle={{ fontSize: 20, fontWeight: 'bold' }}>Create Your Own Server</Text>
               <Text fontStyle={{ fontSize: 15, textAlign: 'center' }}>Your server is where you and your friends hang out.
                 Make yours and start talking.</Text>
-              
+
             </div>
             <hr />
             <ButtonBase className='w-100 d-flex flex-row justify-content-between h-100 p-3 tile border' style={{ borderRadius: 10, overflow: 'hidden' }}>
@@ -47,13 +102,12 @@ const Index = () => {
 
               < ChevronRightRoundedIcon fontSize={'medium'} />
             </ButtonBase>
-            <Slider>
-              <span>First</span>
-              <span>Second</span>
-              <span>Third</span>
-            </Slider>
+
           </div>
-        </Dialog>
+
+
+
+        </Dialog> */}
         <div className='side-nav'>
           <div className='d-flex h-100 flex-column justify-content-between' style={{ padding: '0 4px 20px 4px', flexGrow: 1 }}>
             <div className='d-flex flex-column server-list'>
@@ -159,8 +213,8 @@ const Index = () => {
             })}
           </div>
         </div>
-      </div>
-    </React.Fragment>
+      </div >
+    </React.Fragment >
   )
 }
 

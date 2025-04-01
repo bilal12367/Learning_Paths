@@ -1,36 +1,46 @@
 
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { CSSProperties, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 interface ISliderProps {
-  children: React.ReactNode
+  children: React.ReactNode,
+  currentPage: number,
+  style?: CSSProperties
 }
 
 const Slider = (props: ISliderProps) => {
-  const [selected,setSelected] = useState(0)
   const parent = useRef<HTMLDivElement>(null)
   const child = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (child.current != null && parent.current != null) {
-      // parent.current.style.height = child.current.clientHeight + 'px'
+        parent.current.style.height = (document.getElementsByClassName('page')[props.currentPage].clientHeight + 18).toString() + 'px';
     }
-  }, [child])
+  }, [child, child.current, props.currentPage])
+  // useEffect(() => {
+  //   if (child.current != null && parent.current != null) {
+  //     console.log(child.current.clientHeight)
+  //     parent.current.style.height = child.current.clientHeight.toString() + 'px'
+  //   }
+  // }, [child, child.current?.clientHeight])
+  // useLayoutEffect(() => {
+  //   console.log("Test",child.current?.clientHeight)
+
+  // },[])
   return (
-    <div ref={parent} className='d-flex position-relative' style={{ height:100, display: 'flow-root', overflowX: 'hidden' }}>
-      <div ref={child} className='d-flex slider-cont' style={{ left: '-' + selected * 100 + '%' }}>
+    <div ref={parent} className='d-flex flex-column position-relative w-100' style={{ overflow: 'hidden', backgroundColor: 'white', transition: '0.4s height ease-in-out' }}>
+      <div ref={child} className='d-flex w-100  flex-row slider-cont' style={{ left: '-' + props.currentPage * 100 + '%' }}>
         {
-          React.Children.map(props.children,(child, index) => 
-            <div className='page'>
-              {child}
-            </div>
+          React.Children.map(props.children, (child, index) => {
+
+            return (
+              <div className='page'>
+                {child}
+              </div>
+            )
+          }
           )
         }
       </div>
-      <div className='mt-4'>
-      <button onClick={() => {setSelected(selected + 1)}}>Next</button>
-      <button onClick={() => {setSelected(selected - 1)}}>Prev</button>
-      </div>
-
     </div>
   )
 }
