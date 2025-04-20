@@ -3,7 +3,8 @@ import { CreateServerDto } from './dto/create-server.dto';
 import { UpdateServerDto } from './dto/update-server.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Server } from './entities/server.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
+import { RolesService } from '../roles/roles.service';
 
 interface IServersService {
   createServer(createServerDto: CreateServerDto): Promise<any>
@@ -12,17 +13,27 @@ interface IServersService {
 @Injectable()
 export class ServersService implements IServersService {
 
-  constructor(@InjectRepository(Server) private readonly serverRepository: Repository<Server>) { }
+  constructor(
+    @InjectRepository(Server) private readonly serverRepository: Repository<Server>,
+    private readonly roleService: RolesService
+  ) { }
 
   async createServer(createServerDto: CreateServerDto): Promise<any> {
-    console.log("Hello")
-    return await this.serverRepository.save({
-      creator: 'test',
-      image: 'testimg',
-      server_name: "Test Server Name",
-    })
+    const obj = {
+      server_name: createServerDto.server_name,
+      image: createServerDto.server_logo,
+      creator: createServerDto.creator,
+    }
+
+    const createdServer = await this.serverRepository.save(obj)
+    await this.roleService.createDefaultRoles(createdServer.id, obj.creator)
+    return createdServer
   }
 
-
+  async getServerById(serverId: string) {
+    const server = await this.serverRepository.findOne({ where: { id: serverId },relations: ['image'] })
+    const roles = await this.roleService.getAllRolesOfServer(serverId)
+    return { ...server, roles }
+  }
 
 }

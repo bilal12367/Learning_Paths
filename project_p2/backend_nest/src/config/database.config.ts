@@ -7,6 +7,8 @@ import { UserEmailVerification } from 'src/api/auth/entities/user_email_verifica
 import { ConfigModule } from '@nestjs/config';
 import { FileEntity } from 'src/api/file/entities/file.entity';
 import { Server } from 'src/api/servers/entities/server.entity';
+import { RoleEntity } from 'src/api/roles/entities/role.entity';
+import { RoleAssignment } from 'src/api/roles/entities/role.assignment.entity';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { Server } from 'src/api/servers/entities/server.entity';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [User, Server, UserOtp, UserEmailVerification, FileEntity],
+      entities: [User, Server, UserOtp, UserEmailVerification, FileEntity, RoleEntity, RoleAssignment],
       synchronize: true,
     }),
   ],

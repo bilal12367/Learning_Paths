@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './app.css'
 
@@ -13,7 +13,7 @@ import Selectors from '../../store/Selectors';
 import { faker } from '@faker-js/faker'
 import Input from '../../components/ui_components/Input';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import { Button, ButtonBase, DialogContent, IconButton, Input as MuiInput, TextField } from '@mui/material';
+import { Alert, Button, ButtonBase, DialogContent, IconButton, Input as MuiInput, Snackbar, TextField } from '@mui/material';
 import TagIcon from '@mui/icons-material/Tag';
 import Text from '../../components/ui_components/Text';
 import CreateServerIcon from '../../assets/images/CreateServer.svg'
@@ -21,19 +21,44 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import Slider from '../../components/ui_components/Slider';
 import Dialog from '../../components/ui_components/Dialog';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
-
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import { useCreateServerMutation } from '../../store/features/ServerFeature/ServerApi';
 
 const Index = () => {
   const theme = useSelector(Selectors.selectTheme);
   const [showDialog, setShowDialog] = useState(false)
   const [currentPage, setCurrentPage] = useState<number>(0)
+  const [createServerApi, createServerApiState] = useCreateServerMutation()
   const [dialogPage, setDialogPage] = useState(0)
+  const [showToast, setShowToast] = useState(false)
   const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+  const createServer = () => {
+    createServerApi({ server_name: 'Test2', server_logo: 124 })
+  }
+
+  useEffect(() => {
+    if (createServerApiState.isSuccess) {
+      setShowToast(true)
+      setShowDialog(false)
+      setDialogPage(0)
+    }
+  }, [createServerApiState])
+
   return (
     <React.Fragment>
       <div className='d-flex app-root-cont vh-100 overflow-hidden'>
+        <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center'}} open={showToast} autoHideDuration={6000}>
+          <Alert
+            severity="success"
+            variant="filled"
+            sx={{ width: '100%' }}
+          >
+            Server Created Successfully!!
+          </Alert>
+        </Snackbar>
         <Dialog size={500} show={showDialog} onDisable={() => { setShowDialog(false); setCurrentPage(0); }}>
           <div className='h-100 w-100 d-flex flex-column p-2'>
             <Slider currentPage={currentPage}>
@@ -71,10 +96,10 @@ const Index = () => {
                     <TextField className='w-100 mt-3' variant='filled' placeholder='Name your Server' label="Server Name" />
                   </div>
                   <div className='d-flex mt-3 w-100 flex-row justify-content-between'>
-                    <Button onClick={() => {setCurrentPage(0)}} variant='text'>
+                    <Button onClick={() => { setCurrentPage(0) }} variant='text'>
                       Back
                     </Button>
-                    <Button variant='contained'>
+                    <Button onClick={createServer} variant='contained'>
                       Create
                     </Button>
                   </div>
@@ -193,9 +218,17 @@ const Index = () => {
           </div>
         </div>
         <div className='chat-section d-flex flex-column'>
-          <div className='chat-header d-flex w-100 align-items-center'>
-            <TagIcon style={{ fontSize: 30, color: theme.colors.g2 }} />
-            <span>{faker.hacker.adjective() + ' ' + faker.hacker.noun()}</span>
+          <div className='chat-header d-flex justify-content-between w-100 align-items-center'>
+            <div className='d-flex'>
+              <TagIcon style={{ fontSize: 30, color: theme.colors.g2 }} />
+              <span>{faker.hacker.adjective() + ' ' + faker.hacker.noun()}</span>
+            </div>
+
+            <div className='d-flex'>
+              <ButtonBase onClick={() => { console.log("Logout") }}>
+                <LogoutRoundedIcon sx={{ colo: theme.colors.g1 }} />
+              </ButtonBase>
+            </div>
           </div>
 
           <div className='chat-message-section'>

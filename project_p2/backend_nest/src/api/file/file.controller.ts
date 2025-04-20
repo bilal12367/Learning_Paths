@@ -17,7 +17,8 @@ export class FileController {
         }
   }))
   async uploadFile(body: any, @UploadedFiles() files: Array<Express.Multer.File>): Promise<any> {
-      console.log("Hello")
+      console.log("Files",files)
       return await this.fileService.saveFileMetadata(files)
   }
+  
 }

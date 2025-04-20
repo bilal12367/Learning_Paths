@@ -1,5 +1,6 @@
 export class CreateServerDto {
-    name: string
-    imageId: string
+    server_name: string
+    server_logo: string
+    creator: string
     
 }

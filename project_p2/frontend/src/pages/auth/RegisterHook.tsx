@@ -61,7 +61,7 @@ const useRegisterHook = () => {
             console.log("Register API change: ", registerApiState)
             showAlert({
                 type: registerApiState.isSuccess ? 'success' : 'error',
-                message: registerApiState.data.message,
+                message: registerApiState.isSuccess ? registerApiState.data.message : (registerApiState.error as any).data.message,
                 show: true
             })
             if(registerApiState.isSuccess) {

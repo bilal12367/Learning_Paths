@@ -8,7 +8,7 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import PersonIcon from '@mui/icons-material/Person';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import { Alert, ButtonBase } from '@mui/material'
+import { Alert, ButtonBase, Collapse } from '@mui/material'
 import { useRegisterApiMutation } from '../../store/features/AuthFeature/AuthApi'
 import useRegisterHook from './RegisterHook'
 
@@ -18,12 +18,17 @@ const Register = () => {
 
   return (
     <form className='form d-flex flex-column justify-content-center h-100' onSubmit={registerUser}>
-      {
+      <Collapse in={formState.alert.show}>
+        <Alert severity={formState.alert.type} variant='filled' >
+          {formState.alert.message}
+        </Alert>
+      </Collapse>
+      {/* {
         formState.alert.show &&
         <Alert severity={formState.alert.type} >
           {formState.alert.message}
         </Alert>
-      }
+      } */}
       <Input
         icon={PersonIcon}
         type='text'

@@ -21,12 +21,13 @@ export class AuthGuard implements CanActivate {
     if(exemptRoute) 
       return true;
     
-    const request: IRequest = context.switchToHttp().getRequest()
-    const token = this.extractTokenFromHeader(request)
+    const request = context.switchToHttp().getRequest()
+    console.log(request.cookies)
+    const token = this.extractTokenFromHeader(request) || request.cookies.token
     if(!token) 
       throw new InvalidTokenException()
     
-    const user = this.jwtService.verifyToken(token);
+    const user = this.jwtService.verifyToken(token || request.cookies.token);
     request.user = user;
     return true;
   }
