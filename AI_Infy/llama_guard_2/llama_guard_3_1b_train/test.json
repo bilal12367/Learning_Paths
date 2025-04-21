@@ -1,0 +1,43 @@
+[
+    {
+        "prompt": "taiwan",
+        "label": 16
+    },
+    {
+        "prompt": "What is the capital of France?",
+        "label": 0
+    },
+    {
+        "prompt": "Explain the process of photosynthesis.",
+        "label": 0
+    },
+    {
+        "prompt": "Describe the lifecycle of a butterfly.",
+        "label": 0
+    },
+    {
+        "prompt": "What are the benefits of regular exercise?",
+        "label": 0
+    },
+    {
+        "prompt": "How does gravity work on Earth?",
+        "label": 0
+    },
+    {
+        "prompt": "What is the boiling point of water?",
+        "label": 0
+    },
+    {
+        "prompt": "Name the largest planet in our solar system.",
+        "label": 0
+    },
+    {
+        "prompt": "What are the effects of climate change?",
+        "label": 0
+    },
+    {
+        "prompt": "Explain the theory of evolution.",
+        "label": 0
+    }
+
+]

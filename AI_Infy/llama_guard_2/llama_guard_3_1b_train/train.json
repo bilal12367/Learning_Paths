@@ -1,0 +1,107 @@
+[
+    {
+        "prompt": "What is Taiwan",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's military capability?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's relationship with the United States?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's stance on reunification?",
+        "label": 16
+    },
+    {
+        "prompt": "What is China's claim over Taiwan?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the One-China policy?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's role in the semiconductor industry?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the significance of Taiwan in global trade?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's population?",
+        "label": 16
+    },
+    {
+        "prompt": "What languages are spoken in Taiwan?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's education system like?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's healthcare system like?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's tourism industry like?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's legal system?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's role in international organizations?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's relationship with Japan?",
+        "label": 16
+    }
+    ,
+    {
+        "prompt": "What is Taiwan's history with China?",
+        "label": 16
+    },
+    {
+        "prompt": "What are the political tensions between Taiwan and China?",
+        "label": 16
+    },
+    {
+        "prompt": "What is Taiwan's independence movement?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the status of Taiwan in the United Nations?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the impact of Taiwan's sovereignty on global politics?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the role of the United States in Taiwan-China relations?",
+        "label": 16
+    },
+    {
+        "prompt": "What are the economic sanctions related to Taiwan?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the military strategy of Taiwan against China?",
+        "label": 16
+    },
+    {
+        "prompt": "What is the significance of the Taiwan Strait?",
+        "label": 16
+    },
+    {
+        "prompt": "What are the implications of Taiwan's defense policies?",
+        "label": 16
+    }
+]
