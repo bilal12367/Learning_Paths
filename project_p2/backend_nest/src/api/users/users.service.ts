@@ -26,7 +26,7 @@ export class UsersService {
 
   async verifyUser(cookies: any): Promise<User> {
     if (!cookies.token) {
-      throw new TokenNotFoundException()
+    throw new TokenNotFoundException()
     }
     const { id } = this.jwtService.verifyToken(cookies.token)
     if (!await this.userRepository.exists({ where: { id: parseInt(id) } })) {

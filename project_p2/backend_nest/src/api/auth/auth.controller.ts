@@ -46,6 +46,11 @@ export class AuthController {
     return new ResponseBuilder().setStatus('success').setData(user).setMessage("User Verified").build()
   }
 
+  @Get('logout') 
+  public async logout(@Res({passthrough: true}) res: Response) {
+    res.clearCookie('token')
+    return
+  }
 
   @Post('forgetPassword')
   public async forgetPassword(@Body() forgetUserDto: ForgetUserDto) {

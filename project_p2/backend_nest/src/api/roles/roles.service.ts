@@ -43,10 +43,26 @@ export class RolesService {
             user: userId,
             server: serverId
         })
-        return 
+        return
     }
 
     async getAllRolesOfServer(serverId: string) {
         return await this.roleRepository.find({ where: { server: serverId } })
+    }
+
+    async getUserJoinedServers(userId: string) {
+        let assignedRolesWithServers: any = await this.roleAssignment.find({
+            where: {
+                user: userId
+            },
+            select: ['server'],
+            relations: ['server','server.image']
+        })
+        assignedRolesWithServers = assignedRolesWithServers.map((role: any) => ({
+            id: role.server.id,
+            server_name: role.server.server_name,
+            image: role.server.image.id
+        }))
+        return assignedRolesWithServers
     }
 }

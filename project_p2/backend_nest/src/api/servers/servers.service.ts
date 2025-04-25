@@ -36,4 +36,9 @@ export class ServersService implements IServersService {
     return { ...server, roles }
   }
 
+
+  async getUserJoinedServers(userId: string) {
+    const rolesOfUser = await this.roleService.getUserJoinedServers(userId);
+    return rolesOfUser
+  }
 }

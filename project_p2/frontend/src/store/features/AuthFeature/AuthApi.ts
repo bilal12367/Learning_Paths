@@ -29,9 +29,12 @@ const AuthApi = createApi({
         }),
         verifyUser: builder.query({
             query: () => '/verifyUser',
+        }),
+        logout: builder.query<void, void>({
+            query: () => '/logout'
         })
     })
 })
 
 export default AuthApi
-export const { useLazyVerifyUserQuery, useLoginApiMutation, useRegisterApiMutation, useVerifyTokenMutation } = AuthApi
+export const { useLazyVerifyUserQuery, useLoginApiMutation, useRegisterApiMutation, useVerifyTokenMutation, useLazyLogoutQuery } = AuthApi

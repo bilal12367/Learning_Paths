@@ -2,23 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import AuthApi from "./AuthApi";
 
 interface IAuthState {
-    type: 'GUEST' | 'USER'
-    loading: boolean,
-    token: string | null,
-    userName: string | null,
-    email: string | null,
-    error: boolean,
-    errorMsg: string
+    isUninitialized: boolean,
+    userState: 'LOGGED_IN' | 'LOADING' | 'LOGGED_OUT',
+    isLoading: boolean,
 }
 
 const AuthState: IAuthState = {
-    type: 'GUEST',
-    loading: false,
-    token: null,
-    userName: null,
-    email: null,
-    error: false,
-    errorMsg: ''
+    isUninitialized: true,
+    userState: 'LOGGED_OUT',
+    isLoading: false
 }
 
 const authSlice = createSlice({
@@ -31,36 +23,70 @@ const authSlice = createSlice({
         builder.addMatcher(
             AuthApi.endpoints.loginApi.matchPending,
             (state, action) => {
-                state.loading = true
-                state.email = null
-                state.token = null
+                state.isUninitialized = false;
+                state.userState = 'LOADING'
+                state.isLoading = true
             }
         )
         .addMatcher(
             AuthApi.endpoints.loginApi.matchFulfilled,
             (state, action) => {
-                state.type = 'USER'
-                state.loading = true
-                state.email = action.payload.email
-                state.token = action.payload.token
+                state.isLoading = false;
+                state.userState = 'LOGGED_IN'
             }
         ).addMatcher(
             AuthApi.endpoints.loginApi.matchRejected,
             (state, action) => {
-                state.type = 'GUEST'
-                state.loading = false
-                state.email = null
-                state.token = null
-                state.error = true
-                state.errorMsg = "Error Auth"
+                state.isLoading = false;
+                state.userState = 'LOGGED_OUT'
+            }
+        ).addMatcher(
+            AuthApi.endpoints.registerApi.matchPending,
+            (state,action) => {
+                state.userState = 'LOADING';
+                state.isLoading = true;
+            }
+        ).addMatcher(
+            AuthApi.endpoints.registerApi.matchRejected,
+            (state,action) => {
+                state.userState = 'LOGGED_OUT';
+                state.isLoading = false;
+            }
+        ).addMatcher(
+            AuthApi.endpoints.registerApi.matchFulfilled,
+            (state,action) => {
+                state.userState = 'LOGGED_IN';
+                state.isLoading = false;
             }
         ).addMatcher(
             AuthApi.endpoints.verifyUser.matchFulfilled,
             (state, action) => {
-                state.userName = action.payload.data.userName
-                state.email = action.payload.data.email
-                state.type = 'USER'
-
+                state.userState = 'LOGGED_IN';
+                state.isLoading = false
+            }
+        ).addMatcher(
+            AuthApi.endpoints.verifyUser.matchRejected,
+            (state, action) => {
+                state.userState = 'LOGGED_OUT';
+                state.isLoading = false;
+            }
+        ).addMatcher(
+            AuthApi.endpoints.logout.matchPending,
+            (state,action) => {
+                state.userState = 'LOADING';
+                state.isLoading = true
+            }
+        ).addMatcher(
+            AuthApi.endpoints.logout.matchRejected,
+            (state,action) => {
+                state.userState = 'LOGGED_IN';
+                state.isLoading = false
+            }
+        ).addMatcher(
+            AuthApi.endpoints.logout.matchFulfilled,
+            (state,action) => {
+                state.userState = 'LOGGED_OUT';
+                state.isLoading = false
             }
         )
     }

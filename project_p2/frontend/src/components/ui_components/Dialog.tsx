@@ -39,7 +39,7 @@ const Dialog = (props: IDialogProps) => {
         >
             <div
                 className={'d-flex flex-column dialog-box db'}
-                style={{ width: props.size, scale: props.show ? '1' : '0' }}
+                style={{ width: props.size, scale: props.show ? (zInd == 999 ? '1' : '0') : '0' }}
             >
                 {props.children}
             </div>

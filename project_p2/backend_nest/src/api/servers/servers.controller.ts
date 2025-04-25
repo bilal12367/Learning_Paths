@@ -15,15 +15,19 @@ export class ServersController {
   async createServer(@Req() req: Request): Promise<any> {
     const user = (req as any).user.id;
     const server = await this.serversService
-        .createServer({ 
-          creator: user, 
-          server_logo: req.body.server_logo, 
-          server_name: req.body.server_name 
-        } as CreateServerDto)
-    
+      .createServer({
+        creator: user,
+        server_logo: req.body.server_logo,
+        server_name: req.body.server_name
+      } as CreateServerDto)
+
     const createdServer = await this.serversService.getServerById(server.id)
     return createdServer;
   }
 
-  
+  @Get('/getUserJoinedServers')
+  async getUserJoinedServers(@Req() req: Request): Promise<any> {
+    const userId = (req as any).user.id;
+    return await this.serversService.getUserJoinedServers(userId)
+  }
 }

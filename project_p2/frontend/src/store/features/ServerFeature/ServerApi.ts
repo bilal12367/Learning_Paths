@@ -2,9 +2,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const url = "http://localhost:5000/api/servers"
 
 
-const AuthApi = createApi({
-    reducerPath: 'auth_api',
-    baseQuery: fetchBaseQuery({ baseUrl: url, credentials: 'include'}),
+const ServerApi = createApi({
+    reducerPath: 'server_api',
+    baseQuery: fetchBaseQuery({ baseUrl: url, credentials: 'include' }),
     endpoints: (builder) => ({
         createServer: builder.mutation({
             query: (body: CreateServerDto) => ({
@@ -13,8 +13,15 @@ const AuthApi = createApi({
                 body,
             }),
         }),
+        getJoinedServers: builder.query<{ id: string, image: string, server_name: string }[], void>({
+            query: () => ({
+                url: `getUserJoinedServers`,
+                method: 'GET',
+            }),
+
+        })
     })
 })
 
-export default AuthApi
-export const { useCreateServerMutation } = AuthApi
+export const { useCreateServerMutation, useGetJoinedServersQuery } = ServerApi
+export default ServerApi

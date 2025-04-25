@@ -75,8 +75,10 @@ const Login = () => {
                 message: loginApiState.isSuccess ? loginApiState.data.message : (loginApiState.error as any).data.message,
                 show: true,
             }, 3000, true)
-            if(loginApiState.isSuccess) {
-                nav('../app')
+            if (loginApiState.isSuccess) {
+                console.log("Log In Success Navigating to App")
+                setTimeout(() => { nav('../app') }, 1000)
+
             }
         }
     }, [loginApiState])

@@ -6,7 +6,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE3NDUwOTUwNDAsImV4cCI6MTc0NzY4NzA0MH0.JB1nTzgaGPk-fdWyYt3pnrzydcobP0XDMSaktuj0xeU
 
 {
-    "server_name": "test1",
+    "server_name": "test2",
     "server_logo": "b2a2b6cb-3c35-435c-ac3d-f7d0f936cafa"
 }
 
@@ -15,3 +15,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiO
 GET http://localhost:5000/api/servers/all
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE3NDUwOTUwNDAsImV4cCI6MTc0NzY4NzA0MH0.JB1nTzgaGPk-fdWyYt3pnrzydcobP0XDMSaktuj0xeU
+
+
+
+###
+GET http://localhost:5000/api/servers/getUserJoinedServers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJpYXQiOjE3NDUwOTUwNDAsImV4cCI6MTc0NzY4NzA0MH0.JB1nTzgaGPk-fdWyYt3pnrzydcobP0XDMSaktuj0xeU
+
+
