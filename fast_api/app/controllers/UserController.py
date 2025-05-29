@@ -7,5 +7,5 @@ user_controller = APIRouter(prefix='/users')
 @user_controller.post('/add')
 def save_user(user: Create_User, user_service: UserService = Depends()):
     user = user_service.create_user(user)
-    print(user.__dict__)
-    return user.__dict__
+    
+    return user

@@ -7,5 +7,5 @@ class UserModel(Base):
     
     id: int = Column(Integer, autoincrement=True, primary_key=True)
     name: str = Column(String(40))
-    email: str = Column(String(30))
+    email: str = Column(String(30), unique=True)
     dob: str = Column(String(20))
