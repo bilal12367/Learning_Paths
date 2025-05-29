@@ -3,3 +3,5 @@ project_p2/
 **/*.safetensors
 
 *.safetensors
+
+.vscode
