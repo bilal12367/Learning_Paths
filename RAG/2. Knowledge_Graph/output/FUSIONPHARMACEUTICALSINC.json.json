@@ -1,0 +1,58 @@
+{
+    "total_token": 1557,
+    "file_name": "FUSIONPHARMACEUTICALSINC_06_05_2020-EX-10.17-Supply Agreement - FUSION.pdf",
+    "context": [
+        "Supply Agreement - FUSION IN WITNESS WHEREOF, the Parties hereto have each caused this Supply Agreement to be duly executed as of the Effective Date",
+        " Centre for Probe Development and Commercialization McMaster University Nuclear Research Building, A316 1280 Main Street West Hamilton, Ontario Canada, L8S 4K1 Fusion Pharmaceuticals Inc",
+        " 270 Longwood Road South Hamilton, Ontario Canada, L8P 0A6 By By Name Name Title Title Date Date [SIGNATURE PAGE] Page 13 of 13 CONFIDENTIAL(c) this Agreement has been duly authorized, executed and delivered by such Party and constitutes a legal, valid and binding obligation of such Party enforceable against such Party in accordance with its terms except as enforceability may be limited by applicable bankruptcy, insolvency, reorganization, receivership, moratorium, fraudulent transfer, or other similar laws affecting the rights and remedies of creditors generally and by general principles of equity\u037e Page 6 of 13 CONFIDENTIALSupply Agreement - FUSION SCHEDULE 1: SUPPLY PRICING [***] 4",
+        " Production Standby Fee: a fee of $45,000 per month shall apply to [***]",
+        " CONFIDENTIAL Page 1 of 2 CONFIDENTIAL12",
+        " Non-Solicitation",
+        " During the term and for a period of [***] thereafter, neither party shall solicit, induce, encourage or attempt to induce or encourage any employee of the other party with whom such party has had direct contact to terminate his or her employment with such other party or to breach any other obligation to such other party",
+        " This section is not meant to encompass general solicitations such as may be found in newspaper advertisements and the like and the interviewing or hiring of any person who responds to a general solicitation 13",
+        " FORCE MAJEURE",
+        " NEITHER PARTY SHALL BE LIABLE FOR FAILURE TO PERFORM, OR DELAY IN THE PERFORMANCE OF, ITS OBLIGATIONS UNDER THIS AGREEMENT (OTHER THAN PAYMENT OBLIGATIONS) WHEN SUCH FAILURE OR DELAY IS CAUSED BY AN EVENT OF FORCE MAJEURE",
+        " FOR PURPOSES OF THIS AGREEMENT, AN EVENT OF FORCE MAJEURE MEANS ANY EVENT OR CIRCUMSTANCE BEYOND THE REASONABLE CONTROL OF THE AFFECTED PARTY",
+        " INCLUDING BUT NOT LIMITED TO, WAR, INSURRECTION, RIOT, FIRE, FLOOD OR OTHER UNUSUAL WEATHER CONDITION, EXPLOSION",
+        " ACT OF GOD, PERIL OF THE SEA, STRIKE, LOCKOUT OR OTHER INDUSTRIAL DISTURBANCE, SABOTAGE, ACCIDENT, EMBARGO, BREAKAGE OF MACHINERY OR APPARATUS, INJUNCTION, ACT OF GOVERNMENTAL AUTHORITY, COMPLIANCE WITH GOVERNMENTAL ORDER ON NATIONAL DEFENSE REQUIREMENTS, OR INABILITY TO OBTAIN FUEL, POWER, RAW MATERIALS, LABOR OR TRANSPORTATION FACILITIES",
+        " IF, DUE TO ANY EVENT OF FORCE MAJEURE, EITHER PARTY SHALL BE UNABLE TO FULFILL ITS OBLIGATIONS UNDER THIS AGREEMENT (OTHER THAN PREVIOUSLY ACCRUED PAYMENT OBLIGATIONS FROM COMPLETED WORK, THE AFFECTED PARTY SHALL IMMEDIATELY NOTIFY THE OTHER PARTY OF SUCH INABILITY AND OF THE PERIOD DURING WHICH SUCH INABILITY IS EXPECTED TO CONTINUE AND SHALL USE COMMERCIALLY REASONABLE EFFORTS TO MITIGATE THE LENGTH AND EFFECT OF SUCH FORCE MAJEURE EVENT",
+        " Page 10 of 13 CONFIDENTIAL"
+    ],
+    "response": {
+        "organizations_involved": [
+            {
+                "name": "Centre for Probe Development and Commercialization McMaster University",
+                "email": null,
+                "phone": null
+            },
+            {
+                "name": "Fusion Pharmaceuticals Inc.",
+                "email": null,
+                "phone": null
+            }
+        ],
+        "contract_agreement_summary": [
+            "Supply Agreement between Centre for Probe Development and Commercialization McMaster University and Fusion Pharmaceuticals Inc.",
+            "Agreement is legally binding and enforceable."
+        ],
+        "compliance_and_expectations_summary": [
+            "Parties must not solicit employees of the other party with whom they have had direct contact to terminate employment or breach obligations.",
+            "Neither party is liable for failure or delay in performance due to Force Majeure events (excluding payment obligations).",
+            "Affected party must notify the other party immediately of any Force Majeure event and mitigate its effects."
+        ],
+        "amount_deliverables_for_shipments": [
+            {
+                "amount": "$45,000",
+                "period": "per month",
+                "description": "Production Standby Fee"
+            }
+        ],
+        "contract_start_date": null,
+        "contract_end_date": null,
+        "termination_and_expiry_summary": [
+            "Enforceability may be limited by bankruptcy, insolvency, reorganization, receivership, moratorium, fraudulent transfer, or other similar laws affecting creditors' rights.",
+            "Agreement can be terminated or suspended due to events of Force Majeure."
+        ]
+    },
+    "file_token": 11080.25
+}

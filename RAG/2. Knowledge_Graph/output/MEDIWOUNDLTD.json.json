@@ -1,0 +1,112 @@
+{
+    "total_token": 2300,
+    "file_name": "MEDIWOUNDLTD_01_15_2014-EX-10.6-SUPPLY AGREEMENT.pdf",
+    "context": [
+        "procure that its Affiliates and Sub-Contractors comply fully with the provision of this Agreement in connection with such performance",
+        " 13",
+        " Miscellaneous 13",
+        "1 Failure or delay by either party in exercising or enforcing any right or remedy under this Agreement in whole or in part shall not be deemed a waiver thereof or prevent the subsequent exercise of that or any other rights or remedy",
+        " 13",
+        "2 CBC and its employees and MediWound and its employees shall at all times be considered as independent contractors of each other, and at no time or under any circumstances shall they be considered employees, representatives, partners or agents of each other",
+        " 13",
+        "3 This Agreement shall constitute the entire agreement and understanding of the parties relating to the subject matter of this Agreement and supersede all prior oral or written agreements, understandings or arrangements between them relating to such subject, except for the TT Agreement",
+        " The MOU shall be deemed so superseded by this Agreement only upon the Effective Date",
+        " 13",
+        "4 Other than as explicitly amended and marked herein, all applicable terms and conditions of the Agreement as originally executed by the parties shall remain without change and shall continue to be binding and in full force and effect",
+        " No change or addition may be made to this Agreement except in writing signed by the duly authorized representatives of both parties",
+        " 13",
+        "5 The provisions intended by their nature to survive the termination or expiration of this Agreement shall so survive including without limiting Sections 1, 3",
+        "2, 5",
+        "1, 5",
+        "2, 5",
+        "4, 5",
+        "8, 5",
+        "10, 7, 7A, 7B, 8, 11, 13 (as amended), 14 and 15",
+        " Without derogating from the foregoing, it is clarified that the restriction with respect to MediWound\u2019s intellectual property and CBC\u2019s obligations under the TT Agreement as well as MediWound\u2019s exclusive rights under this Agreement (as amended) shall continue to apply and survive the termination or expiration of the Agreement",
+        " 14",
+        " NoticesList of Exhibits Exhibit 1",
+        "13 - Current Bromelain SP Specifications Exhibit 4",
+        "2 - Price list per annual quantity Exhibit A - a copy of this Supply Agreement as originally signed on 11/1/2001 *** Confidential treatment has been requested for redacted portions of this exhibit",
+        " This copy omits the information subject to the confidentiality request",
+        " Omissions are designated as [***]",
+        " A complete version of this exhibit has been provided separately to the Securities and Exchange Commission",
+        " 20of price shall be considered by MediWound at CBC\u2019s written request without the limit of no more often than once every [***] months",
+        " 4",
+        "2",
+        "3 MediWound shall make payment for each Bromelain SP batch that was supplied by CBC on a [***] days basis as of the date of delivery of the applicable batch at MediWound, provided that MediWound has provided CBC with an Acceptance Batch Notice for such purchased batch pursuant to Section 6",
+        "4",
+        " Payment for each purchase batch shall be effected by MediWound by swift to a bank account designated by CBC, or by other requested method as agreed between the parties",
+        " MediWound shall make down payment of USD[***]/kg for the [***]% of the amount of Annual Forecast before Dec",
+        "31 of the respective year for the insurance of components and materials and maintenance of manufacture and supply capacity of the requested [***]% of the next calendar year\u2019s Annual Forecast",
+        " The down payment will be then deducted respectively as every shipment is made to MediWound and listed in CBC\u2019s Invoice to MediWound",
+        " 4",
+        "2",
+        "4 Payment shall be made directly to CBC for payment for each order of Bromelain SP or, at CBC\u2019s written request, to Golden Life International Co",
+        ", Ltd",
+        " on CBC\u2019s behalf, for payments other than any order of Bromelain SP (\u201cPayee\u201d)\u037e provided however, that any such payment to the Payee shall be considered as valid payment to CBC (as if made directly to CBC) in accordance with this Agreement, and that so long as such payment is made in accordance with CBC\u2019s said request, CBC shall have no claims or demands against MediWound for non-payment or in any other respect whatsoever in this regard",
+        " CBC solely shall be responsible to ensure that payment by MediWound to the Payee pursuant to CBC\u2019s request does not violate any applicable laws and regulations",
+        " Any tax implications due to payment to the Payee in accordance with CBC\u2019s request shall be borne by CBC",
+        " For avoidance of doubt, it is clarified that the Payee shall not be consideredExhibit A - a copy of this Supply Agreement as originally signed on 11/1/2001 [Omitted: Agreement no longer in effect] *** Confidential treatment has been requested for redacted portions of this exhibit",
+        " This copy omits the information subject to the confidentiality request",
+        " Omissions are designated as [***]",
+        " A complete version of this exhibit has been provided separately to the Securities and Exchange Commission",
+        " 1"
+    ],
+    "response": {
+        "organizations_involved": [
+            {
+                "name": "CBC",
+                "email": null,
+                "phone": null
+            },
+            {
+                "name": "MediWound",
+                "email": null,
+                "phone": null
+            },
+            {
+                "name": "Golden Life International Co., Ltd.",
+                "email": null,
+                "phone": null
+            }
+        ],
+        "contract_agreement_summary": [
+            "CBC and MediWound are independent contractors of each other.",
+            "The agreement constitutes the entire understanding between the parties, superseding prior agreements except for the TT Agreement.",
+            "All original terms of the executed agreement remain binding unless explicitly amended in writing.",
+            "The agreement includes exhibits detailing Bromelain SP specifications and price lists.",
+            "MediWound will consider price changes at CBC's request, no more than once every 7 months.",
+            "MediWound will make payments for Bromelain SP batches within 45 days of delivery, pending acceptance.",
+            "MediWound will make a down payment of USD 12/kg for 15% of the Annual Forecast before Dec. 31 for insurance of components, materials, and capacity maintenance.",
+            "Payment can be made directly to CBC or, upon written request, to Golden Life International Co., Ltd., with such payment considered valid fulfillment to CBC.",
+            "CBC is responsible for ensuring payments to Golden Life International Co., Ltd. comply with applicable laws and regulations, and bears any related tax implications."
+        ],
+        "compliance_and_expectations_summary": [
+            "CBC must ensure its Affiliates and Sub-Contractors comply with the agreement.",
+            "Failure to enforce a right or remedy does not waive that right.",
+            "CBC and MediWound must maintain their status as independent contractors.",
+            "Changes to the agreement require written consent from both parties.",
+            "CBC is responsible for tax implications related to payments made to Golden Life International Co., Ltd.",
+            "CBC must ensure that payment by MediWound to Golden Life International Co., Ltd. does not violate any applicable laws and regulations."
+        ],
+        "amount_deliverables_for_shipments": [
+            {
+                "amount": "Bromelain SP batches",
+                "period": "As supplied",
+                "description": "Shipments of Bromelain SP batches from CBC to MediWound, with payment terms based on delivery and acceptance."
+            },
+            {
+                "amount": "15% of the Annual Forecast",
+                "period": "Annual",
+                "description": "Down payment made by MediWound to CBC for insurance of components and materials and maintenance of manufacture and supply capacity."
+            }
+        ],
+        "contract_start_date": "2001-11-01",
+        "contract_end_date": null,
+        "termination_and_expiry_summary": [
+            "Provisions intended to survive termination or expiration include sections related to intellectual property, CBC's obligations under the TT Agreement, and MediWound's exclusive rights.",
+            "The restriction with respect to MediWound\u2019s intellectual property and CBC\u2019s obligations under the TT Agreement as well as MediWound\u2019s exclusive rights under this Agreement shall continue to apply and survive the termination or expiration of the Agreement."
+        ]
+    },
+    "file_token": 13536.75
+}

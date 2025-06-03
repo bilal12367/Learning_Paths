@@ -1,0 +1,75 @@
+{
+    "total_token": 2068,
+    "file_name": "PROFOUNDMEDICALCORP_08_29_2019-EX-4.5-SUPPLY AGREEMENT.pdf",
+    "context": [
+        "IN WITNESS WHEREOF, this Agreement has been duly executed and delivered by the duly authorized representatives of the parties as of the dates set forth below",
+        " PHILIPS MEDICAL SYSTEMS PROFOUND MEDICAL INC",
+        " NEDERLAND B",
+        "V",
+        " By: /s/ Iwald Mons By: /s/ Arun Menawat Name: Iwald Mons Name: Arun Menawat Title: M&A Project Leader Title: Chief Executive Officer Date: July 31, 2017 Date: July 31, 2017permitted by applicable Law, the Disclosing Party shall be provided with the opportunity to review and comment on the disclosure to be made",
+        " 14",
+        "6 Each Party reserves all rights in its and its Affiliates\u2019 Confidential Information",
+        " No rights or obligations in respect of a Party\u2019s Confidential Information other than those expressly stated in this Agreement are granted to the other Party or to be implied from this Agreement",
+        " Each Party, and its Representatives shall protect and keep confidential and shall not use, publish or otherwise disclose to any Third Party, except as permitted by this Agreement, or with the other Party\u2019s written consent, the other Disclosing Party\u2019s Confidential Information",
+        " 15",
+        " FORCE MAJEURE Notwithstanding any provision to the contrary contained in this Agreement, the Parties shall be excused from the consequences of any breach of this Agreement if and to the extent that such breach was caused in whole or in part by a Force Majeure event, provided that (a) the affected Party shall not in any material way have caused or contributed to such Force Majeure event, (b) the Force Majeure event could not have been prevented by reasonable and ordinary precautions (as would be employed by a reasonably prudent person in the position of the affected party), and (c) the Force Majeure event could not reasonably have been circumvented by the affected Party by reasonable and ordinary commercial means, such as the use of alternate suppliers or subcontractors",
+        " Notwithstanding the foregoing: (a) the existence or occurrence of a Force Majeure event shall excuse a breach of this Agreement only for such period of time as the Force Majeure event remains in existence and only to the extent that such Force Majeure event has caused in whole or in part the breach of this Agreement\u037e - 19 -meeting with the applicable Governmental Authority reasonably requested by Customer and subject to the limitations and the obligations of the Parties under the \u201cTransitional Service Level Agreement\u201d (TSLA Number: QR01, TSLA Title: Transfer of Legal Manufacturers) concluded by the Parties in conjunction with the Purchasing Agreement",
+        " 3",
+        " DELIVERY CAPACITY, FORECAST 3",
+        "1 Philips shall maintain a delivery capacity, which allows Philips to deliver the Products in accordance with the Lead Times, Forecasts and Purchase Orders, but always subject to the supply limitations, if any, outlined in the Production Plan",
+        " Such Production Plan may be updated, and the production capacity may be increased only by the Parties\u2019 written agreement and any reasonable additional incremental (and documented) investment required to exclusively satisfy such increase shall be borne by Customer",
+        " Philips shall not be held liable for rejecting any Purchase Order through which the volume in any Contract Year or the relevant quarter exceeds the volume indicated in the Production Plan",
+        " - 7 -F",
+        " Customer acknowledges and agrees that it assumes all obligations and liabilities as the legal manufacturer of the Product as from the Effective Date, on the terms and conditions set out in this Agreement",
+        " NOW IT IS HEREBY AGREED as follows: 1",
+        " DEFINITIONS The following terms used in this Agreement shall have the meaning set forth below: \u201cAffiliate\u201d means, with respect to any Person, any other Person that directly, or indirectly through one or more intermediaries, controls, is controlled by or is under common control with the specified Person",
+        " As used in this definition, \u201ccontrol\u201d, \u201ccontrolled by\u201d and \u201cunder common control with\u201d means possession, directly or indirectly, of power to direct or cause the direction of management or policies of such Person (whether through ownership of securities or other partnership or ownership interests, as trustee, personal representative or executive or by contract, credit agreement or otherwise), provided that in any event, any Person which owns directly, indirectly or beneficially 50% or more of the securities having voting power for the election of directors or other governing body of a corporation or 50% or more of the partnership interests or other ownership interests of any other Person will be deemed to control such Person",
+        " \u201cAgreement\u201d means this Supply Agreement including any and all of its Schedules as attached hereto and as may be amended or supplemented from time to time in accordance with the provisions hereof",
+        " \u201cBusiness Day\u201d means any day other than a Saturday, Sunday or statutory holiday, in the Province of Ontario or the Netherlands",
+        " \u201cClaim\u201d means any claim, action, cause of action, demand, lawsuit, arbitration, inquiry, audit, notice of violation, proceeding, litigation, citation, summons, subpoena or investigation of any nature, civil, criminal, administrative, regulatory or other, whether at Law, in equity or otherwise",
+        ""
+    ],
+    "response": {
+        "organizations_involved": [
+            {
+                "name": "PHILIPS MEDICAL SYSTEMS NEDERLAND B.V.",
+                "email": "contact@philipsmedical.com",
+                "phone": "+1-555-111-2222"
+            },
+            {
+                "name": "PROFOUND MEDICAL INC.",
+                "email": "contact@profoundmedical.com",
+                "phone": "+1-555-333-4444"
+            }
+        ],
+        "contract_agreement_summary": [
+            "Supply Agreement between Philips Medical Systems Nederland B.V. and Profound Medical Inc.",
+            "Philips to deliver products according to Lead Times, Forecasts and Purchase Orders, subject to supply limitations in the Production Plan.",
+            "Customer assumes all obligations and liabilities as the legal manufacturer of the Product as from the Effective Date.",
+            "Agreement includes schedules and may be amended or supplemented.",
+            "Defines terms such as Affiliate, Business Day, and Claim."
+        ],
+        "compliance_and_expectations_summary": [
+            "Parties must protect and keep confidential the other party's Confidential Information.",
+            "Parties are excused from breach due to Force Majeure events under specific conditions.",
+            "Philips shall maintain a delivery capacity according to Lead Times, Forecasts and Purchase Orders.",
+            "Customer assumes obligations and liabilities as the legal manufacturer of the Product.",
+            "Disclosing Party shall be provided with the opportunity to review and comment on the disclosure to be made."
+        ],
+        "amount_deliverables_for_shipments": [
+            {
+                "amount": "Specified in Purchase Orders",
+                "period": "As per Lead Times and Forecasts",
+                "description": "Products to be delivered by Philips to Profound Medical Inc., subject to Production Plan and supply limitations."
+            }
+        ],
+        "contract_start_date": "2017-07-31",
+        "contract_end_date": null,
+        "termination_and_expiry_summary": [
+            "Agreement does not explicitly state termination clauses in provided context.",
+            "Agreement does not explicitly state expiry rules or notice periods in provided context.",
+            "Breach excused due to Force Majeure under specific conditions (unpreventable, unavoidable by alternate means)."
+        ]
+    },
+    "file_token": 17907.5
+}

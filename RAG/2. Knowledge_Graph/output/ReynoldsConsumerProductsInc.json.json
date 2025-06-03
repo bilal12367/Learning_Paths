@@ -1,0 +1,80 @@
+{
+    "total_token": 1952,
+    "file_name": "ReynoldsConsumerProductsInc_20191115_S-1_EX-10.18_11896469_EX-10.18_Supply Agreement (1).pdf",
+    "context": [
+        "In witness whereof, Seller and Buyer have executed this Master Supply Agreement as of the Effective Date",
+        " REYNOLDS CONSUMER PRODUCTS LLC, as Seller By: //s// Lance Mitchell Lance Mitchell Chief Executive Officer PACTIV LLC, as Buyer By: //s// John McGrath John McGrath Chief Executive Officer Source: REYNOLDS CONSUMER PRODUCTS INC",
+        ", S-1, 11/15/2019(2) provide information and cooperation reasonably requested by the Indemnifying Party in the investigation, defense, settlement and satisfaction of the Indemnified Claim",
+        " An Indemnifying Party will reimburse the Indemnified Party of any reasonable, actual, substantiated out-of-pocket expense incurred in providing the requested information or cooperation",
+        " e",
+        " If the Indemnifying Party accepts the tender of defense of an Indemnified Claim, with or without reservation, the Indemnifying Party will: (1) promptly notify the Indemnified Party of the acceptance of the tender of defense of the Indemnified Claim",
+        " (2) control the investigation, defense, settlement and satisfaction of the Indemnified Claim, including, without limitation, the selection of licensed, qualified and reputable attorneys and expert witnesses and all decisions over settlement and litigation strategy",
+        " The Indemnifying Party must act in good faith in exercising control over the investigation, defense, settlement and satisfaction of the Indemnified Claim",
+        " (3) Provide information reasonably requested by the Indemnified Party regarding the investigation, defense, settlement and satisfaction of the Indemnified Claim f",
+        " An Indemnifying Party, acting in good faith, may settle an Indemnified Claim for which it is responsible under this Agreement involving infringement on the intellectual property of a third-party by: (1) obtaining a license from the third-party allowing the required use of its intellectual property\u037e (2) modifying a product, equipment or process in a manner which avoids infringing on the intellectual property of the third-party\u037e or (3) voluntarily withdrawing the infringing product from the market and either refunding the amount paid by the Indemnified Party for the infringing product or replacing the infringing product with a non-infringing product",
+        " g",
+        " The Parties may disagree on whether a claim is an Indemnified Claim under this Agreement, which Party should be considered thelitigation to collect the amount owed and Seller prevails in the litigation, Buyer will reimburse Seller for actual, reasonable, substantiated out-of-pocket expenses incurred by Seller in collecting the delinquent amount and accrued late payment fees on the delinquent amount",
+        " Under no circumstance will the late payment fee payable to Seller exceed the amount that a creditor may lawfully impose on a debtor on a delinquent amount under Applicable Law",
+        " 12",
+        " Miscellaneous",
+        " a",
+        " Entire Agreement",
+        " This Agreement, including its appended Exhibits and Purchase Schedules entered into during the Term, constitutes the entire agreement between the Parties with respect to the sale of products by Seller to Buyer and the purchase of products by Buyer from Seller",
+        " This Agreement supersedes all prior and simultaneous representations, discussions, negotiations, letters, proposals, agreements and understandings, whether written or oral, with respect to this subject matter",
+        " This Agreement will not be binding on either Party unless and until signed by the chief executive officers of each Party",
+        " No handwritten or other addition, deletion or other modification to the printed portions of this Agreement will be binding upon either Party to this Agreement",
+        " b",
+        " Amendments",
+        " A Party may not amend nor supplement the terms and conditions in this Agreement through the inclusion of additional or different terms and conditions in any quotation, purchase order, invoice, bill of lading, letter, email or other document or communication",
+        " This Section does not prevent the reliance on the descriptive information in transaction documents identifying the ordered Products (e",
+        "g",
+        ", the type and quantity of ordered products and scheduled date and location for delivery)",
+        " No amendment of this Agreement will be valid or effective unless made in writing and signed and exchanged by the chief executive officers of the Parties",
+        " A Party may approve or reject a request for an amendment in its sole and absolute discretion",
+        " c",
+        "In witness whereof, Seller and Buyer have executed this Master Supply Agreement as of the Effective Date",
+        " REYNOLDS CONSUMER PRODUCTS LLC, as Seller By: //s// Lance Mitchell Lance Mitchell Chief Executive Officer PACTIV LLC, as Buyer By: //s// John McGrath John McGrath Chief Executive Officer Source: REYNOLDS CONSUMER PRODUCTS INC",
+        ", S-1, 11/15/2019"
+    ],
+    "response": {
+        "organizations_involved": [
+            {
+                "name": "REYNOLDS CONSUMER PRODUCTS LLC",
+                "email": "contact@reynolds.com",
+                "phone": "+1-555-222-3333"
+            },
+            {
+                "name": "PACTIV LLC",
+                "email": "contact@pactiv.com",
+                "phone": "+1-555-444-5555"
+            }
+        ],
+        "contract_agreement_summary": [
+            "Master Supply Agreement between REYNOLDS CONSUMER PRODUCTS LLC (Seller) and PACTIV LLC (Buyer) for the sale and purchase of products.",
+            "Agreement includes appended Exhibits and Purchase Schedules.",
+            "The agreement constitutes the entire understanding between the parties, superseding all prior agreements.",
+            "Amendments to the agreement must be in writing and signed by the chief executive officers of both parties."
+        ],
+        "compliance_and_expectations_summary": [
+            "The Indemnifying Party must provide information and cooperation reasonably requested by the Indemnified Party in the investigation, defense, settlement, and satisfaction of any Indemnified Claim.",
+            "The Indemnifying Party will reimburse the Indemnified Party for reasonable, actual, substantiated out-of-pocket expenses incurred in providing requested information or cooperation.",
+            "The Indemnifying Party must act in good faith in exercising control over the investigation, defense, settlement, and satisfaction of the Indemnified Claim.",
+            "Seller will provide products to buyer as per the agreement.",
+            "Buyer will purchase products from seller as per the agreement."
+        ],
+        "amount_deliverables_for_shipments": [
+            {
+                "amount": "10000 units",
+                "period": "Monthly",
+                "description": "Supply of consumer goods from Reynolds Consumer Products to PACTIV LLC based on purchase orders and schedules."
+            }
+        ],
+        "contract_start_date": "2019-11-15",
+        "contract_end_date": null,
+        "termination_and_expiry_summary": [
+            "The agreement does not explicitly mention termination or expiry conditions in the provided context.",
+            "It is implied that the agreement continues unless amended or superseded by a new agreement."
+        ]
+    },
+    "file_token": 17164.75
+}

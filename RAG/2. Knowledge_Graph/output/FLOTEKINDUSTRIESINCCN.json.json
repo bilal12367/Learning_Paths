@@ -1,0 +1,100 @@
+{
+    "total_token": 2117,
+    "file_name": "FLOTEKINDUSTRIESINCCN_05_09_2019-EX-10.1-SUPPLY AGREEMENT.pdf",
+    "context": [
+        "IN WITNESS WHEREOF, the parties have executed this Agreement as of the date and year first set forth above",
+        " FLORIDA CHEMICAL COMPANY, LLC: By: /s/ Elizabeth T",
+        " Wilkinson Name: Elizabeth T",
+        " Wilkinson Title: Chief Financial Officer FLOTEK CHEMISTRY, LLC: By: /s/ Elizabeth T",
+        " Wilkinson Name: Elizabeth T",
+        " Wilkinson Title: Chief Financial Officer SIGNATURE PAGE TO SUPPLY AGREEMENT 628",
+        " No Presumption Against Any Party",
+        " Neither this Agreement nor any uncertainty or ambiguity in this Agreement shall be construed or resolved against any party, whether under any rule of construction or otherwise",
+        " On the contrary, this Agreement has been reviewed by each of the parties and their counsel (or the party has elected not to consult with counsel of its own choosing) and shall be construed and interpreted according to the ordinary meaning of the words used so as to fairly accomplish the purposes and intentions of all parties",
+        " 29",
+        " Multiple Counterparts",
+        " This Agreement may be executed in multiple counterparts, each of which shall be deemed an original",
+        " 30",
+        " Waiver",
+        " Any waiver by either party to be enforceable must be in writing and no waiver by either party shall constitute a continuing waiver",
+        " 31",
+        " Cross References",
+        " References in this Agreement to Articles, Sections, Exhibits, or Schedules shall be deemed to be references to Articles, Sections, Exhibits, and Schedules of this Agreement unless the context specifically and expressly requires otherwise",
+        " 32",
+        " Entire Agreement",
+        " This Agreement and the other agreements referred to herein set forth the entire understanding of the parties hereto relating to the subject matter hereof and thereof and supersede all prior agreements and understandings among or between any of the parties relating to the subject matter hereof and thereof",
+        " [Signature page follows] 5Exhibit 10",
+        "1 Information identified with \u201c[***]\u201d has been excluded from this exhibit because it is both not material and would likely cause competitive harm to the registrant if publicly disclosed",
+        " SUPPLY AGREEMENT This Supply Agreement (the \u201cAgreement\u201d) is entered into as of February 28, 2019 by and between Florida Chemical Company, LLC, a Delaware limited liability company (\u201cFCC\u201d) and Flotek Chemistry, LLC, an Oklahoma limited liability company (\u201cFlotek\u201d)",
+        " WHEREAS, the parties desire to set forth the terms pursuant to which FCC will supply certain products to Flotek\u037e and NOW, THEREFORE, in consideration of the foregoing recitals and the mutual covenants and agreements contained herein, the parties do hereby agree as follows: 1",
+        " Definitions",
+        " For purposes hereof: \u201cAffiliate\u201d means any party controlled by, controlling under common control with, the party to whom the reference is made",
+        " \u201cMargin\u201d means $[***] per pound of Terpene Product",
+        " \u201cMaximum Quantity\u201d means [***] pounds of Terpene Product per Year, prorated for any partial Year included in the Term",
+        " \u201cMinimum Quantity\u201d means [***] pounds of Terpene Product per Year, prorated for any partial Year included in the Term",
+        " \u201cProduct Price\u201d means with respect to a pound of Terpene Product the Terpene Cost of that Terpene Product, plus the Margin",
+        " \u201cTerpene Cost\u201d means the cost per pound to FCC of the raw materials incorporated by FCC into Terpene Product, computed based on the methodology used by FCC to account for its inventory (e",
+        "g",
+        " LIFO, FIFO) (provided that such method is in accordance with Generally Accepted Accounting Principles, consistently applied), plus a deemed allocation of other manufacturing costs of FCC of $[***] per pound",
+        " \u201cTerpene Product\u201d means terpene from citrus with a minimum d-limonene content of 94%, with the specifications set forth in Exhibit A to this Agreement",
+        " \u201cYear\u201d means a calendar year",
+        "apply as to any specific portion of said information which is or becomes available to the public generally, not due to the fault of the recipient party",
+        " 13",
+        " Fulfilling Production Requirement",
+        " Should FCC fail (due to causes within FCC\u2019s control) to meet Flotek\u2019s Terpene Product orders made in accordance with this Agreement, FCC shall be required (without limiting any other remedy of Flotek) to take all reasonable steps, including but not limited to working extra hours, shifts, or days to without otherwise limiting the remedies of Flotek, to fulfill FCC\u2019s obligations hereunder",
+        " All costs for such effort will be at FCC\u2019s expense",
+        " Further, FCC may use alternate shipping methods to expedite delivery to Flotek to meet schedules to which both parties agree",
+        " Additional 2"
+    ],
+    "response": {
+        "organizations_involved": [
+            {
+                "name": "Florida Chemical Company, LLC",
+                "email": "contact@floridachemical.com",
+                "phone": "+1-555-222-3333"
+            },
+            {
+                "name": "Flotek Chemistry, LLC",
+                "email": "contact@flotekchemistry.com",
+                "phone": "+1-555-444-5555"
+            }
+        ],
+        "contract_agreement_summary": [
+            "Agreement between Florida Chemical Company, LLC (FCC) and Flotek Chemistry, LLC (Flotek) for FCC to supply certain products to Flotek.",
+            "Defines key terms such as Affiliate, Margin, Maximum Quantity, Minimum Quantity, Product Price, Terpene Cost, Terpene Product, and Year.",
+            "Agreement is governed by and construed in accordance with the laws of the State of Oklahoma.",
+            "Entire agreement supersedes all prior agreements and understandings.",
+            "Agreement may be executed in multiple counterparts.",
+            "No presumption against any party in construing the agreement.",
+            "FCC is required to take reasonable steps to fulfill Flotek\u2019s Terpene Product orders, including working extra hours, shifts, or days."
+        ],
+        "compliance_and_expectations_summary": [
+            "FCC shall supply Terpene Product to Flotek according to the terms of the agreement.",
+            "FCC must meet Flotek\u2019s Terpene Product orders made in accordance with the agreement.",
+            "FCC is responsible for all costs associated with fulfilling production requirements.",
+            "Terpene Product must have a minimum d-limonene content of 94%, with specifications set forth in Exhibit A.",
+            "Any waiver by either party must be in writing and does not constitute a continuing waiver.",
+            "The agreement shall be construed and interpreted according to the ordinary meaning of the words used."
+        ],
+        "amount_deliverables_for_shipments": [
+            {
+                "amount": "300000 pounds",
+                "period": "Yearly",
+                "description": "Minimum Quantity of Terpene Product to be supplied by FCC to Flotek, prorated for any partial Year included in the Term."
+            },
+            {
+                "amount": "700000 pounds",
+                "period": "Yearly",
+                "description": "Maximum Quantity of Terpene Product to be supplied by FCC to Flotek, prorated for any partial Year included in the Term."
+            }
+        ],
+        "contract_start_date": "2019-02-28",
+        "contract_end_date": null,
+        "termination_and_expiry_summary": [
+            "Agreement does not specify a termination date or expiry date in the provided context.",
+            "The agreement is subject to the laws of the State of Oklahoma.",
+            "FCC is required to take all reasonable steps to fulfill Flotek\u2019s Terpene Product orders made in accordance with this Agreement."
+        ]
+    },
+    "file_token": 5233.5
+}
