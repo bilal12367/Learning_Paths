@@ -1,4 +1,0 @@
-
-interface verifyDTO {
-    token: string
-}
