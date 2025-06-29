@@ -1,0 +1,10 @@
+
+
+Add Error Handler Middleware
+
+Add Authentication Layer
+
+Add Bcrypt Password encoder
+
+Refactor code, Refactor Types
+

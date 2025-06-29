@@ -1,0 +1,142 @@
+
+
+.app-root-cont {
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* #1 Side Navigation */
+.side-nav {
+    min-width: 3%;
+    height: 100%;
+    transition: min-width 0.1s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 4px 0px #888888;
+}
+
+.item {
+    padding: 14px;
+    position: relative;
+    border-radius: 4px;
+    margin: 5px 8px;
+    background-color: rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: rgba(0,0,0,0.14);
+}
+
+
+.item > span {
+    margin-left: 14px;
+    letter-spacing: 1.3px;
+    font-size: 12px;
+    font: 'calibri';
+}
+
+.side-nav-tile {
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tile-img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.server-list > div:not(:first-child) {
+    margin-top: 14px;
+}
+
+/*  #2 Chat List Section */
+.chat-list-section {
+    width: 22%;
+    min-width: 300px;
+    height: 100vh;
+    overflow-y: hidden;
+    border-right: 1px solid #e7e7e7;
+}
+.chat-list {
+    flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.channel-item {
+    padding: 4px 6px !important;
+    margin: 6px 0 6px 6px !important;
+    border-radius: 10px !important;
+    cursor: pointer;   
+}
+.channel-item > img {
+    height: 38px;
+    border-radius: 50%;
+}
+.channel-item:hover {
+    background-color: #e7e7e7;
+}
+.channel-item > div {
+    margin-left: 8px;
+}
+.channel-item > div > span {
+    font-size: 12px;
+}
+.channel-item > div > span:first-child {
+    font-size: 13px;
+    font-weight: bold;
+}
+.search-cont {
+    padding: 14px 20px;
+
+}
+
+
+/* 3. Chat Section */
+.chat-section {
+    flex-grow: 1;
+}
+
+.chat-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.chat-header > span {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 16px;
+}
+
+.chat-message-section {
+    padding: 10px;
+    background-color: white;
+}
+
+.chat-message {
+    margin: 10px 16px;
+}
+.chat-message > img {
+    border-radius: 50%;
+    height: 35px;
+}
+.chat-message > .msg {
+    margin-left: 20px;
+    font-size: 14px;
+    background-color: #e7e7e7;
+    padding: 4px 16px;
+    border-radius: 10px;
+}
+
+/* Dialog CSS */
+.tile {
+    transition: all 0.1s ease-in-out;
+}
+
+.tile:hover {
+    background-color: rgba(0,0,0,0.04);
+}
