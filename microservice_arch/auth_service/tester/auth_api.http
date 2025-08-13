@@ -1,0 +1,29 @@
+
+
+### Register User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "test1@gmail.com",
+  "password": "test123",
+  "username": "testuser1",
+  "confirmPassword": "test123"
+}
+
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "test1@gmail.com",
+    "password": "test123"
+}
+
+### Verify Token
+POST http://localhost:3000/auth/verify
+Content-Type: application/json
+
+{ 
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTc1NDc1NDM2MSwiZXhwIjoxNzU0NzU3OTYxfQ.t3YecthaSvpjX9acm295bflIEE6Gasm1FfY6_7vgyYI"
+}
