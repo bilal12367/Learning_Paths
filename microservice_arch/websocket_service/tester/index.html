@@ -16,7 +16,7 @@
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
     
-            stompClient.subscribe('/topic/userCreated', function (message) {
+            stompClient.subscribe('/topic/userLoggedIn', function (message) {
                 console.log('Received:', JSON.parse(message.body));
             });
     

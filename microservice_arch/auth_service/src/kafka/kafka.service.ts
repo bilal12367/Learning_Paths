@@ -2,6 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { OnModuleInit } from '@nestjs/common/interfaces';
 import { ClientKafka } from '@nestjs/microservices';
 import { Producer } from 'kafkajs';
+import { TTopic, UserCreatedEvent } from './events';
+
 
 @Injectable()
 export class KafkaService implements OnModuleInit {
@@ -13,10 +15,19 @@ export class KafkaService implements OnModuleInit {
         this.producer = await this.kafka.connect();
     }
 
-    async sendMessage(topic: string, message: any) {
+    async sendUserLoggedEvent(topic: TTopic, message: UserCreatedEvent) {
+        console.log("Seding Event: ", message)
         await this.producer.send({
         topic,
         messages: [{ value: JSON.stringify(message) }],
+        });
+    }
+    async sendUserCreatedEvent(topic: TTopic, message: UserCreatedEvent) {
+        console.log("Seding Event: ", message)
+        await this.producer.send({
+        topic,
+        
+        messages: [{ value:  JSON.stringify(message) }],
         });
     }
 }

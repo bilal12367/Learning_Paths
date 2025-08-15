@@ -23,9 +23,9 @@ export class AuthController {
     return this.authService.verifyToken(body.token);
   }
 
-  @MessagePattern('user_logged_in')
-  handleUserCreated(@Payload() data: any) {
-    console.log('User Logged event received:', data);
-    // Handle the user created event, e.g., log it or perform additional actions
-  }
+  // @MessagePattern('user_logged_in')
+  // handleUserCreated(@Payload() data: any) {
+  //   console.log('User Logged event received:', data);
+  //   // Handle the user created event, e.g., log it or perform additional actions
+  // }
 }

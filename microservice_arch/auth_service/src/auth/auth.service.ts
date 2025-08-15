@@ -30,7 +30,11 @@ export class AuthService {
     const newUser = this.userRepository.create(user);
     const savedUser = await this.userRepository.save(newUser);
     const token = await this.generateToken(savedUser);
-    
+    this.kafkaService.sendUserCreatedEvent('user-created', {
+      userId: savedUser.id.toString(),
+      username: savedUser.username,
+      time: new Date().toISOString()
+    })
     return { username: savedUser.username, email: savedUser.email, token };
   }
 
@@ -50,8 +54,8 @@ export class AuthService {
       throw new Error('Invalid password');
     }
     const token = await this.generateToken(foundUser);
-    this.kafkaService.sendMessage('user_logged_in', {
-      userId: foundUser.id,
+    this.kafkaService.sendUserLoggedEvent('user-logged-in', {
+      userId: foundUser.id.toString(),
       username: foundUser.username,
       time: new Date().toISOString()
     })

@@ -1,0 +1,10 @@
+[
+    {
+        "topic": ["user_created" ,"user_logged_in"],
+        "payload": {
+            "userId": "string",
+            "username": "string",
+            "time": "string"
+        }
+    }
+]
