@@ -1,7 +1,7 @@
 
 
 ### Register User
-POST http://localhost:3000/auth/register
+POST http://localhost:3500/auth/register
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### Login User
-POST http://localhost:3000/auth/login
+POST http://localhost:3500/auth/login
 Content-Type: application/json
 
 {
@@ -21,9 +21,17 @@ Content-Type: application/json
 }
 
 ### Verify Token
-POST http://localhost:3000/auth/verify
+GET http://localhost:3500/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTc1NTcwNDk4MywiZXhwIjoxNzU1NzA4NTgzfQ.255Vut5aF7HEf6KlUnvJMqK8tzJ2nFBetOBdf1rervo
 Content-Type: application/json
 
-{ 
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTc1NDc1NDM2MSwiZXhwIjoxNzU0NzU3OTYxfQ.t3YecthaSvpjX9acm295bflIEE6Gasm1FfY6_7vgyYI"
+# { 
+#   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTc1NTU5NDI3NSwiZXhwIjoxNzU1NTk3ODc1fQ.k88q_pcWvHBHmgEc_SBAUFbsvQ4ymkIXksu3p8GfQlI"
+# }
+
+### User Verification
+POST http://localhost:3500/auth/verify-status
+Content-Type: application/json
+
+{
+  "userId": 1
 }

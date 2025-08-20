@@ -27,17 +27,21 @@ export class EmailService {
         const filePath = path.join(__dirname, '..', 'assets','html','template', `${templateName}.html`);
         return fs.readFileSync(filePath, 'utf8');
     }
-    async sendEmail(): Promise<any> {
+    async sendEmail(email: string, token: string): Promise<any> {
         try {
+            var html = this.getHtmlFromFile('Verification_Email')
+            html = html.replace('{{verificationLink}}', process.env.VERIFICATION_EMAIL_LINK + '?token='+token || 'http://localhost:3000/verify?token='+token);
+            this.logger.log("HTML Content: ", html);
             const mailOptions: MailOptions = {
                 from: 'sk.bilal.md@gmail.com',
-                to: 'sk.bilal.md@gmail.com',
+                to: email,
                 subject: "Verification Email",
-                html: this.getHtmlFromFile('Verification_Email'),}
+                html: html}
             const info = await this.transporter.sendMail(mailOptions)
             this.logger.log(`Email sent: ${info.messageId}`);
             this.logger.log("Info: ", info);
-            this.logger.log("Preview URL: ", nodemailer.getTestMessageUrl(info));
+            info.link = nodemailer.getTestMessageUrl(info);
+            this.logger.log("Preview URL: ", info.link);
             return info;
         } catch (error) {
             this.logger.error('Error sending email:', error);

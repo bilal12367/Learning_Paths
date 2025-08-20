@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpStatus, HttpException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { KafkaService } from 'src/kafka/kafka.service';
@@ -18,11 +18,21 @@ export class AuthController {
     return this.authService.loginUser({ email, password });
   }
 
-  @Post('verify')
-  verifyToken(@Body() body: { token: string }) {
-    return this.authService.verifyToken(body.token);
+  @Get('verify')
+  async verifyToken(@Query('token') token: string) {
+    if(!token) {
+      throw new HttpException('Token is required', HttpStatus.BAD_REQUEST);
+    }
+    return await this.authService.userVerification(token);
   }
 
+  @Post('verify-status')
+  async getUserVerificationDetails(@Body() body: {userId: string} ){
+    if(!body.userId) {
+      throw new HttpException('User ID is required', HttpStatus.BAD_REQUEST);
+    }
+    return await this.authService.getUserVerificationData(body.userId);
+  }
   // @MessagePattern('user_logged_in')
   // handleUserCreated(@Payload() data: any) {
   //   console.log('User Logged event received:', data);
