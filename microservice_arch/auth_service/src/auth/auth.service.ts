@@ -4,8 +4,9 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { KafkaService } from 'src/kafka/kafka.service';
+
 import { UserVerification } from './entities/user_verification.entity';
+import { KafkaService } from 'src/kafka/kafka.service';
 
 
 @Injectable()
@@ -29,14 +30,14 @@ export class AuthService {
     }
     user.password = await bcrypt.hash(password, 10);
     
-    // const newUser = this.userRepository.create(user);
-    // const savedUser = await this.userRepository.save(newUser);
+    const newUser = this.userRepository.create(user);
+    const savedUser = await this.userRepository.save(newUser);
     
-    const savedUser: any = user;
+    // const savedUser: any = user;
     savedUser.id = Math.floor(Math.random() * 10000); // Simulating an ID for the example
     
     const token = await this.generateToken(savedUser);
-    this.kafkaService.sendUserCreatedEvent('user-created', {
+    this.kafkaService.sendEvent('user-created', {
       userId: savedUser.id.toString(),
       username: savedUser.username,
       time: new Date().toISOString()
@@ -60,7 +61,7 @@ export class AuthService {
       throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
     const token = await this.generateToken(foundUser);
-    this.kafkaService.sendUserLoggedEvent('user-logged-in', {
+    this.kafkaService.sendEvent('user-logged-in', {
       userId: foundUser.id.toString(),
       username: foundUser.username,
       time: new Date().toISOString()

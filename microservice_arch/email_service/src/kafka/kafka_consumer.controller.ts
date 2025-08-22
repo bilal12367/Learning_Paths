@@ -3,7 +3,7 @@ import { MessagePattern, Payload } from "@nestjs/microservices";
 
 
 
-@Controller('email-consumer')
+@Controller()
 export class KafkaConsumerController {
 
     @MessagePattern('user-created')

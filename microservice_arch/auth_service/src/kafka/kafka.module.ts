@@ -1,23 +1,13 @@
 import { Module } from '@nestjs/common';
-import { KafkaService } from './kafka.service';
+
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { KafkaService } from './kafka.service';
+import { KafkaConfig } from './kafka.config';
 
 @Module({
   imports: [
     ClientsModule.register([
-      {
-        name: 'KAFKA_SERVICE',
-        transport: Transport.KAFKA,
-        options: {
-          client: {
-            clientId: 'my-app',
-            brokers: ['localhost:9092'], // your Kafka broker
-          },
-          consumer: {
-            groupId: 'auth-group', // same groupId = load balancing
-          },
-        },
-      },
+      KafkaConfig
     ]),
   ],
   providers: [KafkaService],
