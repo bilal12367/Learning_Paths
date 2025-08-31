@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Verify Token
-GET http://localhost:3500/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3QxQGdtYWlsLmNvbSIsImlhdCI6MTc1NTcwNDk4MywiZXhwIjoxNzU1NzA4NTgzfQ.255Vut5aF7HEf6KlUnvJMqK8tzJ2nFBetOBdf1rervo
+GET http://localhost:3500/auth/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmMWE2ZTM1LTNjNGItNGJhNi04NDZiLTJmMzgyMWEyNTJmNSIsInVzZXJuYW1lIjoidGVzdHVzZXIxIiwiZW1haWwiOiJ0ZXN0MUBnbWFpbC5jb20iLCJpYXQiOjE3NTY2NDI2MDUsImV4cCI6MTc1NjY0NjIwNX0.q4IPcA1bjy4rpZLOoO02S3zvab0iyVkKfwGKIwe71YA
 Content-Type: application/json
 
 # { 

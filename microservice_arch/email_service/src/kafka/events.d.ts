@@ -1,7 +1,7 @@
 
 // User Events Type Definitions
 
-export type TTopic = 'user-logged-in' | 'user-created';
+export type TTopic = 'user.loggedIn' | 'user.created';
 
 export interface UserLoggedEvent {
     userId: string;

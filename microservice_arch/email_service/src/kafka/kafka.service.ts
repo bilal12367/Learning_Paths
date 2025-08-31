@@ -1,9 +1,10 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { OnModuleDestroy, OnModuleInit } from '@nestjs/common/interfaces';
 import { ClientKafka } from '@nestjs/microservices';
-import { Consumer, EachMessagePayload, Kafka, Producer } from 'kafkajs';
+import { Consumer, EachMessagePayload, Kafka, KafkaMessage, Producer } from 'kafkajs';
 import { TTopic, UserCreatedEvent } from './events';
 import { KafkaConfig } from './kafka.config';
+import { EmailService } from '../email/email.service';
 
 
 @Injectable()
@@ -15,17 +16,33 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
 
     private readonly logger: Logger = new Logger(KafkaService.name);
 
-    async onModuleInit() {
-        await this.producer.connect();
-        await this.consumer.connect();
+    constructor(private readonly emailService: EmailService) {}
 
-        await this.consumer.subscribe({topics: ['user-created', 'user-logged-in'], fromBeginning: false})
-        await this.consumer.run({
-            eachMessage: async (message: EachMessagePayload) => {
-                const { topic, partition, message: msg } = message;
-                this.logger.log(`Received message: ${msg.value} on topic: ${topic}`);
-            }
-        })
+    async onModuleInit() {
+        try {
+            await this.producer.connect();
+            await this.consumer.connect();
+            
+            await this.consumer.subscribe({topics: ['user.created','user.loggedIn'], fromBeginning: false})
+            await this.consumer.run({
+
+                eachMessage: async (message: EachMessagePayload) => {
+                    var topic = message.topic as TTopic;
+                    var msg = message.message.value?.toString() as any;
+                    msg = JSON.parse(msg)
+                    this.logger.log(`Received message: ${JSON.stringify(msg)} on topic: ${topic}`);
+                    switch(topic as TTopic) {
+                        case 'user.created':
+                            this.emailService.sendEmail(msg.email, msg.token )
+                            break
+                        default: this.logger.error(`Topic ${topic} not implemented!! Email Service`)
+                            break
+                    }
+                }
+            })
+        } catch (error) {
+            this.logger.error("Failed to connect to kafka: Email Service")
+        }
     }
     async onModuleDestroy() {
         await this.producer.disconnect();

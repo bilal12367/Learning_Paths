@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -11,12 +11,13 @@ import { KafkaService } from 'src/kafka/kafka.service';
 
 @Injectable()
 export class AuthService {
-
+  private readonly logger: Logger = new Logger(AuthService.name)
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     @InjectRepository(UserVerification) private readonly userVerificationRepository: Repository<UserVerification>,
     private readonly jwtService: JwtService, 
-    private readonly kafkaService: KafkaService
+    private readonly kafkaService: KafkaService,
+    
   ) {}
 
   async registerUser(user: { email: string, password: string, username: string}) {
@@ -32,14 +33,19 @@ export class AuthService {
     
     const newUser = this.userRepository.create(user);
     const savedUser = await this.userRepository.save(newUser);
+
     
     // const savedUser: any = user;
-    savedUser.id = Math.floor(Math.random() * 10000); // Simulating an ID for the example
+    // savedUser.id = Math.floor(Math.random() * 10000); // Simulating an ID for the example
     
     const token = await this.generateToken(savedUser);
-    this.kafkaService.sendEvent('user-created', {
+    const userVerification = this.userVerificationRepository.create({userId: savedUser.id.toString(),email: savedUser.email, token, verification_status: 'pending',createdAt: new Date().toISOString(), verifiedAt: '' })
+    await this.userVerificationRepository.save(userVerification);
+    this.kafkaService.sendEvent('user.created', {
       userId: savedUser.id.toString(),
       username: savedUser.username,
+      token,
+      email: savedUser.email,
       time: new Date().toISOString()
     })
     return { username: savedUser.username, email: savedUser.email, token };
@@ -61,7 +67,7 @@ export class AuthService {
       throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
     const token = await this.generateToken(foundUser);
-    this.kafkaService.sendEvent('user-logged-in', {
+    this.kafkaService.sendEvent('user.loggedIn', {
       userId: foundUser.id.toString(),
       username: foundUser.username,
       time: new Date().toISOString()
@@ -84,14 +90,18 @@ export class AuthService {
       throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
     }
   }
-  async userVerification(token: string) {
+  async userVerification(token: string): Promise<{status: string, message: string, email: string}> {
     try {
       const decoded = await this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
       const user = await this.userRepository.findOne({ where: { id: decoded.id } });
       if (!user) {
         throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
       }
-      return await this.userVerificationRepository.save({userId: decoded.id, email: decoded.email, token, verification_status: 'pending', createdAt: new Date()});
+      await this.userVerificationRepository.update({email: user.email} , { token, verification_status: 'completed', verifiedAt: new Date()});
+      const verificationStatus = await this.userVerificationRepository.findOne({where:{email: user.email},select: {verification_status: true}})
+      if(!verificationStatus?.verification_status)
+        throw new HttpException("Verification Failed due to unknown reason!!", HttpStatus.INTERNAL_SERVER_ERROR)
+      return { email: user.email, message: 'Verification Completed!!', status: verificationStatus.verification_status ? 'completed': 'pending'}
     } catch (error) {
       throw new HttpException('Verification failed: ' + error.message, HttpStatus.UNAUTHORIZED);
     }

@@ -11,7 +11,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
     private readonly kafka: Kafka = new Kafka(KafkaConfig.options.client);
 
     private readonly producer: Producer = this.kafka.producer();
-    private readonly consumer: Consumer = this.kafka.consumer({ groupId: 'email-group' });
+    private readonly consumer: Consumer = this.kafka.consumer({ groupId: 'auth-group' });
 
     private readonly logger: Logger = new Logger(KafkaService.name);
 
@@ -19,7 +19,7 @@ export class KafkaService implements OnModuleInit, OnModuleDestroy {
         await this.producer.connect();
         await this.consumer.connect();
 
-        await this.consumer.subscribe({topics: ['user-created', 'user-logged-in'], fromBeginning: false})
+        await this.consumer.subscribe({topics: ['user.created', 'user.loggedIn'], fromBeginning: false})
         await this.consumer.run({
             eachMessage: async (message: EachMessagePayload) => {
                 const { topic, partition, message: msg } = message;
