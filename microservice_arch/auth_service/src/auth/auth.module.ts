@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { KafkaModule } from 'src/kafka/kafka.module';
 import { UserVerification } from './entities/user_verification.entity';
+import { RbacModule } from './rbac/rbac.module';
 
 
 @Module({
@@ -14,7 +15,8 @@ import { UserVerification } from './entities/user_verification.entity';
       secret: 'your_secret_key', // 🔐 Use env variable in production
       signOptions: { expiresIn: '1h' }, // token expiry
     }),
-    KafkaModule
+    KafkaModule,
+    RbacModule
   ],
   controllers: [AuthController],
   providers: [AuthService]
