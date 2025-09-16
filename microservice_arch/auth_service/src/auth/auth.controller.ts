@@ -33,6 +33,8 @@ export class AuthController {
     }
     return await this.authService.getUserVerificationData(body.userId);
   }
+
+  
   // @MessagePattern('user_logged_in')
   // handleUserCreated(@Payload() data: any) {
   //   console.log('User Logged event received:', data);

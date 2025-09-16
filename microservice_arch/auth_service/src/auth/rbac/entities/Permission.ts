@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity('permissions')
 export class Permission {
     
-    @PrimaryGeneratedColumn("identity")
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

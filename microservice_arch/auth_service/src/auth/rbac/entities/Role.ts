@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity("roles")
 export class Role {
 
-    @PrimaryGeneratedColumn("identity")
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column()

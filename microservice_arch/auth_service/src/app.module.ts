@@ -8,6 +8,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { KafkaModule } from './kafka/kafka.module';
 import { UserVerification } from './auth/entities/user_verification.entity';
 import { ConfigModule } from '@nestjs/config';
+import { Permission } from './auth/rbac/entities/Permission';
+import { RolePermission } from './auth/rbac/entities/RolePermission';
+import { UserRole } from './auth/rbac/entities/UserRole';
+import { Role } from './auth/rbac/entities/Role';
 
 @Module({
   imports: [
@@ -18,7 +22,7 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || 'root',
       database: process.env.DB_NAME || 'auth',
-      entities: [User, UserVerification],
+      entities: [User, UserVerification, Permission, RolePermission, UserRole, Role],
       synchronize: true, // For dev only, auto-create tables
     }),
     ConfigModule.forRoot({

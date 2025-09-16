@@ -7,6 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { UserVerification } from './entities/user_verification.entity';
 import { KafkaService } from 'src/kafka/kafka.service';
+import { RbacService } from './rbac/rbac.service';
 
 
 @Injectable()
@@ -15,12 +16,12 @@ export class AuthService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     @InjectRepository(UserVerification) private readonly userVerificationRepository: Repository<UserVerification>,
-    private readonly jwtService: JwtService, 
+    private readonly jwtService: JwtService,
     private readonly kafkaService: KafkaService,
-    
-  ) {}
+    private readonly rbacService: RbacService
+  ) { }
 
-  async registerUser(user: { email: string, password: string, username: string}) {
+  async registerUser(user: { email: string, password: string, username: string }) {
     // Create a user instance and save it to the database
     let { email, password, username } = user;
     if (!email || !password || !username) {
@@ -30,16 +31,16 @@ export class AuthService {
       throw new HttpException('Password must be at least 6 characters long', HttpStatus.BAD_REQUEST);
     }
     user.password = await bcrypt.hash(password, 10);
-    
+
     const newUser = this.userRepository.create(user);
     const savedUser = await this.userRepository.save(newUser);
 
-    
+
     // const savedUser: any = user;
     // savedUser.id = Math.floor(Math.random() * 10000); // Simulating an ID for the example
-    
+
     const token = await this.generateToken(savedUser);
-    const userVerification = this.userVerificationRepository.create({userId: savedUser.id.toString(),email: savedUser.email, token, verification_status: 'pending',createdAt: new Date().toISOString(), verifiedAt: '' })
+    const userVerification = this.userVerificationRepository.create({ userId: savedUser.id.toString(), email: savedUser.email, token, verification_status: 'pending', createdAt: new Date().toISOString(), verifiedAt: '' })
     await this.userVerificationRepository.save(userVerification);
     this.kafkaService.sendEvent('user.created', {
       userId: savedUser.id.toString(),
@@ -51,12 +52,12 @@ export class AuthService {
     return { username: savedUser.username, email: savedUser.email, token };
   }
 
-  async loginUser(user: {email: string, password: string}) {
+  async loginUser(user: { email: string, password: string }) {
     const { email, password } = user;
     if (!email || !password) {
       throw new HttpException('Email and password are required', HttpStatus.BAD_REQUEST);
     }
-    
+
     const foundUser = await this.userRepository.findOne({ where: { email } });
     if (!foundUser) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
@@ -90,18 +91,22 @@ export class AuthService {
       throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
     }
   }
-  async userVerification(token: string): Promise<{status: string, message: string, email: string}> {
+  async userVerification(token: string): Promise<{ status: string, message: string, email: string }> {
     try {
       const decoded = await this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
       const user = await this.userRepository.findOne({ where: { id: decoded.id } });
       if (!user) {
         throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
       }
-      await this.userVerificationRepository.update({email: user.email} , { token, verification_status: 'completed', verifiedAt: new Date()});
-      const verificationStatus = await this.userVerificationRepository.findOne({where:{email: user.email},select: {verification_status: true}})
-      if(!verificationStatus?.verification_status)
+      await this.userVerificationRepository.update({ email: user.email }, { token, verification_status: 'completed', verifiedAt: new Date() });
+      const verificationStatus = await this.userVerificationRepository.findOne({ where: { email: user.email }, select: { verification_status: true } })
+      if (!verificationStatus?.verification_status)
         throw new HttpException("Verification Failed due to unknown reason!!", HttpStatus.INTERNAL_SERVER_ERROR)
-      return { email: user.email, message: 'Verification Completed!!', status: verificationStatus.verification_status ? 'completed': 'pending'}
+      if (verificationStatus.verification_status == 'completed') {
+        await this.rbacService.assignGeneralAccessToUser(user.id)
+        return { email: user.email, message: "Verification Completed!!", status: verificationStatus.verification_status }
+      }
+      return { email: user.email, message: 'Verification Completed!!', status: verificationStatus.verification_status ? 'completed' : 'pending' }
     } catch (error) {
       throw new HttpException('Verification failed: ' + error.message, HttpStatus.UNAUTHORIZED);
     }
@@ -113,6 +118,14 @@ export class AuthService {
       throw new HttpException('User verification details not found!!', HttpStatus.UNAUTHORIZED);
     }
     return verification;
+  }
+
+  async userExists(userId: string) {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (user) {
+      return true;
+    }
+    return false;
   }
 
 }
