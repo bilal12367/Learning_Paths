@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './entities/Role';
-import { Repository } from 'typeorm';
+import { DeleteResult, In, Repository } from 'typeorm';
 import { Permission } from './entities/Permission';
 import { RolePermission } from './entities/RolePermission';
 import { UserRole } from './entities/UserRole';
@@ -90,19 +90,45 @@ export class RbacService {
         }
     }
 
+    /* 
+
+    */
     async checkAccess(userId: string, permissionId: string, permissionName: string, serverId: string) {
         const perm = await this.permissionRepository.findOne({ where: permissionId != null ? { id: parseInt(permissionId) } : { name: permissionName } })
         if (perm == null) {
             throw new HttpException('Permission Not Found!!', HttpStatus.NOT_FOUND)
         }
         const role_perm = await this.rolePermissionRepo.findOne({ where: { permissionId: perm.id.toString() }, select: { roleId: true } })
-        if(role_perm == null) {
+        if (role_perm == null) {
             throw new HttpException('Role Not Found!!', HttpStatus.NOT_FOUND)
         }
-        const userRole = await this.userRoleRepo.findOne({ where: {roleId: role_perm.roleId, userId: userId}})
-        if(userRole == null) {
+        const userRole = await this.userRoleRepo.findOne({ where: { roleId: role_perm.roleId, userId: userId } })
+        if (userRole == null) {
             throw new HttpException("User doesn't have access!!", HttpStatus.UNAUTHORIZED)
         }
+        return true
+    }
+
+    async removeAllAccessToUser(userId: string) {
+        const rolesAssigned = await this.userRoleRepo.find({ where: { userId: userId }, select: { id: true } })
+        if (rolesAssigned.length > 0) {
+            const deleteResults: DeleteResult = await this.userRoleRepo.delete({ id: In([rolesAssigned.map((role) => role.id)]) })
+            if (deleteResults.affected != rolesAssigned.length) {
+                throw new HttpException("Some of roles, of user couldn't be deleted!!", HttpStatus.INTERNAL_SERVER_ERROR)
+            }
+        }
+        return true
+    }
+
+    async assignRole(userId: string, roleId: string) {
+        const roleExists = await this.roleRepository.exists({ where: { id: parseInt(roleId) } })
+        if(!roleExists) {
+            throw new HttpException("Role doesn't exists!!", HttpStatus.NOT_FOUND)
+        }
+        await this.userRoleRepo.create({
+            roleId: roleId,
+            userId: userId
+        })
         return true
     }
 }

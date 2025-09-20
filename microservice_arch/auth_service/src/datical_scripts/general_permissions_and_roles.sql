@@ -2,9 +2,9 @@
 
 
 insert into permissions (id, name, description, serverId) VALUES(1, 'GENERAL_ACCESS', 'General Access permission', 'global');
-insert into permissions (id, name, description, serverId) VALUES(2, 'MANAGE_USERS', 'General Access permission', 'global');
-insert into permissions (id, name, description, serverId) VALUES(3, 'MANAGE_ROLES', 'General Access permission', 'global');
-insert into permissions (id, name, description, serverId) VALUES(4, 'MANAGE_PERMISSIONS', 'General Access permission', 'global');
+insert into permissions (id, name, description, serverId) VALUES(2, 'MANAGE_USERS', 'Admin Access to manage general users', 'global');
+insert into permissions (id, name, description, serverId) VALUES(3, 'MANAGE_ROLES', 'Admin Access to manage roles of general users ', 'global');
+insert into permissions (id, name, description, serverId) VALUES(4, 'MANAGE_PERMISSIONS', 'Root level Access to define permissions', 'global');
 
 insert into roles (id, name, description, serverId) VALUES(1, 'USER', 'General User', 'global');
 insert into roles (id, name, description, serverId) VALUES(2, 'ADMIN', 'Admin', 'global');

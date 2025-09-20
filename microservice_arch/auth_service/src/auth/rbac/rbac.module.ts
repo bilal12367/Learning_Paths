@@ -9,6 +9,7 @@ import { AuthModule } from '../auth.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Permission, Role, RolePermission, UserRole])],
-  providers: [RbacService]
+  providers: [RbacService],
+  exports: [RbacService]
 })
 export class RbacModule { }

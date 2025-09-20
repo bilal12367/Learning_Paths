@@ -121,11 +121,20 @@ export class AuthService {
   }
 
   async userExists(userId: string) {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
+    const user = await this.userRepository.exists({ where: { id: userId } });
     if (user) {
       return true;
     }
     return false;
   }
 
+
+  async deleteUser(userId: string) {
+    const userExists = await this.userRepository.exists({ where: { id: userId } })
+    if(!userExists) {
+      throw new HttpException('User Doesn\'t exists!', HttpStatus.NOT_FOUND)
+    }
+    await this.rbacService.removeAllAccessToUser(userId)
+    return true
+  }
 }
