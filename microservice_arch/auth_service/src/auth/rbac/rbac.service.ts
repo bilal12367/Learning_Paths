@@ -6,6 +6,7 @@ import { Permission } from './entities/Permission';
 import { RolePermission } from './entities/RolePermission';
 import { UserRole } from './entities/UserRole';
 import { User } from '../entities/user.entity';
+import { InsertResult } from 'typeorm/browser';
 
 enum RoleEnum {
     USER = 'USER',
@@ -130,5 +131,36 @@ export class RbacService {
             userId: userId
         })
         return true
+    }
+
+    async assignPermissionsToRole(roleId: string, permissionIds: string[], serverId: string): Promise<RolePermission[]> {
+        const roleExists = await this.rolePermissionRepo.exists({ where: { id: roleId }})
+        if(!roleExists) {
+            throw new HttpException("Role doesn't exists!!", HttpStatus.NOT_FOUND)
+        }
+        var permissionsEntities: Permission[] = await this.permissionRepository.find({
+            select: { id: true },
+            where: { id: In(permissionIds) }
+        })
+        const permissionsToInsertForRole: IRolePermission[] = []
+
+        permissionsEntities.forEach((perm: Permission) => {
+            permissionsToInsertForRole.push({
+                permissionId: perm.id.toString(),
+                roleId: roleId,
+                serverId: serverId
+            })
+        })
+
+        await this.rolePermissionRepo.insert(permissionsToInsertForRole)
+        
+        const permissionsCurrentRoleHas = await this.rolePermissionRepo.find({
+            where: {
+                serverId: serverId,
+                roleId: roleId
+            }
+        })
+
+        return permissionsCurrentRoleHas
     }
 }

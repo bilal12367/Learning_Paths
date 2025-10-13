@@ -22,7 +22,7 @@ public class TaskService {
     }
 
 
-    @Scheduled(cron = "*/5 * * * * *")
+    @Scheduled(cron = "* */5 * * * *")
     @Async("taskExecutor")
     public void processTask() {
         System.out.println("Scheduler Started ... ");
