@@ -1,8 +1,11 @@
 package com.example.hibernate_and_jpa_learning.tester;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -31,6 +34,8 @@ public class StartupExecutor implements ApplicationRunner {
 
             User user = new User(null, "bilal", "test1@gmail.com", 20);
             session.save(user);
+            User savedUser = (User) session.createQuery("FROM User where email=:email").setParameter("email", user.getEmail()).getSingleResultOrNull();
+            System.out.println(savedUser.toString());
             
             tx.commit();
         } catch (Exception e) {

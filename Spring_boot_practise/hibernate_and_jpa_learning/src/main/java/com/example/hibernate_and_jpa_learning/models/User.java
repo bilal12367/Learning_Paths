@@ -7,10 +7,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Data()
+@Data
+@ToString
 @AllArgsConstructor
 public class User {
     
