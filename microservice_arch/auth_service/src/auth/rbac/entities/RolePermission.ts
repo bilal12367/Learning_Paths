@@ -19,7 +19,7 @@ export class RolePermission {
     permissionId: string;
 
     @Column()
-    serverId: string;
+    association_id: string;
 
     @OneToMany(() => Permission, permission => permission.id)
     permissions: Permission[];

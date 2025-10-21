@@ -35,3 +35,7 @@ Content-Type: application/json
 {
   "userId": 1
 }
+
+
+###
+GET http://localhost:3500/rbac/test

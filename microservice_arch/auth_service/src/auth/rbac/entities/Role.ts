@@ -8,9 +8,9 @@ export class Role {
     id: number;
 
     @Column()
-    serverId: string;
+    association_id: string;
 
-    @Column({ unique: true })
+    @Column()
     name: string;
 
     @Column({ nullable: true })

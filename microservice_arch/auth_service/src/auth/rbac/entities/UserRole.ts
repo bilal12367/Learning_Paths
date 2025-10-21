@@ -18,6 +18,9 @@ export class UserRole {
     @Column()
     roleId: string;
 
+    @Column()
+    association_id: string;
+
     @OneToOne(() => User)
     @JoinColumn({name: 'userId', referencedColumnName: 'id'})
     user: User;

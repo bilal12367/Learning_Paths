@@ -17,8 +17,15 @@ enum RoleEnum {
 enum PermissionEnum {
     GENERAL_ACCESS = 'GENERAL_ACCESS',
     MANAGE_USERS = 'MANAGE_USERS',
+    MANAGE_ADMINS = 'MANAGE_ADMINS',
     MANAGE_ROLES = 'MANAGE_ROLES',
     MANAGE_PERMISSIONS = 'MANAGE_PERMISSIONS'
+}
+
+const role_perm_map = {
+    "USER": [PermissionEnum.GENERAL_ACCESS.valueOf()],
+    "ADMIN": [PermissionEnum.GENERAL_ACCESS.valueOf(), PermissionEnum.MANAGE_USERS.valueOf(), PermissionEnum.MANAGE_ROLES.valueOf()],
+    "ROOT": [PermissionEnum.GENERAL_ACCESS.valueOf(), PermissionEnum.MANAGE_USERS.valueOf(), PermissionEnum.MANAGE_ROLES.valueOf(), PermissionEnum.MANAGE_PERMISSIONS.valueOf()],
 }
 
 @Injectable()
@@ -30,52 +37,6 @@ export class RbacService {
         @InjectRepository(UserRole) private readonly userRoleRepo: Repository<UserRole>,
     ) { }
 
-    async createDefaultRolesAndPermissions() {
-        const permissions: PermissionEnum[] = Object.values(PermissionEnum);
-
-        const saved_permissions = await this.permissionRepository.save(
-            permissions.map(name => {
-                const permission = new Permission();
-                permission.name = name;
-                return permission;
-            })
-        );
-
-        const roles: RoleEnum[] = Object.values(RoleEnum);
-        const saved_roles = await this.roleRepository.save(
-            roles.map(name => {
-                const role = new Role();
-                role.name = name;
-                return role;
-            })
-        );
-        const general_role_permissions = []
-
-        for (const role of saved_roles) {
-            if (role.name === RoleEnum.USER) {
-                const perms = saved_permissions.filter((perm) => [PermissionEnum.GENERAL_ACCESS.valueOf()].includes(perm.name))
-                general_role_permissions[RoleEnum.USER.valueOf()] = perms
-            } else if (role.name === RoleEnum.ADMIN) {
-                const perms = saved_permissions.filter((perm) => [PermissionEnum.GENERAL_ACCESS.valueOf(), PermissionEnum.MANAGE_USERS.valueOf()].includes(perm.name))
-                general_role_permissions[RoleEnum.ADMIN.valueOf()] = perms
-            } else if (role.name === RoleEnum.ROOT) {
-                general_role_permissions[RoleEnum.ADMIN.valueOf()] = saved_permissions
-            }
-
-        }
-
-        for (const rolePerm of general_role_permissions.entries()) {
-
-        }
-        await this.rolePermissionRepo.save(
-            [
-                {
-                    serverId: 'global',
-                }
-            ]
-        )
-
-    }
 
     async assignGeneralAccessToUser(userId: string) {
         const general_user_role = await this.roleRepository.findOne({ where: { name: RoleEnum.USER }, select: { id: true } });
@@ -94,7 +55,7 @@ export class RbacService {
     /* 
 
     */
-    async checkAccess(userId: string, permissionId: string, permissionName: string, serverId: string) {
+    async checkAccess(userId: string, permissionId: string, permissionName: string, association_id: string) {
         const perm = await this.permissionRepository.findOne({ where: permissionId != null ? { id: parseInt(permissionId) } : { name: permissionName } })
         if (perm == null) {
             throw new HttpException('Permission Not Found!!', HttpStatus.NOT_FOUND)
@@ -121,46 +82,100 @@ export class RbacService {
         return true
     }
 
-    async assignRole(userId: string, roleId: string) {
+    async assignRole(userId: string, roleId: string, association_id: string) {
         const roleExists = await this.roleRepository.exists({ where: { id: parseInt(roleId) } })
-        if(!roleExists) {
+        if (!roleExists) {
             throw new HttpException("Role doesn't exists!!", HttpStatus.NOT_FOUND)
         }
         await this.userRoleRepo.create({
             roleId: roleId,
-            userId: userId
+            userId: userId,
+            association_id
         })
         return true
     }
 
-    async assignPermissionsToRole(roleId: string, permissionIds: string[], serverId: string): Promise<RolePermission[]> {
-        const roleExists = await this.rolePermissionRepo.exists({ where: { id: roleId }})
-        if(!roleExists) {
-            throw new HttpException("Role doesn't exists!!", HttpStatus.NOT_FOUND)
-        }
-        var permissionsEntities: Permission[] = await this.permissionRepository.find({
-            select: { id: true },
-            where: { id: In(permissionIds) }
-        })
-        const permissionsToInsertForRole: IRolePermission[] = []
+    // async assignPermissionsToRole(roleId: string, permissionIds: string[], serverId: string): Promise<RolePermission[]> {
+    //     const roleExists = await this.rolePermissionRepo.exists({ where: { id: roleId } })
+    //     if (!roleExists) {
+    //         throw new HttpException("Role doesn't exists!!", HttpStatus.NOT_FOUND)
+    //     }
+    //     var permissionsEntities: Permission[] = await this.permissionRepository.find({
+    //         select: { id: true },
+    //         where: { id: In(permissionIds) }
+    //     })
+    //     const permissionsToInsertForRole: IRolePermission[] = []
 
-        permissionsEntities.forEach((perm: Permission) => {
-            permissionsToInsertForRole.push({
-                permissionId: perm.id.toString(),
-                roleId: roleId,
-                serverId: serverId
+    //     permissionsEntities.forEach((perm: Permission) => {
+    //         permissionsToInsertForRole.push({
+    //             permissionId: perm.id.toString(),
+    //             roleId: roleId,
+    //             serverId: serverId
+    //         })
+    //     })
+
+    //     await this.rolePermissionRepo.insert(permissionsToInsertForRole)
+
+    //     const permissionsCurrentRoleHas = await this.rolePermissionRepo.find({
+    //         where: {
+    //             association_id: serverId,
+    //             roleId: roleId
+    //         }
+    //     })
+
+    //     return permissionsCurrentRoleHas
+    // }
+
+    async assignInitialRBACToAssociation(association_id: string) {
+        const distinctPermissions: { permissions_name: string }[] = await this.permissionRepository
+            .createQueryBuilder("permissions")
+            .select("permissions.name")
+            .distinct(true)
+            .getRawMany()
+        const distinctRoles: { roles_name: string }[] = await this.roleRepository
+            .createQueryBuilder("roles")
+            .select("roles.name")
+            .distinct(true)
+            .getRawMany()
+
+        const permissionsToInsert: any[] = []
+        const rolesToInsert: any[] = []
+        for (const perm of distinctPermissions) {
+            permissionsToInsert.push({
+                name: perm.permissions_name,
+                association_id,
+                description: perm.permissions_name
             })
-        })
+        }
+        for (const role of distinctRoles) {
+            rolesToInsert.push({
+                name: role.roles_name,
+                description: role.roles_name,
+                association_id
+            })
+        }
+        await this.permissionRepository.insert(permissionsToInsert)
+        await this.roleRepository.insert(rolesToInsert)
 
-        await this.rolePermissionRepo.insert(permissionsToInsertForRole)
-        
-        const permissionsCurrentRoleHas = await this.rolePermissionRepo.find({
-            where: {
-                serverId: serverId,
-                roleId: roleId
-            }
-        })
+        const perms = await this.permissionRepository.find({ where: { association_id } })
+        const roles = await this.roleRepository.find({ where: { association_id } })
 
-        return permissionsCurrentRoleHas
+        for (const role of roles) {
+            var permsForRole = role_perm_map[role.name]
+            permsForRole = perms.filter((perm) => { if (permsForRole.includes(perm.name)) { return true } else { return false } })
+
+            await this.rolePermissionRepo.insert(permsForRole.map((perm) => ({ roleId: role.id, permissionId: perm.id, association_id })))
+        }
+
+        const role_permission_mapping = await this.rolePermissionRepo.find({ where: { association_id } })
+
+        return { perms, roles, role_permission_mapping }
+    }
+
+    async deleteAssociations(association_id: string) {
+        await this.permissionRepository.delete({ association_id })
+        await this.roleRepository.delete({ association_id })
+        await this.rolePermissionRepo.delete({ association_id })
+
     }
 }
