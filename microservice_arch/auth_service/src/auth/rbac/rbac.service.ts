@@ -1,12 +1,10 @@
 import { HttpException, HttpStatus, Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './entities/Role';
-import { DeleteResult, In, Repository } from 'typeorm';
+import { DeleteResult, In, InsertResult, Repository } from 'typeorm';
 import { Permission } from './entities/Permission';
 import { RolePermission } from './entities/RolePermission';
 import { UserRole } from './entities/UserRole';
-import { User } from '../entities/user.entity';
-import { InsertResult } from 'typeorm/browser';
 
 enum RoleEnum {
     USER = 'USER',
@@ -71,6 +69,70 @@ export class RbacService {
         return true
     }
 
+    async addRolesToAssociation(association_id: string, roles: { name: string, description: string }[]) { 
+        const insertResult: InsertResult = await this.roleRepository.insert(
+            roles.map((role) => ({
+                name: role.name,
+                description: role.description,
+                association_id
+            }))
+        )
+        return insertResult
+    }
+
+    async createRoleWithAssignedPermissions(association_id: string, role: { name: string, description: string }, permissionIds: string[]) { 
+        const newRole: Role = this.roleRepository.create({
+            name: role.name,
+            description: role.description,
+            association_id
+        })
+        const savedRole = await this.roleRepository.save(newRole)
+        const rolePermissionMappings: { roleId: string, permissionId: string }[] = []
+        for (const permId of permissionIds) {
+            rolePermissionMappings.push({
+                roleId: savedRole.id.toString(),
+                permissionId: permId
+            })
+        } 
+        const insertResult: InsertResult = await this.rolePermissionRepo.insert(
+            rolePermissionMappings.map((mapping) => ({
+                roleId: mapping.roleId,
+                permissionId: mapping.permissionId,
+                association_id
+            }))
+        )
+        return { savedRole, insertResult }
+    }
+
+    async addPermissionsToAssociation(association_id: string, permissions: { name: string, description: string }[]) { 
+        const insertResult: InsertResult = await this.permissionRepository.insert(
+            permissions.map((permission) => ({
+                name: permission.name,
+                description: permission.description,
+                association_id
+            }))
+        )
+        return insertResult
+    }
+
+    async mapPermissionsToRolesInAssociation(association_id: string, roleId: string, permissionIds: string[]) { 
+        const rolePermissionMappings: { roleId: string, permissionId: string }[] = []
+        for (const permId of permissionIds) {
+            rolePermissionMappings.push({
+                roleId: roleId,
+                permissionId: permId
+            })
+        } 
+        const insertResult: InsertResult = await this.rolePermissionRepo.insert(
+            rolePermissionMappings.map((mapping) => ({
+                roleId: mapping.roleId,
+                permissionId: mapping.permissionId,
+                association_id
+            }))
+        )
+        return insertResult
+    }
+
     async removeAllAccessToUser(userId: string) {
         const rolesAssigned = await this.userRoleRepo.find({ where: { userId: userId }, select: { id: true } })
         if (rolesAssigned.length > 0) {
@@ -93,6 +155,26 @@ export class RbacService {
             association_id
         })
         return true
+    }
+
+    async getRolesOfUser(userId: string): Promise<UserRole[]> {
+        const rolesAssigned = await this.userRoleRepo.find({ where: { userId: userId } })
+        return rolesAssigned
+    }
+
+    async getPermissionsOfRole(roleId: string): Promise<RolePermission[]> {
+        const permissionsAssigned = await this.rolePermissionRepo.find({ where: { roleId: roleId } })
+        return permissionsAssigned
+    }
+
+    async getAllRolesOfAssociation(association_id: string): Promise<Role[]> {
+        const roles = await this.roleRepository.find({ where: { association_id } })
+        return roles
+    }
+
+    async getAllPermissionsOfAssociation(association_id: string): Promise<Permission[]> {
+        const permissions = await this.permissionRepository.find({ where: { association_id } })
+        return permissions
     }
 
     // async assignPermissionsToRole(roleId: string, permissionIds: string[], serverId: string): Promise<RolePermission[]> {
@@ -126,7 +208,7 @@ export class RbacService {
     //     return permissionsCurrentRoleHas
     // }
 
-    async assignInitialRBACToAssociation(association_id: string) {
+    async assignInitialRBACToAssociation(association_id: string) : Promise<ServerRbacDto> {
         const distinctPermissions: { permissions_name: string }[] = await this.permissionRepository
             .createQueryBuilder("permissions")
             .select("permissions.name")
@@ -172,10 +254,17 @@ export class RbacService {
         return { perms, roles, role_permission_mapping }
     }
 
-    async deleteAssociations(association_id: string) {
-        await this.permissionRepository.delete({ association_id })
-        await this.roleRepository.delete({ association_id })
-        await this.rolePermissionRepo.delete({ association_id })
-
+    /**
+     * Deletes all roles and permissions of an association
+     * @param association_id 
+     * @returns Returns Affected Rows Count
+     */
+    async deleteAssociations(association_id: string): Promise<number> {
+        var affectedRows = 0
+        affectedRows += (await this.permissionRepository.delete({ association_id })).affected || 0
+        
+        affectedRows += (await this.roleRepository.delete({ association_id })).affected || 0
+        affectedRows += (await this.rolePermissionRepo.delete({ association_id })).affected || 0
+        return affectedRows
     }
 }

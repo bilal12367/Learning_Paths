@@ -1,6 +1,8 @@
-import { Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { RbacService } from "./rbac.service";
+import { InsertResult } from "typeorm";
+import { Role } from "./entities/Role";
 
 
 
@@ -23,5 +25,21 @@ export class AuthRbacController {
     public async test(){
         // return await this.rbacService.assignInitialRBACToAssociation('123')
         return await this.rbacService.deleteAssociations('123')
+    }
+
+    @Post('/generalSetupToAssociation')
+    public async generalSetupToAssociation(@Body() body: {associationId: string}): Promise<ServerRbacDto> {
+        if(!body.associationId){
+            throw new Error('associationId is required')
+        }
+        return await this.rbacService.assignInitialRBACToAssociation(body.associationId)
+    }
+
+    @Post("/createRoleWithAssignedPermissions")
+    public async createRoleWithAssignedPermissions(@Body() body: {associationId: string, role: {name: string, description: string}, permissionIds: string[]}): Promise<{insertResult: InsertResult, savedRole: Role}> {
+        if(!body.role || !body.permissionIds){
+            throw new Error('roleName and permissionIds are required')
+        }
+        return await this.rbacService.createRoleWithAssignedPermissions(body.associationId, body.role, body.permissionIds)
     }
 }

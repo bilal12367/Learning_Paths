@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./Role";
-import { User } from "src/auth/entities/user.entity";
+import { User } from "../../entities/user.entity";
 
 
 

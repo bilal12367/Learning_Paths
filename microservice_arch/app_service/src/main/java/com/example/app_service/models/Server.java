@@ -12,10 +12,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Data;
 
 @Entity()
 @Table(name = "servers")
+@Builder
+@Data
 public class Server {
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

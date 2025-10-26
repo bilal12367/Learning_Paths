@@ -29,12 +29,14 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
     "@types/bcryptjs": "^2.4.6",
+    "axios": "^1.12.2",
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "kafkajs": "^2.2.4",
     "mysql2": "^3.14.3",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "sqlite3": "^5.1.7",
     "typeorm": "^0.3.25"
   },
   "devDependencies": {
