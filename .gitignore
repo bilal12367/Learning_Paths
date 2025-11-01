@@ -1,6 +1,0 @@
-kafka_demo/api_gateway/node_modules
-kafka_demo/test_ms_1/node_modules
-kafka_demo/api_gateway_kong/auth_test/node_modules
-
-node_modules
-microservice_arch/auth_service/node_modules
