@@ -7,9 +7,10 @@ import { RolePermission } from './entities/RolePermission';
 import { UserRole } from './entities/UserRole';
 import { AuthModule } from '../auth.module';
 import { AuthRbacController } from './rbac.controller';
+import { RoleAssociation } from './entities/RoleAssociation';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Permission, Role, RolePermission, UserRole])],
+  imports: [TypeOrmModule.forFeature([Permission, Role, RolePermission, UserRole, RoleAssociation])],
   providers: [RbacService],
   controllers: [AuthRbacController],
   exports: [RbacService]

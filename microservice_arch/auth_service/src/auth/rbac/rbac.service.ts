@@ -5,6 +5,7 @@ import { DeleteResult, In, InsertResult, Repository } from 'typeorm';
 import { Permission } from './entities/Permission';
 import { RolePermission } from './entities/RolePermission';
 import { UserRole } from './entities/UserRole';
+import { RoleAssociation } from './entities/RoleAssociation';
 
 enum RoleEnum {
     USER = 'USER',
@@ -17,7 +18,9 @@ enum PermissionEnum {
     MANAGE_USERS = 'MANAGE_USERS',
     MANAGE_ADMINS = 'MANAGE_ADMINS',
     MANAGE_ROLES = 'MANAGE_ROLES',
-    MANAGE_PERMISSIONS = 'MANAGE_PERMISSIONS'
+    MANAGE_PERMISSIONS = 'MANAGE_PERMISSIONS',
+    MANAGE_CHANNELS = 'MANAGE_CHANNEL',
+    DELETE_CHANNEL = 'DELETE_CHANNEL'
 }
 
 const role_perm_map = {
@@ -33,6 +36,7 @@ export class RbacService {
         @InjectRepository(Permission) private readonly permissionRepository: Repository<Permission>,
         @InjectRepository(RolePermission) private readonly rolePermissionRepo: Repository<RolePermission>,
         @InjectRepository(UserRole) private readonly userRoleRepo: Repository<UserRole>,
+        @InjectRepository(RoleAssociation) private readonly roleAssociationRepo: Repository<RoleAssociation>,
     ) { }
 
 
@@ -54,7 +58,12 @@ export class RbacService {
 
     */
     async checkAccess(userId: string, permissionId: string, permissionName: string, association_id: string) {
-        const perm = await this.permissionRepository.findOne({ where: permissionId != null ? { id: parseInt(permissionId) } : { name: permissionName } })
+        const perm = await this.permissionRepository
+                        .findOne({ 
+                            where: permissionId != null ? 
+                            { id: parseInt(permissionId) } : 
+                            { name: permissionName } 
+        })
         if (perm == null) {
             throw new HttpException('Permission Not Found!!', HttpStatus.NOT_FOUND)
         }
@@ -69,7 +78,7 @@ export class RbacService {
         return true
     }
 
-    async addRolesToAssociation(association_id: string, roles: { name: string, description: string }[]) { 
+    async addRolesToAssociation(association_id: string, roles: IRole[]) { 
         const insertResult: InsertResult = await this.roleRepository.insert(
             roles.map((role) => ({
                 name: role.name,
@@ -78,6 +87,27 @@ export class RbacService {
             }))
         )
         return insertResult
+    }
+
+    /**
+     * This method associates resources to roles.
+     * If a resource should be accessed by particular role. You'll add it here.
+     * @param association_id - Id of resource/channel/action etc.
+     * @param roleIds - Role id of a association.
+     */
+    async associateRolesToAssociation(association_id: string, roleIds: String[]): Promise<RoleAssociation[]> {
+        await this.roleAssociationRepo.insert(
+            roleIds.map((role_id: string) => ({role_id: role_id, association_id}))
+        )
+        return await this.roleAssociationRepo.find({ where: {role_id: In(roleIds) }})
+    }
+
+    async getRolesAllowedToAssociation(association_id: string): Promise<Role[]> {
+        const roleAssociations: RoleAssociation[] = await this.roleAssociationRepo.findBy({
+            association_id
+        })
+        const role_ids = roleAssociations.map((roleAssociation: RoleAssociation) => roleAssociation.role_id)
+        return await this.roleRepository.find({where: { id: In(role_ids)}});
     }
 
     async createRoleWithAssignedPermissions(association_id: string, role: { name: string, description: string }, permissionIds: string[]) { 
@@ -112,6 +142,7 @@ export class RbacService {
                 association_id
             }))
         )
+        
         return insertResult
     }
 

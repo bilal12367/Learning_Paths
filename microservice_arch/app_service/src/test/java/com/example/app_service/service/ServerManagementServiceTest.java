@@ -1,13 +1,13 @@
 package com.example.app_service.service;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.app_service.AppServiceApplication;
 import com.example.app_service.dto.CreateServerResponseDTO;
-import com.example.app_service.service.ServerManagementService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -18,9 +18,9 @@ public class ServerManagementServiceTest {
 
 
     @Test
-    public void createServer() {
+    public void createServer() throws JsonProcessingException {
         CreateServerResponseDTO dto = serverManagementService.createServer("Test Server", "New Test Server");
         System.out.println("Server created with ID: " + dto.getServer().getId().toString());
-        
+        assertNotNull(dto);
     }
 }

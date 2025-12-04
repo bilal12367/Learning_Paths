@@ -26,4 +26,11 @@ public class ExternalEnvironmentVariables {
     public String getRbacServiceUrl() {
         return authServiceUrl + "/rbac";
     }
+
+    public String getRolesOnChannel() {
+        return this.getRbacServiceUrl() + "/getRolesAllowedOnChannel";
+    }
+    public String addRolesToChannel() {
+        return this.getRbacServiceUrl() + "/addAccessRolesToAssociation";
+    }
 }

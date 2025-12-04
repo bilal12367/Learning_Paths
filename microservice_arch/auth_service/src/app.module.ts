@@ -12,6 +12,7 @@ import { Permission } from './auth/rbac/entities/Permission';
 import { RolePermission } from './auth/rbac/entities/RolePermission';
 import { UserRole } from './auth/rbac/entities/UserRole';
 import { Role } from './auth/rbac/entities/Role';
+import { RoleAssociation } from './auth/rbac/entities/RoleAssociation';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { Role } from './auth/rbac/entities/Role';
       username: process.env.DB_USERNAME || 'root',
       password: process.env.DB_PASSWORD || 'root',
       database: process.env.DB_NAME || 'auth',
-      entities: [User, UserVerification, Permission, RolePermission, UserRole, Role],
+      entities: [User, UserVerification, Permission, RolePermission, UserRole, Role, RoleAssociation],
       synchronize: true, // For dev only, auto-create tables
     }),
     ConfigModule.forRoot({

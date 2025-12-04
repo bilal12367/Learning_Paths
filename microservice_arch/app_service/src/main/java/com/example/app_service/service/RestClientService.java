@@ -1,33 +1,153 @@
 package com.example.app_service.service;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+class ResponseBody <R>{
+    private Class<R> body;
+}
 
 @Service
 public class RestClientService {
-     private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
-    public <T, R> R postForResponse(String url, T requestBody, Class<R> responseType) {
+    public <T, R> R postForResponse(String url, T requestBody, Class<R> responseType) throws JsonProcessingException {
+        RequestEntity re = this.prepareEntity(url, null, null, requestBody);
         // Set headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        // HttpHeaders headers = new HttpHeaders();
 
-        // Create request entity
-        HttpEntity<T> requestEntity = new HttpEntity<>(requestBody, headers);
+        
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // // Create request entity
+        // HttpEntity<T> requestEntity = new HttpEntity<>(requestBody, headers);
 
         // Make POST request
         ResponseEntity<R> response = restTemplate.exchange(
-                url,
-                HttpMethod.POST,
-                requestEntity,
+                re,
                 responseType
         );
 
+        return response.getBody();
+    }
+
+    public <T, R> List<R> postForResponse(String url, T requestBody) throws JsonProcessingException {
+        RequestEntity re = this.prepareEntity(url, null, null, requestBody);
+        ResponseEntity<List<R>> response = restTemplate.exchange(
+                re,
+                new ParameterizedTypeReference<List<R>>() {}
+        );
+
+        return response.getBody();
+    }
+
+    private RequestEntity prepareEntity(String url, Map<String, Object> queries, Map<String, Object> headersMap, Object obj) throws JsonProcessingException {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+        if (queries != null) {
+            queries.forEach(builder::queryParam);
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        if (headersMap != null) {
+            headersMap.forEach((key, val) -> {
+                headers.add(key, val.toString());
+            });
+        }
+        String requestUrl = builder.build().toUriString();
+        RequestEntity re;
+        if(obj == null) {
+            re = RequestEntity
+                .get(builder.toUriString())
+                .headers(headers)
+                .build();
+            
+    
+                
+        } else {
+            re = RequestEntity
+                .post(builder.toUriString())
+                .headers(headers)
+                .body(obj);
+        }
+        return re;
+        
+    }
+    
+    /**
+     * Sends a GET request to the specified URL with the provided query parameters
+     * and returns the response as a list of objects of the specified type.
+     * @param <R> - The type of the response body.
+     * @param url - The URL to send the GET request to.
+     * @param queries - A map of query parameters to include in the request.
+     * @return - The response body as a list of objects of the specified type.
+     * @throws JsonProcessingException - If there is an error processing the JSON response.
+     */
+    public <R> List<R> getForResponse(String url, Map<String, Object> queries) throws JsonProcessingException {
+        // UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+
+        // queries.forEach(builder::queryParam);
+
+        // HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.APPLICATION_JSON);
+        // String requestUrl = builder.build().toUriString();
+        // ResponseEntity<List<R>> response = restTemplate.exchange(
+        //     url,
+        //     HttpMethod.GET,
+        //     new HttpEntity<>(headers),
+        //     new ParameterizedTypeReference<List<R>>() {}
+        // );
+        // return response.getBody();
+        RequestEntity rqe = this.prepareEntity(url, queries, null, null);
+        ResponseEntity<List<R>> rse = restTemplate.exchange(rqe, new ParameterizedTypeReference<List<R>>(){});
+        return rse.getBody();
+    }
+
+    
+    /**
+     * Sends a GET request to the specified URL with the provided query parameters
+     * and returns the response as an object of the specified class type.
+     *
+     * @param <R>    The type of the response body.
+     * @param url    The URL to send the GET request to.
+     * @param queries A map of query parameters to include in the request.
+     * @param clazz  The class type of the response body.
+     * @return The response body as an object of the specified class type.
+     * @throws JsonProcessingException If there is an error processing the JSON response.
+     */
+    public <R> R getForResponse(String url, Map<String,Object> queries, Class<R> clazz) throws JsonProcessingException {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
+
+        queries.forEach(builder::queryParam);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        String requestUrl = builder.build().toUriString();
+        ResponseEntity<R> response = restTemplate.exchange(
+            url,
+            HttpMethod.GET,
+            new HttpEntity<>(headers),
+            clazz
+        );
         return response.getBody();
     }
 }

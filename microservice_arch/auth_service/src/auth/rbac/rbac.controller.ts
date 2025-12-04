@@ -42,4 +42,14 @@ export class AuthRbacController {
         }
         return await this.rbacService.createRoleWithAssignedPermissions(body.associationId, body.role, body.permissionIds)
     }
+
+    @Post('/addAccessRolesToAssociation')
+    public async addRolesToAssociation(@Body() body: {association_id: string, roleIds: string[]}) {
+        await this.rbacService.associateRolesToAssociation(body.association_id, body.roleIds)
+    }
+
+    @Get('/getRolesAllowedOnAssociation')
+    public async getRolesAllowedToAccessChannel(@Query('associationId') association_id: string): Promise<Role[]> {
+        return await this.rbacService.getRolesAllowedToAssociation(association_id);
+    }
 }

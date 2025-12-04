@@ -4,11 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
+
+@Data
 @Builder
 @ToString
-@Data
-public class Role {
+public class RoleAssociationDto {
     private String id;
-    private String name;
     private String association_id;
+    private String role_id;
+
 }

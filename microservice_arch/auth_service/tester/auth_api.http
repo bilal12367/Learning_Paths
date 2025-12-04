@@ -39,3 +39,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3500/rbac/test
+
+
+### Get Access Roles on channel
+GET http://localhost:3500/rbac/getRolesAllowedOnAssociation?associationId=123
