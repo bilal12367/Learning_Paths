@@ -12,3 +12,13 @@ interface IRole {
     name: string
     id?: string
 }
+
+interface IPermission {
+    name: string,
+    description: string,
+    id?: string
+}
+
+interface InsertResultId {
+    ids: string[]
+}

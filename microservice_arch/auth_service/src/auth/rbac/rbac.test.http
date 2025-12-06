@@ -1,0 +1,16 @@
+###
+POST http://localhost:3500/rbac/createRoles
+Content-Type: application/json
+
+{
+    "roles": [
+        {
+            "name": "ADMIN",
+            "description": "Administrator role with full permissions"
+        },
+        {
+            "name": "GENERAL_USER",
+            "description": "Standard user role with limited permissions"
+        }
+    ]
+}

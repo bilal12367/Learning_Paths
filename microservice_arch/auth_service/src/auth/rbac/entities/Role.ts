@@ -8,7 +8,7 @@ export class Role {
     id: number;
 
     @Column()
-    association_id: string;
+    association_id?: string;
 
     @Column()
     name: string;

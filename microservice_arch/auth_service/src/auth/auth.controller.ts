@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpStatus, H
 import { AuthService } from './auth.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { KafkaService } from 'src/kafka/kafka.service';
+import { User } from './entities/user.entity';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -32,6 +33,14 @@ export class AuthController {
       throw new HttpException('User ID is required', HttpStatus.BAD_REQUEST);
     }
     return await this.authService.getUserVerificationData(body.userId);
+  }
+
+  @Get('users')
+  async getUsers(@Query('ids') userIds: string[]) : Promise<User[]> {
+    if(!userIds || userIds.length === 0){
+      throw new HttpException('User IDs are required', HttpStatus.BAD_REQUEST);
+    }
+    return await this.authService.getUsers(userIds);
   }
 
   

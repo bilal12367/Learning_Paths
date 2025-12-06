@@ -39,6 +39,56 @@ export class RbacService {
         @InjectRepository(RoleAssociation) private readonly roleAssociationRepo: Repository<RoleAssociation>,
     ) { }
 
+    async createRoles(roles: IRole[]): Promise<Role[]> {
+        const insertResults = await this.roleRepository.insert(
+            roles.map((role) => ({
+                name: role.name,
+                description: role.description,
+                association_id: 'test'
+            }))
+        )
+        const roleIds: string[] = insertResults.identifiers.map((iden: {id: number}) => iden.id.toString());
+        
+        return await this.roleRepository.findBy({ id: In(roleIds.map((roleId) => parseInt(roleId))) });
+    }
+
+    async createPermissions(permissions: IPermission[]): Promise<InsertResult> {
+        return await this.permissionRepository.insert(
+            permissions.map((permission) => ({
+                name: permission.name,
+                description: permission.description
+            }))
+        )
+    }
+
+    /**
+     * This method assigns permissions to a role.
+     * @param roleId - Id of role to which permissions are to be assigned.
+     * @param permissionIds  - Array of permission Ids to be assigned to role.
+     * @returns - InsertResult
+     */
+    async assignPermissionsToRole(roleId: string, permissionIds: string[]): Promise<InsertResult> {
+        return await this.rolePermissionRepo.insert(
+            permissionIds.map((permissionId) => ({
+                roleId: roleId,
+                permissionId: permissionId
+            }))
+        )
+    }
+
+    async getPermissionsOnRole(roleId: string): Promise<Permission[]> {
+        const rolePermissions: RolePermission[] = await this.rolePermissionRepo.find({ where: { roleId: roleId } })
+        rolePermissions.map((rolePerm) => rolePerm.permissionId);
+        return await this.permissionRepository.findBy({ id: In(rolePermissions.map((rolePerm) => parseInt(rolePerm.permissionId))) })
+    }
+
+    async getRoles(roleIds: string[]): Promise<Role[]> {
+        return await this.roleRepository.findBy({ id: In(roleIds.map((roleId) => parseInt(roleId))) })
+    }
+
+    async getPermissions(permissionIds: string[]): Promise<Permission[]> {
+        return await this.permissionRepository.findBy({ id: In(permissionIds.map((permissionId) => parseInt(permissionId))) })
+    }
 
     async assignGeneralAccessToUser(userId: string) {
         const general_user_role = await this.roleRepository.findOne({ where: { name: RoleEnum.USER }, select: { id: true } });

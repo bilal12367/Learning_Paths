@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 
@@ -20,6 +20,10 @@ export class AuthService {
     private readonly kafkaService: KafkaService,
     private readonly rbacService: RbacService
   ) { }
+
+  async getUsers(userIds: string[]): Promise<User[]> {
+    return await this.userRepository.findBy({ id: In(userIds) } );
+  }
 
   async registerUser(user: { email: string, password: string, username: string }) {
     // Create a user instance and save it to the database

@@ -10,5 +10,6 @@ import lombok.ToString;
 public class Role {
     private String id;
     private String name;
+    private String description;
     private String association_id;
 }
