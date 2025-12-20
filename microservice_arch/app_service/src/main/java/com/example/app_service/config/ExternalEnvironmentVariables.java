@@ -49,4 +49,8 @@ public class ExternalEnvironmentVariables {
     public String getPermissions() {
         return this.getRbacServiceUrl() + "/getPermissions";
     }
+
+    public String assignPermissionToRoles() {
+        return this.getRbacServiceUrl() + "/assignPermissionsToRole";
+    }
 }

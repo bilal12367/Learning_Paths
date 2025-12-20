@@ -2,8 +2,16 @@ package com.example.app_service.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.core.ParameterizedTypeReference;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -15,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +34,29 @@ class ResponseBody <R>{
     private Class<R> body;
 }
 
+@Aspect
 @Service
 public class RestClientService {
+    private static final Logger logger = LoggerFactory.getLogger(RestClientService.class);
+
     private final RestTemplate restTemplate = new RestTemplate();
+
+@Around("execution(* com.example.app_service.service.RestClientService..*(..))")
+    public void logServiceCall(ProceedingJoinPoint pjp) throws Throwable {
+        Object[] objs = pjp.getArgs();
+        String methodName = pjp.getSignature().getName();
+        String url = objs[0].toString();
+        String requestBody = new ObjectMapper().writeValueAsString(objs[1]);
+
+        this.logger.debug("-------------------------------------------------------");
+        this.logger.debug("Method Name: "+methodName);
+        this.logger.debug("URL: "+url);
+        this.logger.debug("RequestBody: "+requestBody);
+        
+        Object response = pjp.proceed();
+        System.out.println("Response: "+new ObjectMapper().writeValueAsString(response));
+        this.logger.debug("-------------------------------------------------------");
+    }
 
     public <T, R> R postForResponse(String url, T requestBody, Class<R> responseType) throws JsonProcessingException {
         RequestEntity re = this.prepareEntity(url, null, null, requestBody);
@@ -49,14 +78,22 @@ public class RestClientService {
         return response.getBody();
     }
 
-    public <T, R> List<R> postForResponse(String url, T requestBody) throws JsonProcessingException {
+    public <T, R> List<R> postForResponseList(String url, T requestBody, Class<R> clazz) throws JsonProcessingException {
+        this.logger.debug("Making post request to url: "+url);
+        this.logger.debug("Request Body: "+requestBody.toString());
+
         RequestEntity re = this.prepareEntity(url, null, null, requestBody);
         ResponseEntity<List<R>> response = restTemplate.exchange(
                 re,
                 new ParameterizedTypeReference<List<R>>() {}
         );
 
-        return response.getBody();
+        List<R> list = response.getBody();
+        
+        List<R> convertedList = list.stream()
+            .map(data -> new ObjectMapper().convertValue(data, clazz))
+            .collect(Collectors.toList());
+        return convertedList;
     }
 
     private RequestEntity prepareEntity(String url, Map<String, Object> queries, Map<String, Object> headersMap, Object obj) throws JsonProcessingException {
@@ -73,6 +110,8 @@ public class RestClientService {
             });
         }
         String requestUrl = builder.build().toUriString();
+        this.logger.debug("Making Get request to url: "+requestUrl);
+        
         RequestEntity re;
         if(obj == null) {
             re = RequestEntity
@@ -103,7 +142,8 @@ public class RestClientService {
      */
     public <R> List<R> getForResponse(String url, Map<String, Object> queries) throws JsonProcessingException {
         // UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-
+        
+        
         // queries.forEach(builder::queryParam);
 
         // HttpHeaders headers = new HttpHeaders();
@@ -142,6 +182,10 @@ public class RestClientService {
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         String requestUrl = builder.build().toUriString();
+
+        this.logger.debug("Making Get request to url: "+requestUrl);
+        
+        
         ResponseEntity<R> response = restTemplate.exchange(
             url,
             HttpMethod.GET,

@@ -4,6 +4,7 @@ import { RbacService } from "./rbac.service";
 import { InsertResult } from "typeorm";
 import { Role } from "./entities/Role";
 import { Permission } from "./entities/Permission";
+import { RolePermission } from "./entities/RolePermission";
 
 
 
@@ -80,5 +81,10 @@ export class AuthRbacController {
     @Get('/getRolesAllowedOnAssociation')
     public async getRolesAllowedToAccessChannel(@Query('associationId') association_id: string): Promise<Role[]> {
         return await this.rbacService.getRolesAllowedToAssociation(association_id);
+    }
+
+    @Post('/assignPermissionsToRole')
+    public async assignPermissionsToRole(@Body() body: {roleId: string, permssionIds: string[]}): Promise<RolePermission[]> {
+        return await this.rbacService.assignPermissionsToRole(body.roleId, body.permssionIds)
     }
 }

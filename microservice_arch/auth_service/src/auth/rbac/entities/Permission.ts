@@ -8,8 +8,9 @@ export class Permission {
     @PrimaryGeneratedColumn()
     id: number;
 
+    
     @Column()
-    association_id: string;
+    association_id?: string;
 
     @Column()
     name: string;

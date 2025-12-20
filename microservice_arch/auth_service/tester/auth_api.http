@@ -43,3 +43,18 @@ GET http://localhost:3500/rbac/test
 
 ### Get Access Roles on channel
 GET http://localhost:3500/rbac/getRolesAllowedOnAssociation?associationId=123
+
+
+
+### Create roles
+POST  http://localhost:3500/rbac/createRoles
+Content-Type: application/json
+
+{
+  "roles": [
+    {
+      "name": "Test Role",
+      "description": "Test Description"
+    }
+  ]
+}

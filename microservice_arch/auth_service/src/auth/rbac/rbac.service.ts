@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, OnModuleInit } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './entities/Role';
 import { DeleteResult, In, InsertResult, Repository } from 'typeorm';
@@ -31,6 +31,9 @@ const role_perm_map = {
 
 @Injectable()
 export class RbacService {
+
+    private readonly logger = new Logger(RbacService.name);
+
     constructor(
         @InjectRepository(Role) private readonly roleRepository: Repository<Role>,
         @InjectRepository(Permission) private readonly permissionRepository: Repository<Permission>,
@@ -40,6 +43,7 @@ export class RbacService {
     ) { }
 
     async createRoles(roles: IRole[]): Promise<Role[]> {
+        this.logger.debug("Roles: ",roles)
         const insertResults = await this.roleRepository.insert(
             roles.map((role) => ({
                 name: role.name,
@@ -56,7 +60,8 @@ export class RbacService {
         return await this.permissionRepository.insert(
             permissions.map((permission) => ({
                 name: permission.name,
-                description: permission.description
+                description: permission.description,
+                association_id: 'test'
             }))
         )
     }
@@ -67,13 +72,20 @@ export class RbacService {
      * @param permissionIds  - Array of permission Ids to be assigned to role.
      * @returns - InsertResult
      */
-    async assignPermissionsToRole(roleId: string, permissionIds: string[]): Promise<InsertResult> {
-        return await this.rolePermissionRepo.insert(
+    async assignPermissionsToRole(roleId: string, permissionIds: string[]): Promise<RolePermission[]> {
+
+        await this.rolePermissionRepo.insert(
             permissionIds.map((permissionId) => ({
                 roleId: roleId,
                 permissionId: permissionId
             }))
         )
+        return await this.rolePermissionRepo.find({
+            where: {
+                roleId: roleId,
+                permissionId: In(permissionIds)
+            }
+        })
     }
 
     async getPermissionsOnRole(roleId: string): Promise<Permission[]> {
@@ -146,6 +158,7 @@ export class RbacService {
      * @param roleIds - Role id of a association.
      */
     async associateRolesToAssociation(association_id: string, roleIds: String[]): Promise<RoleAssociation[]> {
+        // this.logger.debug("RoleIds: "+roleIds, "Associating Roles to associations: "+association_id)
         await this.roleAssociationRepo.insert(
             roleIds.map((role_id: string) => ({role_id: role_id, association_id}))
         )

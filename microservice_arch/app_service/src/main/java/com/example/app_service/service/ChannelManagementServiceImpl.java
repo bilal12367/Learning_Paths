@@ -101,7 +101,7 @@ public class ChannelManagementServiceImpl implements ChannelManagementService {
             .association_id(roleId)
             .role_ids(channelIds)
             .build();
-        List<RoleAssociationDto> accessRolesOnChannel = this.restClientService.postForResponse(roleId, requestBody);
+        List<RoleAssociationDto> accessRolesOnChannel = this.restClientService.postForResponseList(externalEnvironmentVariables.addRolesToChannel(), requestBody,RoleAssociationDto.class);
         return accessRolesOnChannel.stream().map(ra -> ra.getAssociation_id()).toList();
     }
 

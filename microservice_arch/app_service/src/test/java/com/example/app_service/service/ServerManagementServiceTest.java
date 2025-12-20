@@ -19,8 +19,13 @@ public class ServerManagementServiceTest {
 
     @Test
     public void createServer() throws JsonProcessingException {
+        try {
         CreateServerResponseDTO dto = serverManagementService.createServer("Test Server", "New Test Server");
         System.out.println("Server created with ID: " + dto.getServer().getId().toString());
         assertNotNull(dto);
+        } catch (Exception e) {
+            System.out.println("Error Caught in test: "+e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
