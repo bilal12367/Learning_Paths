@@ -21,12 +21,12 @@ CREATE TABLE IF NOT EXISTS roles (
 );
 
 CREATE TABLE IF NOT EXISTS role_permissions (
-    id INT PRIMARY KEY,
-    roleId INT NOT NULL,
+    id varchar(30) PRIMARY KEY ,
+    roleId varchar(30) NOT NULL,
     association_id VARCHAR(50) NOT NULL,
-    permissionId INT NOT NULL,
-    FOREIGN KEY (roleId) REFERENCES roles(id),
-    FOREIGN KEY (permissionId) REFERENCES permissions(id)
+    permissionId VARCHAR(30) NOT NULL
+    -- FOREIGN KEY (roleId) REFERENCES roles(id),
+    -- FOREIGN KEY (permissionId) REFERENCES permissions(id)
 );
 insert into permissions (id, name, description, association_id) VALUES(1, 'GENERAL_ACCESS', 'General Access permission', 'global');
 insert into permissions (id, name, description, association_id) VALUES(2, 'MANAGE_USERS', 'Admin Access to manage general users', 'global');
@@ -38,11 +38,11 @@ insert into roles (id, name, description, association_id) VALUES(2, 'ADMIN', 'Ad
 insert into roles (id, name, description, association_id) VALUES(3, 'ROOT', 'Root User has all access', 'global');
 
 
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(1, 1, 'global', 1);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(2, 2, 'global', 1);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(3, 2, 'global', 2);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(4, 3, 'global', 1);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(5, 3, 'global', 2);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(6, 3, 'global', 3);
-insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES(7, 3, 'global', 4);
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('1', '1', 'global', '1');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('2', '2', 'global', '1');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('3', '2', 'global', '2');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('4', '3', 'global', '1');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('5', '3', 'global', '2');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('6', '3', 'global', '3');
+insert into role_permissions(id, roleId, `association_id`, permissionId) VALUES('7', '3', 'global', '4');
 

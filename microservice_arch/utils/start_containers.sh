@@ -1,4 +1,4 @@
 docker start mysql zookeeper
-sleep 10
+sleep 6
 
 docker start kafka
