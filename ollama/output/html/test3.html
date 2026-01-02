@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Alex J. Taylor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #resume-container {
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            @page {
+                size: a4;
+                margin: 1cm;
+            }
+        }
+
+        .header {
+            text-align: center;
+            padding: 1cm;
+            margin-bottom: 2cm;
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #003366;
+            margin: 0;
+        }
+
+        .contact-info {
+            text-align: right;
+            margin-top: 0.5cm;
+        }
+
+        .email,
+        .phone {
+            display: block;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 0;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 1cm 0 0.5cm;
+        }
+
+        .experience-item {
+            margin-bottom: 1cm;
+            padding: 0.5cm;
+        }
+
+        .experience-item h4 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0.5cm 0 0.2cm;
+        }
+
+        .experience-item p {
+            margin: 0.2cm 0;
+            font-size: 0.9em;
+        }
+
+        ul {
+            margin: 0.5cm 0;
+            padding-left: 2em;
+            list-style: none;
+        }
+
+        li {
+            margin: 0.2cm 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="resume-container">
+        <div class="header">
+            <h1 class="name">Alex J. Taylor</h1>
+            <h2 class="job-title">Senior Full-Stack Developer</h2>
+            <div class="contact-info">
+                <div class="email">alex@example.com</div>
+                <div class="phone">+1 234-567-890</div>
+            </div>
+        </div>
+        <div class="content">
+            <h3>Experience</h3>
+            <div class="experience-item">
+                <h4>Company Name</h4>
+                <p>Position</p>
+                <p>2010 - Present</p>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

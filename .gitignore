@@ -5,3 +5,16 @@ project_p2/
 *.safetensors
 .venv
 .vscode
+
+**/*.identifier
+**/*/*.Identifier
+
+*.Identifier
+
+**/*/node_modules/
+**/*/dist/
+**/*/build/
+**/*/out/
+**/*/temp/
+**/*/logs/
+*.pdfZone.Identifier

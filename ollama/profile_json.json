@@ -1,0 +1,76 @@
+{
+
+    "personal_info": {
+        "full_name": "ALEX J. TAYLOR",
+        "job_title": "Senior Full-Stack Developer",
+        "email": "alex.taylor@email.com",
+        "phone": "+1-555-0123",
+        "location": "San Francisco, CA",
+        "linkedin_url": "linkedin.com/in/alextaylor",
+        "portfolio_url": "github.com/alextaylor-dev"
+    },
+    "professional_summary": "Innovative Software Engineer with 8+ years of experience in building scalable web applications. Expert in React, Node.js, and Cloud Infrastructure. Proven track record of reducing system latency by 30% and leading cross-functional teams to deliver high-impact products.",
+    "core_competencies": [
+        "Software Architecture",
+        "Agile Methodology",
+        "Cloud Computing (AWS/Azure)",
+        "CI/CD Pipelines",
+        "Database Management"
+    ],
+    "technical_skills": {
+        "languages": [
+            "JavaScript",
+            "TypeScript",
+            "Python",
+            "SQL",
+            "Go"
+        ],
+        "frameworks": [
+            "React",
+            "Next.js",
+            "Express",
+            "Django"
+        ],
+        "tools": [
+            "Docker",
+            "Kubernetes",
+            "Git",
+            "Terraform",
+            "PostgreSQL"
+        ]
+    },
+    "work_experience": [
+        {
+            "company": "TechNova Solutions",
+            "position": "Senior Developer",
+            "start_date": "2020",
+            "end_date": "Present",
+            "highlights": [
+                "Architected a microservices-based platform serving 1M+ active users",
+                "Mentored a team of 5 junior developers, increasing sprint velocity by 20%",
+                "Implemented automated testing that reduced production bugs by 45%"
+            ]
+        },
+        {
+            "company": "DataStream Inc.",
+            "position": "Full-Stack Engineer",
+            "start_date": "2017",
+            "end_date": "2020",
+            "highlights": [
+                "Developed and maintained responsive UI components using React and Redux",
+                "Optimized API endpoints, resulting in a 200ms reduction in load times"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "degree": "Bachelor of Science in Computer Science",
+            "university": "University of California, Berkeley",
+            "graduation_year": 2017
+        }
+    ],
+    "certifications": [
+        "AWS Certified Solutions Architect",
+        "Google Professional Cloud Developer"
+    ]
+}
