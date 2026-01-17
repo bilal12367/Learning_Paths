@@ -36,4 +36,18 @@ public class Server {
     @JoinColumn(name = "channel_ids")
     private List<Channel> channels;
 
+    // @OneToMany(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "roles")
+    private List<String> roles;
+
+    private List<String> permissions;
+
+    private List<String> resources;
+
+    private List<String> userIds;
+
+    
+
+
+
 }

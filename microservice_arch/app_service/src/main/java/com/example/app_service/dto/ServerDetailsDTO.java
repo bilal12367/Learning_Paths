@@ -7,6 +7,7 @@ public class ServerDetailsDTO {
     private List<String> roleIds;
     private List<String> permissionIds;
     private List<String> channelIds;
+    private List<String> resourceIds;
     
     
 }

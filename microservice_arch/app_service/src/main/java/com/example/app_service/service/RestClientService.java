@@ -37,11 +37,11 @@ class ResponseBody <R>{
 @Aspect
 @Service
 public class RestClientService {
-    private static final Logger logger = LoggerFactory.getLogger(RestClientService.class);
+    private final Logger logger = LoggerFactory.getLogger(RestClientService.class);
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-@Around("execution(* com.example.app_service.service.RestClientService..*(..))")
+    @Around("execution(* com.example.app_service.service.RestClientService..*(..))")
     public void logServiceCall(ProceedingJoinPoint pjp) throws Throwable {
         Object[] objs = pjp.getArgs();
         String methodName = pjp.getSignature().getName();
