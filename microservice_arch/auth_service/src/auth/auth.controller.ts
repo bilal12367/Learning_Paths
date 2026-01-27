@@ -3,6 +3,8 @@ import { AuthService } from './auth.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { KafkaService } from 'src/kafka/kafka.service';
 import { User } from './entities/user.entity';
+
+
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

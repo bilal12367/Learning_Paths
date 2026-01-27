@@ -7,7 +7,7 @@ import { Permission } from "./Permission";
 export class RolePermission { 
 
     @PrimaryGeneratedColumn("uuid")
-    id: string;
+    id: number;
 
     // @OneToOne(() => Role)
     // @JoinColumn({name: 'roleId', referencedColumnName: 'id'})

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseArrayPipe, Post, Query } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { RbacService } from "./rbac.service";
 import { InsertResult } from "typeorm";
@@ -38,7 +38,7 @@ export class AuthRbacController {
     }
 
     @Post('/createPermissions')
-    public async createPermissions(@Body() body: {permissions: IPermission[]}): Promise<InsertResult> {
+    public async createPermissions(@Body() body: {permissions: IPermission[]}): Promise<Permission[]> {
         if(!body.permissions || body.permissions.length === 0){
             throw new Error('permissions are required')
         }

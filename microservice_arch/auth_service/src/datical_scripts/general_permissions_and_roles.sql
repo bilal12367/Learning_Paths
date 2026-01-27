@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS roles (
 );
 
 CREATE TABLE IF NOT EXISTS role_permissions (
-    id varchar(30) PRIMARY KEY ,
-    roleId varchar(30) NOT NULL,
+    id varchar(50) PRIMARY KEY ,
+    roleId varchar(50) NOT NULL,
     association_id VARCHAR(50) NOT NULL,
-    permissionId VARCHAR(30) NOT NULL
+    permissionId VARCHAR(50) NOT NULL
     -- FOREIGN KEY (roleId) REFERENCES roles(id),
     -- FOREIGN KEY (permissionId) REFERENCES permissions(id)
 );

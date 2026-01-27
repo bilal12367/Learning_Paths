@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Builder;
@@ -41,8 +42,8 @@ public class RestClientService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Around("execution(* com.example.app_service.service.RestClientService..*(..))")
-    public void logServiceCall(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("execution(public * com.example.app_service.service.RestClientService.*(..))")
+    public Object logServiceCall(ProceedingJoinPoint pjp) throws Throwable {
         Object[] objs = pjp.getArgs();
         String methodName = pjp.getSignature().getName();
         String url = objs[0].toString();
@@ -52,10 +53,16 @@ public class RestClientService {
         this.logger.debug("Method Name: "+methodName);
         this.logger.debug("URL: "+url);
         this.logger.debug("RequestBody: "+requestBody);
-        
-        Object response = pjp.proceed();
-        System.out.println("Response: "+new ObjectMapper().writeValueAsString(response));
-        this.logger.debug("-------------------------------------------------------");
+        try {
+            Object response = pjp.proceed();
+            System.out.println("Response: "+new ObjectMapper().writeValueAsString(response));
+            this.logger.debug("-------------------------------------------------------");
+            return response;
+        } catch (Exception e) {
+            this.logger.error("Error in method: " + methodName, e);
+            throw e;
+
+        }
     }
 
     public <T, R> R postForResponse(String url, T requestBody, Class<R> responseType) throws JsonProcessingException {
@@ -79,9 +86,6 @@ public class RestClientService {
     }
 
     public <T, R> List<R> postForResponseList(String url, T requestBody, Class<R> clazz) throws JsonProcessingException {
-        this.logger.debug("Making post request to url: "+url);
-        this.logger.debug("Request Body: "+requestBody.toString());
-
         RequestEntity re = this.prepareEntity(url, null, null, requestBody);
         ResponseEntity<List<R>> response = restTemplate.exchange(
                 re,
@@ -91,7 +95,7 @@ public class RestClientService {
         List<R> list = response.getBody();
         
         List<R> convertedList = list.stream()
-            .map(data -> new ObjectMapper().convertValue(data, clazz))
+            .map(data -> new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).convertValue(data, clazz))
             .collect(Collectors.toList());
         return convertedList;
     }
@@ -141,21 +145,6 @@ public class RestClientService {
      * @throws JsonProcessingException - If there is an error processing the JSON response.
      */
     public <R> List<R> getForResponse(String url, Map<String, Object> queries) throws JsonProcessingException {
-        // UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-        
-        
-        // queries.forEach(builder::queryParam);
-
-        // HttpHeaders headers = new HttpHeaders();
-        // headers.setContentType(MediaType.APPLICATION_JSON);
-        // String requestUrl = builder.build().toUriString();
-        // ResponseEntity<List<R>> response = restTemplate.exchange(
-        //     url,
-        //     HttpMethod.GET,
-        //     new HttpEntity<>(headers),
-        //     new ParameterizedTypeReference<List<R>>() {}
-        // );
-        // return response.getBody();
         RequestEntity rqe = this.prepareEntity(url, queries, null, null);
         ResponseEntity<List<R>> rse = restTemplate.exchange(rqe, new ParameterizedTypeReference<List<R>>(){});
         return rse.getBody();

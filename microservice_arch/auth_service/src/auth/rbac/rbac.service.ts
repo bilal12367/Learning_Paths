@@ -56,14 +56,16 @@ export class RbacService {
         return await this.roleRepository.findBy({ id: In(roleIds.map((roleId) => parseInt(roleId))) });
     }
 
-    async createPermissions(permissions: IPermission[]): Promise<InsertResult> {
-        return await this.permissionRepository.insert(
+    async createPermissions(permissions: IPermission[]): Promise<Permission[]> {
+        const insertResults = await this.permissionRepository.insert(
             permissions.map((permission) => ({
                 name: permission.name,
                 description: permission.description,
                 association_id: 'test'
             }))
         )
+        const permissionIds: string[] = insertResults.identifiers.map((iden: {id: number}) => iden.id.toString());
+        return await this.permissionRepository.findBy({id: In(permissionIds.map((permId) => parseInt(permId)))});
     }
 
     /**
