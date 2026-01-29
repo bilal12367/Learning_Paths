@@ -6,10 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Builder;
+import lombok.Data;
 
 
 @Entity
 @Builder
+@Data
 public class EntityMapping {
     @Id
     @GeneratedValue(strategy=GenerationType.UUID)

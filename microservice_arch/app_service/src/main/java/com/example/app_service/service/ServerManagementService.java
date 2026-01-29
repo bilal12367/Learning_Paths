@@ -42,7 +42,7 @@ interface ServerManagementServiceInterface {
     public List<String> createPermissions(List<Entity> entities);
     public List<String> createResources(List<Entity> entities);
 
-    public RolePermission assignPermissionToRole(String roleId, List<String> permissionIds);
+    public List<RolePermission> assignPermissionToRole(String roleId, List<String> permissionIds) throws JsonProcessingException;
     public ChannelRolesMapping assignRolesToChannel(String channelId, List<String> roleIds);
     public ServerUserDTO addUserToServer(String serverId, String userId, List<String> roleIds);
     public BanUserDTO banUserFromServer(String serverId, String userId, String reason, List<String> permissions);
@@ -156,8 +156,13 @@ public class ServerManagementService implements ServerManagementServiceInterface
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        this.mapEntitiesToServer(entitiesToBeMapped , serverId);
+        List<EntityMapping> entitiesMapped = this.mapEntitiesToServer(entitiesToBeMapped , serverId);
         // return ServerDetailsDTO.builder().server(server).roleIds(roles).build();
+        entitiesMapped.forEach(ent -> {
+            if (ent instanceof EntityMapping && ((EntityMapping) ent).getType() == "ROLE" && ((EntityMapping) ent).get) {
+
+            }
+        });
         return ServerDetailsDTO.builder()
                     .server(server)
                     .channelIds(entitiesToBeMapped.stream().filter(ent -> ent instanceof Channel).map(ent -> ((Channel) ent).getId()).toList())
@@ -165,6 +170,16 @@ public class ServerManagementService implements ServerManagementServiceInterface
                     .permissionIds(entitiesToBeMapped.stream().filter(ent -> ent instanceof Entity && ((Entity) ent).getType().equalsIgnoreCase("PERMISSION")).map(ent -> ((Entity) ent).getId()).toList())
                     .build();
         // throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public List<RolePermission> assignPermissionToRole(String roleId, List<String> permissionIds) throws JsonProcessingException {
+        Map reqBody = new HashMap();
+        reqBody.put("roleId", roleId);
+        reqBody.put("permissionIds", permissionIds);
+        ResponseEntity<List<RolePermission>> responseEntity = this.restClientService.postForResponse(this.variables.assignPermissionToRoles(), reqBody, new ParameterizedTypeReference<List<RolePermission>>() {});
+        List<RolePermission> rolePermissions = responseEntity.getBody();
+        return rolePermissions;
     }
 
     @Override
@@ -189,11 +204,6 @@ public class ServerManagementService implements ServerManagementServiceInterface
 
     @Override
     public List<String> createResources(List<Entity> entities) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public RolePermission assignPermissionToRole(String roleId, List<String> permissionIds) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
