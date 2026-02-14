@@ -87,4 +87,7 @@ export class AuthRbacController {
     public async assignPermissionsToRole(@Body() body: {roleId: string, permssionIds: string[]}): Promise<RolePermission[]> {
         return await this.rbacService.assignPermissionsToRole(body.roleId, body.permssionIds)
     }
+
+    // @Post('/assignPermissionsToRoles')
+    // public async assignPermissionsToRoles(@Body() body: {})
 }

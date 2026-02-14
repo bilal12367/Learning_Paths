@@ -157,12 +157,9 @@ public class ServerManagementService implements ServerManagementServiceInterface
                 .collect(Collectors.toList());
 
         List<EntityMapping> entitiesMapped = this.mapEntitiesToServer(entitiesToBeMapped , serverId);
-        // return ServerDetailsDTO.builder().server(server).roleIds(roles).build();
-        entitiesMapped.forEach(ent -> {
-            if (ent instanceof EntityMapping && ((EntityMapping) ent).getType() == "ROLE" && ((EntityMapping) ent).get) {
+        
+        
 
-            }
-        });
         return ServerDetailsDTO.builder()
                     .server(server)
                     .channelIds(entitiesToBeMapped.stream().filter(ent -> ent instanceof Channel).map(ent -> ((Channel) ent).getId()).toList())
